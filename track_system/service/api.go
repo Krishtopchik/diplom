@@ -12,12 +12,11 @@ var Conf = &Config{}
 var books []Book
 
 func RunRest() {
-
 	r := mux.NewRouter()
 	books = append(books, Book{ID: "1", Title: "Война и Мир", Author: &Author{Firstname: "Лев", Lastname: "Толстой"}})
 	books = append(books, Book{ID: "2", Title: "Преступление и наказание", Author: &Author{Firstname: "Фёдор", Lastname: "Достоевский"}})
 	r.HandleFunc("/books", getBooks).Methods("GET")
-	r.Handle("/", http.FileServer(http.Dir(Conf.StaticPath)))
+	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
 
 	log.Printf("starting REST server on %s", Conf.ListenPort)
 
