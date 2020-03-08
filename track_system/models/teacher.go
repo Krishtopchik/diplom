@@ -1,6 +1,6 @@
 package models
 
-type Chairman struct {
+type Teacher struct {
 	Id int64
 	Fio string
 }
