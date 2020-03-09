@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
 	"net/http"
+	"strconv"
 )
 
 var Conf = &Config{}
@@ -15,6 +16,8 @@ var Conf = &Config{}
 func RunRest() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/diploms", getDiploms).Methods("GET")
+	r.HandleFunc("/api/diploms/{id:[0-9]+}", getDiplom).Methods("GET")
+
 	r.HandleFunc("/api/chairmans", getChairmans).Methods("GET")
 	r.HandleFunc("/api/commissions", getCommissions).Methods("GET")
 	r.HandleFunc("/api/diplomorders", getDiplomorders).Methods("GET")
@@ -22,6 +25,7 @@ func RunRest() {
 	r.HandleFunc("/api/pms", getPms).Methods("GET")
 	r.HandleFunc("/api/reviewers", getReviewers).Methods("GET")
 	r.HandleFunc("/api/specialtys", getSpecialtys).Methods("GET")
+
 	r.HandleFunc("/api/diplom", createDiplom).Methods("POST")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
@@ -43,6 +47,28 @@ func RunRest() {
 func getDiploms(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	diplom, err := db.GetAllDiploms()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(diplom)
+}
+
+func getDiplom(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	idStr, ok := mux.Vars(r)["id"]
+	if !ok || len(idStr) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	diplom, err := db.GetDiplom(id)
 	if err != nil {
 		log.Error(err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -138,12 +164,12 @@ func createDiplom(w http.ResponseWriter, r *http.Request) {
 		}
 	}()
 	body := json.NewDecoder(r.Body)
-	var diplom models.Diplom
-	err = body.Decode(&diplom)
+	var diplomModel models.Diplom
+	err = body.Decode(&diplomModel)
 	if err != nil {
 		return
 	}
-	diplom, err = db.InsertDiplom(diplom)
+	diplom, err := db.InsertDiplom(diplomModel)
 	if err != nil {
 		return
 	}

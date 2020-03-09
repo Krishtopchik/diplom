@@ -1,0 +1,14 @@
+.form-diplom {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+.hidden {
+  display: none;
+}
+ul {
+  margin: 0; /* Отступ слева в браузере IE и Opera */
+  padding: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+a {
+  color: black !important;
+}

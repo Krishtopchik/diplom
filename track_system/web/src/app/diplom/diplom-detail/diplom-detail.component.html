@@ -1,0 +1,136 @@
+<div>
+  <ul class="navbar navbar-light" style="background-color: #e3f2fd;">
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="add"
+      >Добавить</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="filter"
+      >Фильтр</a>
+    </li>
+  </ul>
+</div>
+<div [ngClass]="{ hidden: tab !== 'add' }">
+  <form class="container-fluid form-diplom" [formGroup]="diplomForm">
+    <div class="form-group">
+      <label for="Fio">ФИО</label>
+      <input class="form-control" name="Fio" placeholder="ФИО" formControlName="Fio" id="Fio"/>
+    </div>
+    <div class="form-group">
+      <label for="SpecialtyId">Специальность</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="SpecialtyId" placeholder="Специальность" formControlName="SpecialtyId">
+        <option
+          *ngFor="let option of infoForCreate.specialtyList"
+          [value]="option.Id"
+        >
+          {{option.Name}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control" ></select></ng-template>
+    </div>
+    <div class="form-group">
+      <label for="Topic">Тема</label>
+      <input class="form-control" id="Topic" placeholder="Тема" formControlName="Topic">
+    </div>
+    <div class="form-group">
+      <label for="Completion">Выполнено на:</label>
+      <input class="form-control" id="Completion" placeholder="Выполнено на" formControlName="Completion">
+    </div>
+    <div class="form-group">
+      <label for="Score">Оценка</label>
+      <input class="form-control" id="Score" placeholder="Оценка" formControlName="Score">
+    </div>
+    <div class="form-group">
+      <label for="Deadline">Дата сдачи</label>
+      <input class="form-control" id="Deadline" placeholder="Дата сдачи" formControlName="Deadline">
+    </div>
+    <div class="form-group">
+      <label for="Queuenumber">Номер в очереди</label>
+      <input class="form-control" id="Queuenumber" placeholder="Номер в очереди" formControlName="Queuenumber">
+    </div>
+    <div class="form-group">
+      <label for="PmId">Руководитель</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="PmId" placeholder="Руководитель" formControlName="PmId">
+        <option
+          *ngFor="let option of infoForCreate.pmList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control" ></select></ng-template>
+    </div>
+    <div class="form-group">
+      <label for="NormcontrollerId">Нормоконтролер</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="NormcontrollerId" placeholder="Нормоконтролер" formControlName="NormcontrollerId">
+        <option
+          *ngFor="let option of infoForCreate.normcontrollerList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control" ></select></ng-template>
+    </div>
+    <div class="form-group">
+      <label for="ReviewerId">Рецензент</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="ReviewerId" placeholder="Рецензент" formControlName="ReviewerId">
+        <option
+          *ngFor="let option of infoForCreate.reviewerList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control" ></select></ng-template>
+    </div>
+    <div class="form-group">
+      <label for="ChairmanId">Председатель</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="ChairmanId" placeholder="Председатель" formControlName="ChairmanId">
+        <option
+          *ngFor="let option of infoForCreate.chairmanList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control" ></select></ng-template>
+    </div>
+    <div class="form-group">
+      <label for="CommissionId">Комиссия</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="CommissionId" placeholder="Комиссия" formControlName="CommissionId">
+        <option
+          *ngFor="let option of infoForCreate.commissionList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control" ></select></ng-template>
+    </div>
+    <div class="form-group">
+      <label for="DiplomorderId">Приказ</label>
+      <select *ngIf="infoForCreate; else loading" class="form-control" id="DiplomorderId" placeholder="Приказ" formControlName="DiplomorderId">
+        <option
+          *ngFor="let option of infoForCreate.diplomorderList"
+          [value]="option.Id"
+        >
+          {{option.Name}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control"></select></ng-template>
+    </div>
+
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary">Добавить</button>
+  </form>
+</div>
+
+<div [ngClass]="{ hidden: tab !== 'filter' }">
+  <div>qwe</div>
+</div>

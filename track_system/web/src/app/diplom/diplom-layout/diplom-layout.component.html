@@ -1,0 +1,31 @@
+<div>
+  <ul class="navbar navbar-dark bg-dark">
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel=""
+      >Дипломы</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="pm"
+      >Руководители</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="pm"
+      >Руководители</a>
+    </li>
+  </ul>
+  <div>
+    <app-diplom [ngClass]="{ hidden: tab !== '' }"></app-diplom>
+  </div>
+  <div>
+    <app-pm [ngClass]="{ hidden: tab !== 'pm' }"></app-pm>
+  </div>
+</div>

@@ -1,1 +1,17 @@
-/* You can add global styles to this file, and also import other style files */
+a {
+  text-decoration: none; /* Отменяем подчеркивание у ссылки */
+  color: white !important;
+}
+li {
+  list-style-type: none; /* Убираем маркеры */
+}
+ul {
+  margin: 0; /* Отступ слева в браузере IE и Opera */
+  padding: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+}
+
+.overlay-container {
+  position: absolute;
+  top: 0;
+  right: 24%;
+}

@@ -48,6 +48,13 @@ func GetAllDiploms() ([]models.Diplom, error){
 	return diplomAll, err
 }
 
+func GetDiplom(id int) (models.Diplom, error){
+	db := createConnectin()
+	p := models.Diplom{}
+	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.Pmid, &p.Normcontrollerid, &p.Reviewerid, &p.Chairmanid, &p.Diplomorderid, &p.Specialtyid, &p.Commissionid)
+	return p, err
+}
+
 func InsertChairman(chairman models.Teacher) (models.Teacher, error) {
 	db := createConnectin()
 	defer db.Close()
