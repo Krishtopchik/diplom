@@ -9,7 +9,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>567</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>604</IntrospectionStateNumber>
+      <IntrospectionStateNumber>619</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
       <Relations>sequence|table|16393|16395|1
@@ -105,7 +105,7 @@ sequence|table|16449|16451|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>605</IntrospectionStateNumber>
+      <IntrospectionStateNumber>620</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -344,19 +344,22 @@ sequence|table|16449|16451|1
     <column id="51" parent="36" name="fio">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>607</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="52" parent="36" name="topic">
       <Position>3</Position>
       <DataType>varchar(30)|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>608</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="53" parent="36" name="completion">
       <Position>4</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>609</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="54" parent="36" name="score">
@@ -368,55 +371,64 @@ sequence|table|16449|16451|1
     <column id="55" parent="36" name="queuenumber">
       <Position>6</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>610</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="56" parent="36" name="deadline">
       <Position>7</Position>
       <DataType>varchar(30)|0s</DataType>
-      <StateNumber>603</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>611</StateNumber>
       <TypeId>1043</TypeId>
     </column>
     <column id="57" parent="36" name="pmid">
       <Position>8</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>612</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="58" parent="36" name="normcontrollerid">
       <Position>9</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>613</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="59" parent="36" name="reviewerid">
       <Position>10</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>614</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="60" parent="36" name="chairmanid">
       <Position>11</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>615</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="61" parent="36" name="diplomorderid">
       <Position>12</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>616</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="62" parent="36" name="specialtyid">
       <Position>13</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>617</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <column id="63" parent="36" name="commissionid">
       <Position>14</Position>
       <DataType>integer|0s</DataType>
-      <StateNumber>581</StateNumber>
+      <NotNull>1</NotNull>
+      <StateNumber>618</StateNumber>
       <TypeId>23</TypeId>
     </column>
     <index id="64" parent="36" name="diplom_pkey">

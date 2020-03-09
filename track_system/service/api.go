@@ -1,21 +1,29 @@
 package service
 
 import (
+	"../db"
+	"../models"
 	"encoding/json"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"log"
+	log "github.com/sirupsen/logrus"
 	"net/http"
 )
 
 var Conf = &Config{}
-var books []Book
 
 func RunRest() {
 	r := mux.NewRouter()
-	books = append(books, Book{ID: "1", Title: "Война и Мир", Author: &Author{Firstname: "Лев", Lastname: "Толстой"}})
-	books = append(books, Book{ID: "2", Title: "Преступление и наказание", Author: &Author{Firstname: "Фёдор", Lastname: "Достоевский"}})
-	r.HandleFunc("/books", getBooks).Methods("GET")
+	r.HandleFunc("/api/diploms", getDiploms).Methods("GET")
+	r.HandleFunc("/api/chairmans", getChairmans).Methods("GET")
+	r.HandleFunc("/api/commissions", getCommissions).Methods("GET")
+	r.HandleFunc("/api/diplomorders", getDiplomorders).Methods("GET")
+	r.HandleFunc("/api/normcontrollers", getNormcontrollers).Methods("GET")
+	r.HandleFunc("/api/pms", getPms).Methods("GET")
+	r.HandleFunc("/api/reviewers", getReviewers).Methods("GET")
+	r.HandleFunc("/api/specialtys", getSpecialtys).Methods("GET")
+	r.HandleFunc("/api/diplom", createDiplom).Methods("POST")
+
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
 
 	log.Printf("starting REST server on %s", Conf.ListenPort)
@@ -32,53 +40,115 @@ func RunRest() {
 	}
 }
 
-func getBooks(w http.ResponseWriter, r *http.Request) {
+func getDiploms(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
-	json.NewEncoder(w).Encode(books)
+	diplom, err := db.GetAllDiploms()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(diplom)
 }
 
-//chairman, err := db.InsertChairman(models.Chairman{Fio: "qwe3"})
-//fmt.Println(chairman, err)
-//commission, err := db.InsertCommission(models.Teacher{Fio: "commission"})
-//fmt.Println(commission, err)
-//diplomorder, err := db.InsertDiplomOrder(models.DiplomOrder{Name: "diplomorder1", Dateorder:"diplomorder1"})
-//fmt.Println(diplomorder, err)
-//normcontroller, err := db.InsertNormcontroller(models.Teacher{Fio: "normcontroller1"})
-//fmt.Println(normcontroller, err)
-//pm, err := db.InsertPm(models.Teacher{Fio: "pm1"})
-//fmt.Println(pm, err)
-//reviewer, err := db.InsertReviewer(models.Teacher{Fio: "reviewer1"})
-//fmt.Println(reviewer, err)
-//specialty, err := db.InsertSpecialty(models.Specialyty{Name: "specialty1"})
-//fmt.Println(specialty, err)
-
-//diplom, err := db.InsertDiplom(models.Diplom{
-//	Fio:"qwe",
-//	Topic:"qwe",
-//	Completion:0,
-//	Score:1,
-//	Queuenumber:1,
-//	Deadline:"123",
-//	Pmid:1,
-//	Normcontrollerid:1,
-//	Reviewerid:1,
-//	Chairmanid:1,
-//	Diplomorderid:1,
-//	Specialtyid:1,
-//	Commissionid:1,
-//})
-//fmt.Println(diplom, err)
-
-//diplom, err := db.GetAllDiploms()
-//fmt.Println(diplom, err)
-
-type Book struct {
-	ID      string `json:"id"`
-	Title   string `json:"title"`
-	Author *Author `json:"author"`
+func getChairmans(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	chairman, err := db.GetChairman()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(chairman)
 }
 
-type Author struct {
-	Firstname string `json:"firstname"`
-	Lastname  string `json:"lastname"`
+func getCommissions(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	commission, err := db.GetCommissionn()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(commission)
+}
+
+func getDiplomorders(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	diplomorders, err := db.GetDiplomOrder()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(diplomorders)
+}
+
+func getNormcontrollers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	normcontrollers, err := db.GetNormcontroller()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(normcontrollers)
+}
+
+func getPms(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	pms, err := db.GetPm()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(pms)
+}
+
+func getReviewers(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	reviewers, err := db.GetReviewer()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(reviewers)
+}
+
+func getSpecialtys(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	specialtys, err := db.GetSpecialty()
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(specialtys)
+}
+
+func createDiplom(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var diplom models.Diplom
+	err = body.Decode(&diplom)
+	if err != nil {
+		return
+	}
+	diplom, err = db.InsertDiplom(diplom)
+	if err != nil {
+		return
+	}
+	err = json.NewEncoder(w).Encode(diplom)
+	if err != nil {
+		return
+	}
 }
