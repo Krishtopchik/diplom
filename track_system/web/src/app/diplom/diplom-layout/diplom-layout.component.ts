@@ -18,7 +18,6 @@ export class DiplomLayoutComponent {
 
   changeTab($event) {
     this.tab = $event.target.getAttribute('rel');
-    console.log(this.tab)
     this.router.navigate([this.tab]);
   }
 }

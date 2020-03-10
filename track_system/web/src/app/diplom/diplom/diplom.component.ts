@@ -1,41 +1,23 @@
-import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {DiplomService} from '../../common/services/diplom.service';
 import {DiplomModel} from '../../common/models/diplom.model';
-import {TeacherModel} from '../../common/models/teacher.model';
-import {SpecialytyModel} from '../../common/models/specialyty.model';
-import {DiplomorderModel} from '../../common/models/diplomorder.model';
 import {zip} from 'rxjs';
-import {validate} from 'codelyzer/walkerFactory/walkerFn';
+import {DiplomDataService} from '../../common/services/diplom-data.service';
 
 @Component({
   selector: 'app-diplom',
   templateUrl: './diplom.component.html',
   styleUrls: ['./diplom.component.scss']
 })
-export class DiplomComponent implements OnInit {
+export class DiplomComponent implements OnInit, DoCheck {
 
-  diplomForm = new FormGroup({
-    Fio: new FormControl('', Validators.required),
-    Topic: new FormControl('', Validators.required),
-    Completion: new FormControl('', Validators.required),
-    Score: new FormControl('', Validators.required),
-    Deadline: new FormControl('', Validators.required),
-    Queuenumber: new FormControl('', Validators.required),
-    PmId: new FormControl('', Validators.required),
-    NormcontrollerId: new FormControl('', Validators.required),
-    ReviewerId: new FormControl('', Validators.required),
-    ChairmanId: new FormControl('', Validators.required),
-    DiplomorderId: new FormControl('', Validators.required),
-    SpecialtyId: new FormControl('', Validators.required),
-    CommissionId: new FormControl('', Validators.required),
-  });
-
+  isDiplomSelect = false;
+  selectDiplomId: number;
   diplomsList: DiplomModel[];
   infoForCreate: any;
-
   constructor(
     private diplomService: DiplomService,
+    private diplomDataService: DiplomDataService,
   ) {
   }
 
@@ -60,6 +42,11 @@ export class DiplomComponent implements OnInit {
         commissionList: commission,
       };
     });
+  }
+
+  ngDoCheck() {
+    this.selectDiplomId = this.diplomDataService.selectDiplomId;
+    this.isDiplomSelect = this.diplomDataService.isDiplomSelect;
   }
 
   private getDiplomsList() {

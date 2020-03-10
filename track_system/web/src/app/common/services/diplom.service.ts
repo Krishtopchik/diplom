@@ -21,8 +21,18 @@ export class DiplomService {
     );
   }
 
+  getDiplomById(id): Observable<DiplomModel> {
+    return this.http.get<DiplomModel>(
+      `${this.url}/diploms/${id}`
+    );
+  }
+
+  updateDiplom(diplom: DiplomModel): Observable<any> {
+    return this.http.put<DiplomModel>(`${this.url}diploms`, JSON.stringify(diplom));
+  }
+
   createDiplom(diplom: DiplomModel): Observable<DiplomModel> {
-    return this.http.post<DiplomModel>(`${this.url}diplom`, JSON.stringify(diplom));
+    return this.http.post<DiplomModel>(`${this.url}diploms`, JSON.stringify(diplom));
   }
 
   getChairmans(): Observable<TeacherModel[]> {

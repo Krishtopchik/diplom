@@ -127,7 +127,7 @@
       <ng-template #loading><select class="form-control"></select></ng-template>
     </div>
 
-    <button (click)="onSubmit()" type="submit" class="btn btn-primary">Добавить</button>
+    <button (click)="onSubmit()" type="submit" class="btn btn-primary">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
   </form>
 </div>
 

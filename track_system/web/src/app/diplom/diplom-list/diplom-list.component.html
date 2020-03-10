@@ -1,5 +1,6 @@
 <div *ngIf="diplomList">
   <div *ngFor="let diplom of diplomList">
     {{diplom.Topic}}
+    <button (click)="changeDiplom(diplom.Id)">Редактировать</button>
   </div>
 </div>

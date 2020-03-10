@@ -8,11 +8,11 @@ type Diplom struct{
 	Score int
 	Deadline string
 	Queuenumber int
-	Pmid int
-	Normcontrollerid int
-	Reviewerid int
-	Chairmanid int
-	Diplomorderid int
-	Specialtyid int
-	Commissionid int
+	PmId int
+	NormcontrollerId int
+	ReviewerId int
+	ChairmanId int
+	DiplomorderId int
+	SpecialtyId int
+	CommissionId int
 }

@@ -26,7 +26,8 @@ func RunRest() {
 	r.HandleFunc("/api/reviewers", getReviewers).Methods("GET")
 	r.HandleFunc("/api/specialtys", getSpecialtys).Methods("GET")
 
-	r.HandleFunc("/api/diplom", createDiplom).Methods("POST")
+	r.HandleFunc("/api/diploms", createDiplom).Methods("POST")
+	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
 
@@ -170,6 +171,31 @@ func createDiplom(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	diplom, err := db.InsertDiplom(diplomModel)
+	if err != nil {
+		return
+	}
+	err = json.NewEncoder(w).Encode(diplom)
+	if err != nil {
+		return
+	}
+}
+
+func updateDiplom(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var diplomModel models.Diplom
+	err = body.Decode(&diplomModel)
+	if err != nil {
+		return
+	}
+	diplom, err := db.UpdateDiplom(diplomModel)
 	if err != nil {
 		return
 	}
