@@ -1,9 +1,11 @@
-import {Component, Input, OnInit, DoCheck} from '@angular/core';
+import {Component, Input, OnInit, DoCheck, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../common/services/validation.service';
 import {ToastrService} from 'ngx-toastr';
 import {DiplomService} from '../../common/services/diplom.service';
 import {DiplomModel} from '../../common/models/diplom.model';
+import {DiplomDataService} from '../../common/services/diplom-data.service';
+import {DiplomInfoModel} from '../../common/models/diplomInfo.model';
 
 @Component({
   selector: 'app-diplom-detail',
@@ -16,21 +18,24 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     private fb: FormBuilder,
     private validationService: ValidationService,
     private diplomService: DiplomService,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private diplomDataService: DiplomDataService
   ) {
   }
 
+  @Input() infoAboutDiplom: DiplomInfoModel;
   @Input() selectDiplomId: number;
   @Input() isDiplomSelect: boolean;
-  @Input() infoForCreate: any;
 
   diplomSelect = false;
   diplomId = 0;
   tab = 'add';
   diplomForm: FormGroup;
+  diplomListFilterForm: FormGroup;
   buttonTitleAdd = true;
 
   ngOnInit(): void {
+    this.formFilterInit();
     this.formInit();
   }
 
@@ -65,6 +70,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
           this.toastr.success('Изменен');
         });
       }
+      this.diplomDataService.isDiplomsUpdate = true;
     }, {
       Fio: {
         required: 'Поле не заполнено'
@@ -108,6 +114,19 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     });
   }
 
+  onFilterSubmit() {
+    this.diplomDataService.diplomsFilter = true;
+    const rows = this.diplomListFilterForm.getRawValue();
+    Object.keys(rows).forEach(key => {
+      console.log(key, rows[key])
+      if (rows[key] === 'null') {
+        rows[key] = 0
+      }
+      console.log(key, rows[key])
+    });
+    localStorage.setItem('filter', JSON.stringify(rows));
+  }
+
   changeTab($event) {
     this.tab = $event.target.getAttribute('rel');
     if (this.tab === 'add') {
@@ -140,6 +159,30 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       SpecialtyId: [1, Validators.required],
       CommissionId: [1, Validators.required],
     });
+  }
+
+  formFilterInit() {
+    this.diplomListFilterForm = this.fb.group({
+      Fio: [''],
+      Topic: [''],
+      Completion: [''],
+      Score: [''],
+      Deadline: [''],
+      Queuenumber: [''],
+      PmId: [0],
+      NormcontrollerId: [0],
+      ReviewerId: [0],
+      ChairmanId: [0],
+      DiplomorderId: [0],
+      SpecialtyId: [0],
+      CommissionId: [0],
+    });
+    const filterItem = JSON.parse(localStorage.getItem('filter'))
+    if (filterItem) {
+      this.diplomListFilterForm.patchValue({
+        ...filterItem
+      });
+    }
   }
 
   private fillForm(item: DiplomModel) {

@@ -1,8 +1,11 @@
 <div class="content">
   <app-diplom-detail
-    [infoForCreate]="infoForCreate"
+    [infoAboutDiplom]="infoAboutDiplom"
     [isDiplomSelect]="isDiplomSelect"
     [selectDiplomId]="selectDiplomId"
   ></app-diplom-detail>
-  <app-diplom-list></app-diplom-list>
+  <app-diplom-list
+    [infoAboutDiplom]="infoAboutDiplom"
+    [diplomsList]="diplomsList"
+  ></app-diplom-list>
 </div>

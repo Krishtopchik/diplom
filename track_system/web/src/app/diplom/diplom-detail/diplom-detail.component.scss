@@ -1,5 +1,4 @@
 .form-diplom {
-  max-height: 80vh;
   overflow-y: auto;
 }
 .hidden {
@@ -11,4 +10,20 @@ ul {
 }
 a {
   color: black !important;
+}
+.form-group {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+}
+label {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-fluid {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

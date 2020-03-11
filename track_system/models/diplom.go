@@ -1,12 +1,14 @@
 package models
 
+import "time"
+
 type Diplom struct{
 	Id int
 	Fio string
 	Topic string
 	Completion int
 	Score int
-	Deadline string
+	Deadline time.Time
 	Queuenumber int
 	PmId int
 	NormcontrollerId int

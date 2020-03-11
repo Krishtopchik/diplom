@@ -4,4 +4,6 @@ import {Injectable} from '@angular/core';
 export class DiplomDataService {
   selectDiplomId: number;
   isDiplomSelect = false;
+  isDiplomsUpdate = false;
+  diplomsFilter = false;
 }

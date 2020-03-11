@@ -17,6 +17,7 @@ func RunRest() {
 	r := mux.NewRouter()
 	r.HandleFunc("/api/diploms", getDiploms).Methods("GET")
 	r.HandleFunc("/api/diploms/{id:[0-9]+}", getDiplom).Methods("GET")
+	r.HandleFunc("/api/diploms/{id:[0-9]+}", deleteDiplom).Methods("DELETE")
 
 	r.HandleFunc("/api/chairmans", getChairmans).Methods("GET")
 	r.HandleFunc("/api/commissions", getCommissions).Methods("GET")
@@ -27,6 +28,7 @@ func RunRest() {
 	r.HandleFunc("/api/specialtys", getSpecialtys).Methods("GET")
 
 	r.HandleFunc("/api/diploms", createDiplom).Methods("POST")
+	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
@@ -76,6 +78,28 @@ func getDiplom(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(diplom)
+}
+
+func deleteDiplom(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	idStr, ok := mux.Vars(r)["id"]
+	if !ok || len(idStr) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	err = db.DeleteDiplom(id)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(err)
 }
 
 func getChairmans(w http.ResponseWriter, r *http.Request) {

@@ -1,6 +1,68 @@
-<div *ngIf="diplomList">
-  <div *ngFor="let diplom of diplomList">
-    {{diplom.Topic}}
-    <button (click)="changeDiplom(diplom.Id)">Редактировать</button>
-  </div>
+<div *ngIf="diplomsList && infoAboutDiplom" style="height: 95vh; overflow: auto">
+  <accordion *ngIf="diplomsList">
+    <accordion-group *ngFor="let diplom of diplomsList" title={{diplom.Topic}}>
+      <button class="btn btn-link btn-block clearfix" accordion-heading>
+        <div style="display:grid; grid-template-columns: 6fr 2fr 2fr 1fr">
+          <div class="pull-left float-left">
+            <p style="margin: 0">
+              {{createTitleString(diplom)}}
+            </p>
+          </div>
+          <button style="width: 10rem; margin: 0 0.5rem;" class="btn btn-outline-primary" (click)="changeDiplom(diplom.Id)">Редактировать</button>
+          <button style="width: 10rem; margin: 0 0.5rem;" class="btn btn-outline-primary" (click)="deleteDiplom(diplom.Id)">Удалить</button>
+          <span class="float-right pull-right">
+            <img src="assets/img/chevron.svg" class="chevron"/>
+          </span>
+        </div>
+      </button>
+      <div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label>Тема: {{diplom.Topic}}</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label>Нормоконтролер: {{getNormcontroller(diplom.NormcontrollerId)}}</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label>Рецензент: {{getReviewer(diplom.ReviewerId)}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-4">
+            <div class="form-group">
+              <label>Комиссия: {{getCommission(diplom.CommissionId)}}</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label>Срок: {{diplom.Deadline}}</label>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="padding-top: 1rem; border-top: 1px solid black;">
+          <div class="col-4">
+            <div class="form-group">
+              <label>Защита: {{diplom.Queuenumber}}</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label>Председатель: {{getChairman(diplom.ChairmanId)}}</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label>Оценка: {{diplom.Score}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </accordion-group>
+  </accordion>
 </div>

@@ -5,3 +5,8 @@ ul {
   margin: 0; /* Отступ слева в браузере IE и Opera */
   padding: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
 }
+.content {
+  height: 100vh;
+  display: grid;
+  grid-auto-rows: 5vh auto;
+}

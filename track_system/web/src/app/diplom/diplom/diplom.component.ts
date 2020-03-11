@@ -3,6 +3,7 @@ import {DiplomService} from '../../common/services/diplom.service';
 import {DiplomModel} from '../../common/models/diplom.model';
 import {zip} from 'rxjs';
 import {DiplomDataService} from '../../common/services/diplom-data.service';
+import {DiplomInfoModel} from '../../common/models/diplomInfo.model';
 
 @Component({
   selector: 'app-diplom',
@@ -14,7 +15,8 @@ export class DiplomComponent implements OnInit, DoCheck {
   isDiplomSelect = false;
   selectDiplomId: number;
   diplomsList: DiplomModel[];
-  infoForCreate: any;
+  infoAboutDiplom: DiplomInfoModel;
+
   constructor(
     private diplomService: DiplomService,
     private diplomDataService: DiplomDataService,
@@ -32,7 +34,7 @@ export class DiplomComponent implements OnInit, DoCheck {
       this.getSpecialtyList(),
       this.getCommissionList(),
     ).subscribe(([pm, normcontroller, reviewer, chairman, diplomorder, specialty, commission]) => {
-      this.infoForCreate = {
+      this.infoAboutDiplom = {
         pmList: pm,
         normcontrollerList: normcontroller,
         reviewerList: reviewer,
@@ -47,11 +49,36 @@ export class DiplomComponent implements OnInit, DoCheck {
   ngDoCheck() {
     this.selectDiplomId = this.diplomDataService.selectDiplomId;
     this.isDiplomSelect = this.diplomDataService.isDiplomSelect;
+    if (this.diplomDataService.isDiplomsUpdate) {
+      this.getDiplomsList();
+    }
+    if (this.diplomDataService.diplomsFilter) {
+      this.getDiplomsListAndFilter();
+    }
   }
 
   private getDiplomsList() {
     this.diplomService.getAllDiploms().subscribe(res => {
       this.diplomsList = res;
+      this.diplomDataService.isDiplomsUpdate = false;
+    });
+  }
+
+  private getDiplomsListAndFilter() {
+    this.diplomService.getAllDiploms().subscribe(res => {
+      const filter = JSON.parse(localStorage.getItem('filter'));
+      Object.keys(filter).forEach(key => {
+        if (+/\d+/.exec(filter[key])) {
+          filter[key] = +filter[key];
+        }
+        if (filter[key]) {
+          res = res.filter( el => {
+            return el[key] === filter[key];
+          });
+        }
+      });
+      this.diplomsList = res;
+      this.diplomDataService.diplomsFilter = false;
     });
   }
 

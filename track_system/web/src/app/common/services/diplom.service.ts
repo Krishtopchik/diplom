@@ -31,6 +31,12 @@ export class DiplomService {
     return this.http.put<DiplomModel>(`${this.url}diploms`, JSON.stringify(diplom));
   }
 
+  deleteDiplom(id: number): Observable<any> {
+    return this.http.delete<any>(
+      `${this.url}/diploms/${id}`
+    );
+  }
+
   createDiplom(diplom: DiplomModel): Observable<DiplomModel> {
     return this.http.post<DiplomModel>(`${this.url}diploms`, JSON.stringify(diplom));
   }

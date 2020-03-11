@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
+	"sort"
 )
 
 func createConnectin() *sql.DB {
@@ -19,12 +20,22 @@ func createConnectin() *sql.DB {
 func InsertDiplom(diplom models.Diplom) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	err := db.QueryRow("insert into diplom (fio, topic, completion, score, queuenumber, deadline, pmid, normcontrollerid, reviewerid, chairmanid, diplomorderid, specialtyid, commissionid) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning id",
-		diplom.Fio, diplom.Topic, diplom.Completion, diplom.Score, diplom.Queuenumber, diplom.Deadline, diplom.PmId, diplom.NormcontrollerId, diplom.ReviewerId, diplom.ChairmanId, diplom.DiplomorderId, diplom.SpecialtyId, diplom.CommissionId).Scan(&diplom.Id)
+	err := db.QueryRow("insert into diplom (fio, topic, completion, score, deadline, queuenumber, pmid, normcontrollerid, reviewerid, chairmanid, diplomorderid, specialtyid, commissionid) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning id",
+		diplom.Fio, diplom.Topic, diplom.Completion, diplom.Score, diplom.Deadline, diplom.Queuenumber, diplom.PmId, diplom.NormcontrollerId, diplom.ReviewerId, diplom.ChairmanId, diplom.DiplomorderId, diplom.SpecialtyId, diplom.CommissionId).Scan(&diplom.Id)
 	if err != nil{
 		panic(err)
 	}
 	return diplom, err
+}
+
+func DeleteDiplom(id int) error {
+	db := createConnectin()
+	defer db.Close()
+	_, err := db.Exec("delete from diplom values where id = $1", id)
+	if err != nil{
+		panic(err)
+	}
+	return err
 }
 
 func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
@@ -33,8 +44,8 @@ func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14 where id = $1",
 		diplom.Id, diplom.Fio,
 		diplom.Topic, diplom.Completion,
-		diplom.Score, diplom.Queuenumber,
-		diplom.Deadline, diplom.PmId,
+		diplom.Score, diplom.Deadline,
+		diplom.Queuenumber, diplom.PmId,
 		diplom.NormcontrollerId, diplom.ReviewerId,
 		diplom.ChairmanId, diplom.DiplomorderId,
 		diplom.SpecialtyId, diplom.CommissionId);
@@ -62,6 +73,9 @@ func GetAllDiploms() ([]models.Diplom, error){
 		}
 		diplomAll = append(diplomAll, p)
 	}
+	sort.Slice(diplomAll, func(i, j int) bool {
+		return diplomAll[i].Id < diplomAll[j].Id
+	})
 	return diplomAll, err
 }
 
@@ -101,6 +115,9 @@ func GetChairman() ([]models.Teacher, error){
 		}
 		chairmanAll = append(chairmanAll, p)
 	}
+	sort.Slice(chairmanAll, func(i, j int) bool {
+		return chairmanAll[i].Id < chairmanAll[j].Id
+	})
 	return chairmanAll, err
 }
 
@@ -133,6 +150,9 @@ func GetCommissionn() ([]models.Teacher, error){
 		}
 		commissionAll = append(commissionAll, p)
 	}
+	sort.Slice(commissionAll, func(i, j int) bool {
+		return commissionAll[i].Id < commissionAll[j].Id
+	})
 	return commissionAll, err
 }
 
@@ -165,6 +185,9 @@ func GetDiplomOrder() ([]models.DiplomOrder, error){
 		}
 		diplomOrderAll = append(diplomOrderAll, p)
 	}
+	sort.Slice(diplomOrderAll, func(i, j int) bool {
+		return diplomOrderAll[i].Id < diplomOrderAll[j].Id
+	})
 	return diplomOrderAll, err
 }
 
@@ -197,6 +220,9 @@ func GetNormcontroller() ([]models.Teacher, error){
 		}
 		normcontrollerAll = append(normcontrollerAll, p)
 	}
+	sort.Slice(normcontrollerAll, func(i, j int) bool {
+		return normcontrollerAll[i].Id < normcontrollerAll[j].Id
+	})
 	return normcontrollerAll, err
 }
 
@@ -229,6 +255,9 @@ func GetPm() ([]models.Teacher, error){
 		}
 		pmAll = append(pmAll, p)
 	}
+	sort.Slice(pmAll, func(i, j int) bool {
+		return pmAll[i].Id < pmAll[j].Id
+	})
 	return pmAll, err
 }
 
@@ -261,6 +290,9 @@ func GetReviewer() ([]models.Teacher, error){
 		}
 		reviewerAll = append(reviewerAll, p)
 	}
+	sort.Slice(reviewerAll, func(i, j int) bool {
+		return reviewerAll[i].Id < reviewerAll[j].Id
+	})
 	return reviewerAll, err
 }
 
@@ -293,5 +325,8 @@ func GetSpecialty() ([]models.Specialyty, error){
 		}
 		specialytyAll = append(specialytyAll, p)
 	}
+	sort.Slice(specialytyAll, func(i, j int) bool {
+		return specialytyAll[i].Id < specialytyAll[j].Id
+	})
 	return specialytyAll, err
 }

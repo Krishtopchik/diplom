@@ -1,3 +1,4 @@
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 a {
   text-decoration: none; /* Отменяем подчеркивание у ссылки */
   color: white !important;
@@ -15,3 +16,9 @@ ul {
   top: 0;
   right: 24%;
 }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

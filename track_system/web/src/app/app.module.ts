@@ -9,11 +9,12 @@ import { DiplomDetailComponent } from './diplom/diplom-detail/diplom-detail.comp
 import { PmComponent } from './diplom/diplom-pm/pm.component';
 import { DiplomLayoutComponent } from './diplom/diplom-layout/diplom-layout.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {ValidationService} from './common/services/validation.service';
 import {ToastContainerModule, ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {AccordionConfig, AccordionModule} from 'ngx-bootstrap/accordion';
 
 @NgModule({
   declarations: [
@@ -22,20 +23,22 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     DiplomListComponent,
     DiplomDetailComponent,
     PmComponent,
-    DiplomLayoutComponent
+    DiplomLayoutComponent,
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot({ positionClass: 'inline' }),
+    ToastrModule.forRoot({positionClass: 'inline'}),
     ToastContainerModule,
     BrowserModule,
     AppRoutingModule,
     NgbModule,
     ReactiveFormsModule,
     HttpClientModule,
+    FormsModule,
+    AccordionModule,
   ],
-  providers: [ValidationService],
+  providers: [ValidationService, AccordionConfig],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

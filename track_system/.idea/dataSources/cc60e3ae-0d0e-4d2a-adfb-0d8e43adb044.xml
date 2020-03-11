@@ -9,7 +9,7 @@
       <Comment>default administrative connection database</Comment>
       <StateNumber>567</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>619</IntrospectionStateNumber>
+      <IntrospectionStateNumber>681</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
       <Relations>sequence|table|16393|16395|1
@@ -105,7 +105,7 @@ sequence|table|16449|16451|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>620</IntrospectionStateNumber>
+      <IntrospectionStateNumber>682</IntrospectionStateNumber>
       <Current>1</Current>
       <Visible>1</Visible>
     </schema>
@@ -250,12 +250,12 @@ sequence|table|16449|16451|1
     <table id="36" parent="17" name="diplom">
       <ObjectId>16451</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>603</StateNumber>
+      <StateNumber>680</StateNumber>
     </table>
     <table id="37" parent="17" name="diplomorder">
       <ObjectId>16435</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>594</StateNumber>
+      <StateNumber>673</StateNumber>
     </table>
     <table id="38" parent="17" name="normcontroller">
       <ObjectId>16403</ObjectId>
@@ -377,10 +377,10 @@ sequence|table|16449|16451|1
     </column>
     <column id="56" parent="36" name="deadline">
       <Position>7</Position>
-      <DataType>varchar(30)|0s</DataType>
+      <DataType>date|0s</DataType>
       <NotNull>1</NotNull>
-      <StateNumber>611</StateNumber>
-      <TypeId>1043</TypeId>
+      <StateNumber>680</StateNumber>
+      <TypeId>1082</TypeId>
     </column>
     <column id="57" parent="36" name="pmid">
       <Position>8</Position>
@@ -433,7 +433,7 @@ sequence|table|16449|16451|1
     </column>
     <index id="64" parent="36" name="diplom_pkey">
       <ObjectId>16455</ObjectId>
-      <StateNumber>603</StateNumber>
+      <StateNumber>680</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
@@ -531,13 +531,13 @@ sequence|table|16449|16451|1
     </column>
     <column id="75" parent="37" name="dateorder">
       <Position>3</Position>
-      <DataType>varchar(30)|0s</DataType>
-      <StateNumber>594</StateNumber>
-      <TypeId>1043</TypeId>
+      <DataType>date|0s</DataType>
+      <StateNumber>673</StateNumber>
+      <TypeId>1082</TypeId>
     </column>
     <index id="76" parent="37" name="diplomorder_pkey">
       <ObjectId>16439</ObjectId>
-      <StateNumber>594</StateNumber>
+      <StateNumber>673</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
