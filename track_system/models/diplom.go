@@ -8,7 +8,7 @@ type Diplom struct{
 	Topic string
 	Completion int
 	Score int
-	Deadline time.Time
+	Deadline *time.Time
 	Queuenumber int
 	PmId int
 	NormcontrollerId int
@@ -17,4 +17,6 @@ type Diplom struct{
 	DiplomorderId int
 	SpecialtyId int
 	CommissionId int
+	Execution *time.Time
+	Type int
 }

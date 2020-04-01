@@ -23,12 +23,16 @@ func RunRest() {
 	r.HandleFunc("/api/commissions", getCommissions).Methods("GET")
 	r.HandleFunc("/api/diplomorders", getDiplomorders).Methods("GET")
 	r.HandleFunc("/api/normcontrollers", getNormcontrollers).Methods("GET")
+
 	r.HandleFunc("/api/pms", getPms).Methods("GET")
+	r.HandleFunc("/api/pms", createPm).Methods("POST")
+	r.HandleFunc("/api/pms/{id:[0-9]+}", deletePm).Methods("DELETE")
+	r.HandleFunc("/api/pms", updatePm).Methods("PUT")
+
 	r.HandleFunc("/api/reviewers", getReviewers).Methods("GET")
 	r.HandleFunc("/api/specialtys", getSpecialtys).Methods("GET")
 
 	r.HandleFunc("/api/diploms", createDiplom).Methods("POST")
-	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
@@ -155,6 +159,78 @@ func getPms(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(pms)
+}
+
+func createPm(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var teacherModel models.Teacher
+	err = body.Decode(&teacherModel)
+	if err != nil {
+		return
+	}
+	teacher, err := db.InsertPm(teacherModel)
+	if err != nil {
+		return
+	}
+	err = json.NewEncoder(w).Encode(teacher)
+	if err != nil {
+		return
+	}
+}
+
+func deletePm(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	idStr, ok := mux.Vars(r)["id"]
+	if !ok || len(idStr) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	err = db.DeletePm(id)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(err)
+}
+
+func updatePm(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var pmModel models.Teacher
+	err = body.Decode(&pmModel)
+	if err != nil {
+		return
+	}
+	pm, err := db.UpdatePm(pmModel)
+	if err != nil {
+		return
+	}
+	err = json.NewEncoder(w).Encode(pm)
+	if err != nil {
+		return
+	}
 }
 
 func getReviewers(w http.ResponseWriter, r *http.Request) {

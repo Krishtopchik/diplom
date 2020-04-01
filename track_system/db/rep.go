@@ -20,8 +20,8 @@ func createConnectin() *sql.DB {
 func InsertDiplom(diplom models.Diplom) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	err := db.QueryRow("insert into diplom (fio, topic, completion, score, deadline, queuenumber, pmid, normcontrollerid, reviewerid, chairmanid, diplomorderid, specialtyid, commissionid) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) returning id",
-		diplom.Fio, diplom.Topic, diplom.Completion, diplom.Score, diplom.Deadline, diplom.Queuenumber, diplom.PmId, diplom.NormcontrollerId, diplom.ReviewerId, diplom.ChairmanId, diplom.DiplomorderId, diplom.SpecialtyId, diplom.CommissionId).Scan(&diplom.Id)
+	err := db.QueryRow("insert into diplom (fio, topic, completion, score, deadline, queuenumber, pmid, normcontrollerid, reviewerid, chairmanid, diplomorderid, specialtyid, commissionid, execution, type) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15) returning id",
+		diplom.Fio, diplom.Topic, diplom.Completion, diplom.Score, diplom.Deadline, diplom.Queuenumber, diplom.PmId, diplom.NormcontrollerId, diplom.ReviewerId, diplom.ChairmanId, diplom.DiplomorderId, diplom.SpecialtyId, diplom.CommissionId, diplom.Execution, diplom.Type).Scan(&diplom.Id)
 	if err != nil{
 		panic(err)
 	}
@@ -41,14 +41,15 @@ func DeleteDiplom(id int) error {
 func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14 where id = $1",
+	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14, execution = $15, type = $16 where id = $1",
 		diplom.Id, diplom.Fio,
 		diplom.Topic, diplom.Completion,
 		diplom.Score, diplom.Deadline,
 		diplom.Queuenumber, diplom.PmId,
 		diplom.NormcontrollerId, diplom.ReviewerId,
 		diplom.ChairmanId, diplom.DiplomorderId,
-		diplom.SpecialtyId, diplom.CommissionId);
+		diplom.SpecialtyId, diplom.CommissionId,
+		diplom.Execution, diplom.Type);
 	err != nil {
 		return diplom, err
 	}
@@ -66,7 +67,7 @@ func GetAllDiploms() ([]models.Diplom, error){
 
 	for rows.Next(){
 		p := models.Diplom{}
-		err := rows.Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId)
+		err := rows.Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type)
 		if err != nil{
 			fmt.Println(err)
 			continue
@@ -82,7 +83,7 @@ func GetAllDiploms() ([]models.Diplom, error){
 func GetDiplom(id int) (models.Diplom, error){
 	db := createConnectin()
 	p := models.Diplom{}
-	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId)
+	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type)
 	return p, err
 }
 
@@ -259,6 +260,27 @@ func GetPm() ([]models.Teacher, error){
 		return pmAll[i].Id < pmAll[j].Id
 	})
 	return pmAll, err
+}
+
+func DeletePm(id int) error {
+	db := createConnectin()
+	defer db.Close()
+	_, err := db.Exec("delete from pm values where id = $1", id)
+	if err != nil{
+		panic(err)
+	}
+	return err
+}
+
+func UpdatePm(pm models.Teacher) (models.Teacher, error) {
+	db := createConnectin()
+	defer db.Close()
+	if _, err := db.Exec("update pm set Fio = $2 where id = $1",
+		pm.Id, pm.Fio);
+		err != nil {
+		return pm, err
+	}
+	return pm, nil
 }
 
 func InsertReviewer(reviewer models.Teacher) (models.Teacher, error) {

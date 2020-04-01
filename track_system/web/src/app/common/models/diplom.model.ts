@@ -13,4 +13,6 @@ export class DiplomModel {
   DiplomorderId: number;
   SpecialtyId: number;
   CommissionId: number;
+  Execution: string;
+  Type: number;
 }

@@ -1,21 +1,14 @@
 <div class="content">
   <ul class="navbar navbar-dark bg-dark">
     <li class="nav-item">
-      <a class="nav-link font-weight-normal"
+      <a class="nav-link font-weight-normal"  [ngStyle]="{'color': tab === '' ? 'red' : 'white'}"
          href="javascript://"
          (click)="changeTab($event)"
          rel=""
       >Дипломы</a>
     </li>
     <li class="nav-item">
-      <a class="nav-link font-weight-normal"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="pm"
-      >Руководители</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link font-weight-normal"
+      <a class="nav-link font-weight-normal" [ngStyle]="{'color': tab === 'pm' ? 'red' : 'white'}"
          href="javascript://"
          (click)="changeTab($event)"
          rel="pm"

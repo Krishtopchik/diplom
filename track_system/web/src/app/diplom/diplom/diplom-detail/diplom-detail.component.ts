@@ -1,11 +1,11 @@
 import {Component, Input, OnInit, DoCheck, Output, EventEmitter} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {ValidationService} from '../../common/services/validation.service';
+import {ValidationService} from '../../../common/services/validation.service';
 import {ToastrService} from 'ngx-toastr';
-import {DiplomService} from '../../common/services/diplom.service';
-import {DiplomModel} from '../../common/models/diplom.model';
-import {DiplomDataService} from '../../common/services/diplom-data.service';
-import {DiplomInfoModel} from '../../common/models/diplomInfo.model';
+import {DiplomService} from '../../../common/services/diplom.service';
+import {DiplomModel} from '../../../common/models/diplom.model';
+import {DiplomDataService} from '../../../common/services/diplom-data.service';
+import {DiplomInfoModel} from '../../../common/models/diplomInfo.model';
 
 @Component({
   selector: 'app-diplom-detail',
@@ -61,6 +61,12 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       diplom.DiplomorderId = +diplom.DiplomorderId;
       diplom.SpecialtyId = +diplom.SpecialtyId;
       diplom.CommissionId = +diplom.CommissionId;
+      if (diplom.Deadline === '') {
+        diplom.Deadline = null;
+      }
+      if (diplom.Execution === '') {
+        diplom.Execution = null;
+      }
       if (this.buttonTitleAdd) {
         this.diplomService.createDiplom(diplom).subscribe(res => {
           this.toastr.success('Добавлен');
@@ -73,58 +79,32 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       this.diplomDataService.isDiplomsUpdate = true;
     }, {
       Fio: {
-        required: 'Поле не заполнено'
+        required: 'Поле Студент не заполнено'
       },
       Topic: {
-        required: 'Поле не заполнено'
+        required: 'Поле Тема не заполнено'
       },
-      Completion: {
-        required: 'Поле не заполнено'
+      Type: {
+        required: 'Не вырбран тип'
       },
-      Score: {
-        required: 'Поле не заполнено'
-      },
-      Deadline: {
-        required: 'Поле не заполнено'
-      },
-      Queuenumber: {
-        required: 'Поле не заполнено'
-      },
-      PmId: {
-        required: 'Поле не заполнено'
-      },
-      NormcontrollerId: {
-        required: 'Поле не заполнено'
-      },
-      ReviewerId: {
-        required: 'Поле не заполнено'
-      },
-      ChairmanId: {
-        required: 'Поле не заполнено'
-      },
-      DiplomorderId: {
-        required: 'Поле не заполнено'
-      },
-      SpecialtyId: {
-        required: 'Поле не заполнено'
-      },
-      CommissionId: {
-        required: 'Поле не заполнено'
-      }
     });
   }
 
   onFilterSubmit() {
     this.diplomDataService.diplomsFilter = true;
     const rows = this.diplomListFilterForm.getRawValue();
+    const filter = {};
     Object.keys(rows).forEach(key => {
-      console.log(key, rows[key])
-      if (rows[key] === 'null') {
-        rows[key] = 0
+      if (rows[`${key}Check`]) {
+        console.log('wqe')
+        if (rows[key] === 'null') {
+          rows[key] = 0;
+        }
+        filter[key] = rows[key] ;
+        console.log(filter)
       }
-      console.log(key, rows[key])
     });
-    localStorage.setItem('filter', JSON.stringify(rows));
+    localStorage.setItem('filter', JSON.stringify(filter));
   }
 
   changeTab($event) {
@@ -147,17 +127,19 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       Id: [0],
       Fio: ['', Validators.required],
       Topic: ['', Validators.required],
-      Completion: ['', Validators.required],
-      Score: ['', Validators.required],
-      Deadline: ['', Validators.required],
-      Queuenumber: ['', Validators.required],
-      PmId: [1, Validators.required],
-      NormcontrollerId: [1, Validators.required],
-      ReviewerId: [1, Validators.required],
-      ChairmanId: [1, Validators.required],
-      DiplomorderId: [1, Validators.required],
-      SpecialtyId: [1, Validators.required],
-      CommissionId: [1, Validators.required],
+      Completion: [''],
+      Score: [''],
+      Deadline: [''],
+      Queuenumber: [''],
+      PmId: [0],
+      NormcontrollerId: [0],
+      ReviewerId: [0],
+      ChairmanId: [0],
+      DiplomorderId: [1],
+      SpecialtyId: [1],
+      CommissionId: [0],
+      Execution: [''],
+      Type: [0, Validators.required]
     });
   }
 
@@ -173,12 +155,33 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       NormcontrollerId: [0],
       ReviewerId: [0],
       ChairmanId: [0],
-      DiplomorderId: [0],
+      DiplomorderId: [1],
       SpecialtyId: [0],
       CommissionId: [0],
+      Execution: [''],
+      Type: [0],
+      FioCheck: [false],
+      TopicCheck: [false],
+      CompletionCheck: [false],
+      ScoreCheck: [false],
+      DeadlineCheck: [false],
+      QueuenumberCheck: [false],
+      PmIdCheck: [false],
+      NormcontrollerIdCheck: [false],
+      ReviewerIdCheck: [false],
+      ChairmanIdCheck: [false],
+      DiplomorderIdCheck: [false],
+      SpecialtyIdCheck: [false],
+      CommissionIdCheck: [false],
+      ExecutionCheck: [false],
+      TypeCheck: [false]
     });
-    const filterItem = JSON.parse(localStorage.getItem('filter'))
+    const filterItem = JSON.parse(localStorage.getItem('filter'));
     if (filterItem) {
+      Object.keys(filterItem).forEach(key => {
+        const keyObj = `${key}Check`;
+        filterItem[keyObj] = true;
+      });
       this.diplomListFilterForm.patchValue({
         ...filterItem
       });
@@ -189,5 +192,10 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     this.diplomForm.patchValue({
       ...item
     });
+  }
+
+  removeFilter() {
+    this.formFilterInit();
+    this.diplomDataService.isDiplomsUpdate = true;
   }
 }

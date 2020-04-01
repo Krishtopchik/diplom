@@ -9,16 +9,20 @@ ul {
   padding: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
 }
 a {
-  color: black !important;
+  color: black;
 }
 .form-group {
   display: grid;
   grid-template-columns: 2fr 3fr;
 }
+.form-group-filter {
+  display: grid;
+  grid-template-columns: 3fr 1fr 4fr;
+}
 label {
   margin: 0;
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
 }
 
@@ -26,4 +30,17 @@ label {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+}
+
+.select {
+  color: red;
+}
+.form-control-custom{
+  display: block;
+  width: 100%;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
 }

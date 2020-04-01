@@ -1,0 +1,315 @@
+<div style="border-right: 1px solid #343a40;">
+  <div>
+  <ul class="navbar navbar-light" style="background-color: #e3f2fd; height: 5vh; ">
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal" [ngStyle]="{'color': tab === 'add' ? 'red' : 'black'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="add"
+      >Добавить</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link font-weight-normal" [ngStyle]="{'color': tab === 'filter' ? 'red' : 'black'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="filter"
+      >Фильтр</a>
+    </li>
+  </ul>
+  </div>
+<div [ngClass]="{ hidden: tab !== 'add' }">
+  <form style="height: 90vh; padding: 1rem 0.5rem;; box-sizing: border-box;" class="container-fluid form-diplom" [formGroup]="diplomForm">
+
+    <div class="form-group">
+      <label for="DiplomorderId">Приказ</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="DiplomorderId" placeholder="Приказ" formControlName="DiplomorderId">
+        <option
+          *ngFor="let option of infoAboutDiplom.diplomorderList"
+          [value]="option.Id"
+        >
+          {{option.Name}} {{option.Dateorder}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom"></select></ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="SpecialtyId">Специальность</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="SpecialtyId" placeholder="Специальность" formControlName="SpecialtyId">
+        <option
+          *ngFor="let option of infoAboutDiplom.specialtyList"
+          [value]="option.Id"
+        >
+          {{option.Name}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="Fio">Студент:</label>
+      <input class="form-control-custom" id="Fio" placeholder="Фио" formControlName="Fio">
+    </div>
+
+    <div class="form-group">
+      <label>Проект/работа:</label>
+      <div style="display:flex;">
+        <label><input type="radio" [value]="1" name="Type" formControlName="Type">Проект</label>
+        <label><input type="radio" [value]="2" name="Type" formControlName="Type">Работа</label>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="Topic">Тема</label>
+      <textarea class="form-control-custom" id="Topic" placeholder="Тема" formControlName="Topic"></textarea>
+    </div>
+
+    <div class="form-group" style="border-bottom: 1px solid #ced4da;padding-bottom: 1em;">
+      <label for="PmId">Руководитель</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="PmId" placeholder="Руководитель" formControlName="PmId">
+        <option
+          *ngFor="let option of infoAboutDiplom.pmList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group" >
+      <label for="ReviewerId">Рецензент</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ReviewerId" placeholder="Рецензент" formControlName="ReviewerId">
+        <option
+          *ngFor="let option of infoAboutDiplom.reviewerList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="NormcontrollerId">Нормоконтролер</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="NormcontrollerId" placeholder="Нормоконтролер" formControlName="NormcontrollerId">
+        <option
+          *ngFor="let option of infoAboutDiplom.normcontrollerList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="ChairmanId">Председатель</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ChairmanId" placeholder="Председатель" formControlName="ChairmanId">
+        <option
+          *ngFor="let option of infoAboutDiplom.chairmanList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="CommissionId">Комиссия</label>
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="CommissionId" placeholder="Комиссия" formControlName="CommissionId">
+        <option
+          *ngFor="let option of infoAboutDiplom.commissionList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group">
+      <label for="Completion">Процент выполнения:</label>
+      <input class="form-control-custom" id="Completion" placeholder="Выполнено на" formControlName="Completion">
+    </div>
+
+    <div class="form-group" style="border-bottom: 1px solid #ced4da;padding-bottom: 1em;">
+      <label for="Execution">Срок исполнения</label>
+      <input class="form-control-custom" id="Execution" placeholder="Срок исполнения" formControlName="Execution">
+    </div>
+
+    <div class="form-group">
+      <label for="Deadline">Дата защиты</label>
+      <input class="form-control-custom" id="Deadline" placeholder="Дата сдачи" formControlName="Deadline">
+    </div>
+
+    <div class="form-group">
+      <label for="Queuenumber">Номер в очереди</label>
+      <input class="form-control-custom" id="Queuenumber" placeholder="Номер в очереди" formControlName="Queuenumber">
+    </div>
+
+    <div class="form-group">
+      <label for="Score">Оценка</label>
+      <input class="form-control-custom" id="Score" placeholder="Оценка" formControlName="Score">
+    </div>
+    <button style="width: 100%;" (click)="onSubmit()" type="submit" class="btn btn-success">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
+  </form>
+</div>
+
+<div [ngClass]="{ hidden: tab !== 'filter' }" style="height: 90vh;">
+  <form style="padding: 1rem 0.5rem; box-sizing: border-box; height: 90vh" class="container-fluid form-diplom" [formGroup]="diplomListFilterForm">
+    <div class="form-group-filter">
+      <label for="DiplomorderIdFilter">Приказ</label>
+      <input type="checkbox" formControlName="DiplomorderIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="DiplomorderIdFilter" placeholder="Приказ" formControlName="DiplomorderId">
+        <option
+          *ngFor="let option of infoAboutDiplom.diplomorderList"
+          [value]="option.Id"
+        >
+          {{option.Name}} {{option.Dateorder}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom"></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="SpecialtyIdFilter">Специальность</label>
+      <input type="checkbox" formControlName="SpecialtyIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="SpecialtyIdFilter" placeholder="Специальность" formControlName="SpecialtyId">
+        <option
+          *ngFor="let option of infoAboutDiplom.specialtyList"
+          [value]="option.Id"
+        >
+          {{option.Name}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="FioFilter">Студент:</label>
+      <input type="checkbox" formControlName="FioCheck">
+      <input class="form-control-custom" id="FioFilter" placeholder="Фио" formControlName="Fio">
+    </div>
+
+    <div class="form-group-filter">
+      <label>Проект/работа:</label>
+      <input type="checkbox" formControlName="TypeCheck">
+      <div style="display:flex;">
+        <label><input type="radio" value="1" name="Type" formControlName="Type">Проект</label>
+        <label><input type="radio" value="2" name="Type" formControlName="Type">Работа</label>
+      </div>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="TopicFilter">Тема</label>
+      <input type="checkbox" formControlName="TopicCheck">
+      <textarea class="form-control-custom" id="TopicFilter" placeholder="Тема" formControlName="Topic"></textarea>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="PmIdFilter">Руководитель</label>
+      <input type="checkbox" formControlName="PmIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="PmIdFilter" placeholder="Руководитель" formControlName="PmId">
+        <option
+          *ngFor="let option of infoAboutDiplom.pmList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="ReviewerIdFilter">Рецензент</label>
+      <input type="checkbox" formControlName="ReviewerIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ReviewerIdFilter" placeholder="Рецензент" formControlName="ReviewerId">
+        <option
+          *ngFor="let option of infoAboutDiplom.reviewerList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="NormcontrollerIdFilter">Нормоконтролер</label>
+      <input type="checkbox" formControlName="NormcontrollerIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="NormcontrollerIdFilter" placeholder="Нормоконтролер" formControlName="NormcontrollerId">
+        <option
+          *ngFor="let option of infoAboutDiplom.normcontrollerList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="ChairmanIdFilter">Председатель</label>
+      <input type="checkbox" formControlName="ChairmanIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ChairmanIdFilter" placeholder="Председатель" formControlName="ChairmanId">
+        <option
+          *ngFor="let option of infoAboutDiplom.chairmanList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="CommissionIdFilter">Комиссия</label>
+      <input type="checkbox" formControlName="CommissionIdCheck">
+      <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="CommissionIdFilter" placeholder="Комиссия" formControlName="CommissionId">
+        <option
+          *ngFor="let option of infoAboutDiplom.commissionList"
+          [value]="option.Id"
+        >
+          {{option.Fio}}
+        </option>
+      </select>
+      <ng-template #loading><select class="form-control-custom" ></select></ng-template>
+    </div>
+
+    <div class="form-group-filter">
+      <label for="CompletionFilter">Процент выполнения:</label>
+      <input type="checkbox" formControlName="CompletionCheck">
+      <input class="form-control-custom" id="CompletionFilter" placeholder="Выполнено на" formControlName="Completion">
+    </div>
+
+    <div class="form-group-filter">
+      <label for="ExecutionFilter">Срок исполнения</label>
+      <input type="checkbox" formControlName="ExecutionCheck">
+      <input class="form-control-custom" id="ExecutionFilter" placeholder="Срок исполнения" formControlName="Execution">
+    </div>
+
+    <div class="form-group-filter">
+      <label for="DeadlineFilter">Дата защиты</label>
+      <input type="checkbox" formControlName="DeadlineCheck">
+      <input class="form-control-custom" id="DeadlineFilter" placeholder="Дата сдачи" formControlName="Deadline">
+    </div>
+
+    <div class="form-group-filter">
+      <label for="QueuenumberFilter">Номер в очереди</label>
+      <input type="checkbox" formControlName="QueuenumberCheck">
+      <input class="form-control-custom" id="QueuenumberFilter" placeholder="Номер в очереди" formControlName="Queuenumber">
+    </div>
+
+    <div class="form-group-filter">
+      <label for="ScoreFilter">Оценка</label>
+      <input type="checkbox" formControlName="ScoreCheck">
+      <input class="form-control-custom" id="ScoreFilter" placeholder="Оценка" formControlName="Score">
+    </div>
+
+    <button style="width: 100%;" (click)="onFilterSubmit()" type="submit" class="btn btn-success">Фильтр</button>
+    <button style="width: 100%; margin-top: 1rem" (click)="removeFilter()" type="submit" class="btn btn-primary">Сброс фильтра</button>
+  </form>
+</div>
+</div>

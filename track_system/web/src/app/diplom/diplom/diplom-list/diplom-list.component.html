@@ -2,17 +2,23 @@
   <accordion *ngIf="diplomsList">
     <accordion-group *ngFor="let diplom of diplomsList" title={{diplom.Topic}}>
       <button class="btn btn-link btn-block clearfix" accordion-heading>
-        <div style="display:grid; grid-template-columns: 6fr 2fr 2fr 1fr">
-          <div class="pull-left float-left">
-            <p style="margin: 0">
-              {{createTitleString(diplom)}}
-            </p>
+        <div style="display:grid; grid-template-rows: 1fr 1fr;">
+          <div>
+            <div class="pull-left float-left">
+              <p style="margin: 0">
+                {{createTitleString(diplom)}}
+              </p>
+            </div>
+            <span class="float-right pull-right">
+              <img src="assets/img/chevron.svg" class="chevron"/>
+            </span>
           </div>
-          <button style="width: 10rem; margin: 0 0.5rem;" class="btn btn-outline-primary" (click)="changeDiplom(diplom.Id)">Редактировать</button>
-          <button style="width: 10rem; margin: 0 0.5rem;" class="btn btn-outline-primary" (click)="deleteDiplom(diplom.Id)">Удалить</button>
-          <span class="float-right pull-right">
-            <img src="assets/img/chevron.svg" class="chevron"/>
-          </span>
+          <div>
+            <button style="width: 45%; font-size: 14px; line-height: initial;" class="btn btn-outline-primary" (click)="changeDiplom(diplom.Id)">Редактировать</button>
+            <button style="width: 45%;margin-left: 0.5rem; font-size: 14px; line-height: initial;" class="btn btn-outline-primary" (click)="deleteDiplom(diplom.Id)">
+              Удалить
+            </button>
+          </div>
         </div>
       </button>
       <div>
@@ -41,14 +47,19 @@
           </div>
           <div class="col-4">
             <div class="form-group">
-              <label>Срок: {{diplom.Deadline}}</label>
+              <label>Срок исполнения: {{diplom.Execution}}</label>
             </div>
           </div>
         </div>
         <div class="row" style="padding-top: 1rem; border-top: 1px solid black;">
           <div class="col-4">
             <div class="form-group">
-              <label>Защита: {{diplom.Queuenumber}}</label>
+              <label>Дата защиты: {{diplom.Deadline}}</label>
+            </div>
+          </div>
+          <div class="col-4">
+            <div class="form-group">
+              <label>Номер в очереди: {{diplom.Queuenumber}}</label>
             </div>
           </div>
           <div class="col-4">

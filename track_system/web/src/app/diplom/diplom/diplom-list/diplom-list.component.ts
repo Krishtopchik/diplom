@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {DiplomService} from '../../common/services/diplom.service';
-import {DiplomModel} from '../../common/models/diplom.model';
-import {DiplomDataService} from '../../common/services/diplom-data.service';
-import {DiplomInfoModel} from '../../common/models/diplomInfo.model';
+import {DiplomService} from '../../../common/services/diplom.service';
+import {DiplomModel} from '../../../common/models/diplom.model';
+import {DiplomDataService} from '../../../common/services/diplom-data.service';
+import {DiplomInfoModel} from '../../../common/models/diplomInfo.model';
 
 @Component({
   selector: 'app-diplom-list',
@@ -56,8 +56,10 @@ export class DiplomListComponent implements OnInit {
   }
 
   deleteDiplom(id: number) {
-    this.diplomService.deleteDiplom(id).subscribe(res => {
-      this.diplomDataService.isDiplomsUpdate = true;
-    });
+    if (confirm('Удалить?')) {
+      this.diplomService.deleteDiplom(id).subscribe(res => {
+        this.diplomDataService.isDiplomsUpdate = true;
+      });
+    }
   }
 }

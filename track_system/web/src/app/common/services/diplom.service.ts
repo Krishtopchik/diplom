@@ -71,6 +71,20 @@ export class DiplomService {
     );
   }
 
+  createPm(pm: TeacherModel): any {
+    return this.http.post<TeacherModel>(`${this.url}pms`, JSON.stringify(pm));
+  }
+
+  updateePm(pm: TeacherModel): any {
+    return this.http.put<TeacherModel>(`${this.url}pms`, JSON.stringify(pm));
+  }
+
+  deletePm(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/pms/${id}`
+    );
+  }
+
   getReviewers(): Observable<TeacherModel[]> {
     return this.http.get<TeacherModel[]>(
       `${this.url}/reviewers`
