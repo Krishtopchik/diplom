@@ -15,4 +15,5 @@ export class DiplomModel {
   CommissionId: number;
   Execution: string;
   Type: number;
+  CommissionComment: string;
 }

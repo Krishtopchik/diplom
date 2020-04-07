@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {DiplomService} from '../../common/services/diplom.service';
+import { Component, OnInit } from '@angular/core';
 import {TeacherModel} from '../../common/models/teacher.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
-import {DiplomModel} from '../../common/models/diplom.model';
 
 @Component({
-  selector: 'app-pm',
-  templateUrl: './pm.component.html',
-  styleUrls: ['./pm.component.scss']
+  selector: 'app-diplom-chairman',
+  templateUrl: './diplom-chairman.component.html',
+  styleUrls: ['./diplom-chairman.component.scss']
 })
-export class PmComponent implements OnInit {
+export class DiplomChairmanComponent implements OnInit {
 
-  pmList: TeacherModel[];
-  pmForm: FormGroup;
+  chairmanList: TeacherModel[];
+  chairmanForm: FormGroup;
   buttonTitleAdd = true;
   tab = 'add';
   constructor(
@@ -29,38 +28,39 @@ export class PmComponent implements OnInit {
   }
 
   private getPmList() {
-    this.diplomService.getPms().subscribe(res => {
-      this.pmList = res;
+    this.diplomService.getChairmans().subscribe(res => {
+      this.chairmanList = res;
     });
   }
 
   private formInit() {
-    this.pmForm = this.fb.group({
+    this.chairmanForm = this.fb.group({
       Id: [0],
       Fio: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    const pm: TeacherModel = this.pmForm.getRawValue();
+    const сhairman: TeacherModel = this.chairmanForm.getRawValue();
     if (this.buttonTitleAdd) {
-      this.diplomService.createPm(pm).subscribe(res => {
+      this.diplomService.createChairman(сhairman).subscribe(res => {
         this.toastr.success('Добавлен');
         this.getPmList();
       });
     } else {
-      this.diplomService.updateePm(pm).subscribe(res => {
+      this.diplomService.updateeChairman(сhairman).subscribe(res => {
         this.toastr.success('Обновлен');
         this.getPmList();
       });
     }
     this.formInit();
     this.buttonTitleAdd = true;
+    this.tab = 'add';
   }
 
-  deletePm(id: number) {
+  deleteChairman(id: number) {
     if (confirm('Удалить?')) {
-      this.diplomService.deletePm(id).subscribe(res => {
+      this.diplomService.deleteChairman(id).subscribe(res => {
         this.toastr.success('Удален');
         this.getPmList();
       });
@@ -70,9 +70,9 @@ export class PmComponent implements OnInit {
     this.tab = 'add';
   }
 
-  changePm(id: number) {
-    const item = this.pmList.find(el => el.Id === id);
-    this.pmForm.patchValue({
+  changeChairman(id: number) {
+    const item = this.chairmanList.find(el => el.Id === id);
+    this.chairmanForm.patchValue({
       ...item
     });
     this.buttonTitleAdd = false;

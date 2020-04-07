@@ -1,19 +1,18 @@
-import {Component, OnInit} from '@angular/core';
-import {DiplomService} from '../../common/services/diplom.service';
+import { Component, OnInit } from '@angular/core';
 import {TeacherModel} from '../../common/models/teacher.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
-import {DiplomModel} from '../../common/models/diplom.model';
 
 @Component({
-  selector: 'app-pm',
-  templateUrl: './pm.component.html',
-  styleUrls: ['./pm.component.scss']
+  selector: 'app-diplom-reviewer',
+  templateUrl: './diplom-reviewer.component.html',
+  styleUrls: ['./diplom-reviewer.component.scss']
 })
-export class PmComponent implements OnInit {
+export class DiplomReviewerComponent implements OnInit {
 
-  pmList: TeacherModel[];
-  pmForm: FormGroup;
+  reviewerList: TeacherModel[];
+  reviewerForm: FormGroup;
   buttonTitleAdd = true;
   tab = 'add';
   constructor(
@@ -24,45 +23,34 @@ export class PmComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPmList();
+    this.getReviewerList();
     this.formInit();
   }
 
-  private getPmList() {
-    this.diplomService.getPms().subscribe(res => {
-      this.pmList = res;
+  private getReviewerList() {
+    this.diplomService.getReviewers().subscribe(res => {
+      this.reviewerList = res;
     });
   }
 
   private formInit() {
-    this.pmForm = this.fb.group({
+    this.reviewerForm = this.fb.group({
       Id: [0],
       Fio: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    const pm: TeacherModel = this.pmForm.getRawValue();
+    const reviewer: TeacherModel = this.reviewerForm.getRawValue();
     if (this.buttonTitleAdd) {
-      this.diplomService.createPm(pm).subscribe(res => {
+      this.diplomService.createReviewer(reviewer).subscribe(res => {
         this.toastr.success('Добавлен');
-        this.getPmList();
+        this.getReviewerList();
       });
     } else {
-      this.diplomService.updateePm(pm).subscribe(res => {
+      this.diplomService.updateeReviewer(reviewer).subscribe(res => {
         this.toastr.success('Обновлен');
-        this.getPmList();
-      });
-    }
-    this.formInit();
-    this.buttonTitleAdd = true;
-  }
-
-  deletePm(id: number) {
-    if (confirm('Удалить?')) {
-      this.diplomService.deletePm(id).subscribe(res => {
-        this.toastr.success('Удален');
-        this.getPmList();
+        this.getReviewerList();
       });
     }
     this.formInit();
@@ -70,9 +58,21 @@ export class PmComponent implements OnInit {
     this.tab = 'add';
   }
 
-  changePm(id: number) {
-    const item = this.pmList.find(el => el.Id === id);
-    this.pmForm.patchValue({
+  deleteReviewer(id: number) {
+    if (confirm('Удалить?')) {
+      this.diplomService.deleteReviewer(id).subscribe(res => {
+        this.toastr.success('Удален');
+        this.getReviewerList();
+      });
+    }
+    this.formInit();
+    this.buttonTitleAdd = true;
+    this.tab = 'add';
+  }
+
+  changeReviewer(id: number) {
+    const item = this.reviewerList.find(el => el.Id === id);
+    this.reviewerForm.patchValue({
       ...item
     });
     this.buttonTitleAdd = false;

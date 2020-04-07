@@ -47,9 +47,37 @@ export class DiplomService {
     );
   }
 
+  createChairman(pm: TeacherModel): any {
+    return this.http.post<TeacherModel>(`${this.url}chairmans`, JSON.stringify(pm));
+  }
+
+  updateeChairman(pm: TeacherModel): any {
+    return this.http.put<TeacherModel>(`${this.url}chairmans`, JSON.stringify(pm));
+  }
+
+  deleteChairman(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/chairmans/${id}`
+    );
+  }
+
   getCommissions(): Observable<TeacherModel[]> {
     return this.http.get<TeacherModel[]>(
       `${this.url}/commissions`
+    );
+  }
+
+  createCommission(pm: TeacherModel): any {
+    return this.http.post<TeacherModel>(`${this.url}commissions`, JSON.stringify(pm));
+  }
+
+  updateeCommission(pm: TeacherModel): any {
+    return this.http.put<TeacherModel>(`${this.url}commissions`, JSON.stringify(pm));
+  }
+
+  deleteCommission(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/commissions/${id}`
     );
   }
 
@@ -59,9 +87,37 @@ export class DiplomService {
     );
   }
 
+  createDiplomorder(pm: TeacherModel): any {
+    return this.http.post<TeacherModel>(`${this.url}diplomorders`, JSON.stringify(pm));
+  }
+
+  updateeDiplomorder(pm: TeacherModel): any {
+    return this.http.put<TeacherModel>(`${this.url}diplomorders`, JSON.stringify(pm));
+  }
+
+  deleteDiplomorder(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/diplomorders/${id}`
+    );
+  }
+
   getNormcontrollers(): Observable<TeacherModel[]> {
     return this.http.get<TeacherModel[]>(
       `${this.url}/normcontrollers`
+    );
+  }
+
+  createNormcontroller(pm: TeacherModel): any {
+    return this.http.post<TeacherModel>(`${this.url}normcontrollers`, JSON.stringify(pm));
+  }
+
+  updateeNormcontroller(pm: TeacherModel): any {
+    return this.http.put<TeacherModel>(`${this.url}normcontrollers`, JSON.stringify(pm));
+  }
+
+  deleteNormcontroller(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/normcontrollers/${id}`
     );
   }
 
@@ -88,6 +144,20 @@ export class DiplomService {
   getReviewers(): Observable<TeacherModel[]> {
     return this.http.get<TeacherModel[]>(
       `${this.url}/reviewers`
+    );
+  }
+
+  createReviewer(pm: TeacherModel): any {
+    return this.http.post<TeacherModel>(`${this.url}reviewers`, JSON.stringify(pm));
+  }
+
+  updateeReviewer(pm: TeacherModel): any {
+    return this.http.put<TeacherModel>(`${this.url}reviewers`, JSON.stringify(pm));
+  }
+
+  deleteReviewer(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/reviewers/${id}`
     );
   }
 

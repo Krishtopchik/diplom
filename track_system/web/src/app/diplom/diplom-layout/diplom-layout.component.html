@@ -1,22 +1,62 @@
 <div class="content">
-  <ul class="navbar navbar-dark bg-dark">
-    <li class="nav-item">
-      <a class="nav-link font-weight-normal"  [ngStyle]="{'color': tab === '' ? 'red' : 'white'}"
+  <div class="navbar">
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === '' ? 'red' : '#212529'}">
+      <a class=""  [ngStyle]="{'color': tab === '' ? 'red' : '#212529'}"
          href="javascript://"
          (click)="changeTab($event)"
          rel=""
       >Дипломы</a>
-    </li>
-    <li class="nav-item">
-      <a class="nav-link font-weight-normal" [ngStyle]="{'color': tab === 'pm' ? 'red' : 'white'}"
+    </div>
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'pm' ? 'red' : '#212529'}">
+      <a class="" [ngStyle]="{'color': tab === 'pm' ? 'red' : '#212529'}"
          href="javascript://"
          (click)="changeTab($event)"
          rel="pm"
       >Руководители</a>
-    </li>
-  </ul>
+    </div>
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'reviewer' ? 'red' : '#212529'}">
+      <a class="" [ngStyle]="{'color': tab === 'reviewer' ? 'red' : '#212529'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="reviewer"
+      >Рецензенты</a>
+    </div>
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'normcontroller' ? 'red' : '#212529'}">
+      <a class="" [ngStyle]="{'color': tab === 'normcontroller' ? 'red' : '#212529'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="normcontroller"
+      >Нормоконтролеры</a>
+    </div>
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'chairman' ? 'red' : '#212529'}">
+      <a class="" [ngStyle]="{'color': tab === 'chairman' ? 'red' : '#212529'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="chairman"
+      >Председатели</a>
+    </div>
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'commission' ? 'red' : '#212529'}">
+      <a class="" [ngStyle]="{'color': tab === 'commission' ? 'red' : '#212529'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="commission"
+      >Комиссия</a>
+    </div>
+    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'diplomOrder' ? 'red' : '#212529'}">
+      <a class="" [ngStyle]="{'color': tab === 'diplomOrder' ? 'red' : '#212529'}"
+         href="javascript://"
+         (click)="changeTab($event)"
+         rel="diplomOrder"
+      >Приказы</a>
+    </div>
+  </div>
   <div>
     <app-diplom [ngClass]="{ hidden: tab !== '' }"></app-diplom>
     <app-pm [ngClass]="{ hidden: tab !== 'pm' }"></app-pm>
+    <app-diplom-chairman [ngClass]="{ hidden: tab !== 'chairman' }"></app-diplom-chairman>
+    <app-diplom-commission [ngClass]="{ hidden: tab !== 'commission' }"></app-diplom-commission>
+    <app-diplom-reviewer [ngClass]="{ hidden: tab !== 'reviewer' }"></app-diplom-reviewer>
+    <app-diplom-normocontroller [ngClass]="{ hidden: tab !== 'normcontroller' }"></app-diplom-normocontroller>
+    <app-diplom-order [ngClass]="{ hidden: tab !== 'diplomOrder' }"></app-diplom-order>
   </div>
 </div>

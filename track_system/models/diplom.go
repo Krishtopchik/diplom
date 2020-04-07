@@ -19,4 +19,5 @@ type Diplom struct{
 	CommissionId int
 	Execution *time.Time
 	Type int
+	CommissionComment string
 }

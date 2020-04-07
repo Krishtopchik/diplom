@@ -43,8 +43,11 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     this.diplomSelect = this.isDiplomSelect;
     if (this.diplomSelect && this.selectDiplomId !== this.diplomId) {
       this.diplomId = this.selectDiplomId;
-      this.tab = 'add';
+      this.tab = 'change';
       this.getDiplom(this.selectDiplomId);
+      this.diplomSelect = false;
+      this.diplomDataService.isDiplomSelect = false;
+      this.diplomDataService.selectDiplomId = null;
     }
   }
 
@@ -96,18 +99,17 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     const filter = {};
     Object.keys(rows).forEach(key => {
       if (rows[`${key}Check`]) {
-        console.log('wqe')
         if (rows[key] === 'null') {
           rows[key] = 0;
         }
         filter[key] = rows[key] ;
-        console.log(filter)
       }
     });
     localStorage.setItem('filter', JSON.stringify(filter));
   }
 
   changeTab($event) {
+    this.diplomId = null;
     this.tab = $event.target.getAttribute('rel');
     if (this.tab === 'add') {
       this.formInit();
@@ -139,7 +141,8 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       SpecialtyId: [1],
       CommissionId: [0],
       Execution: [''],
-      Type: [0, Validators.required]
+      Type: [0, Validators.required],
+      CommissionComment: [''],
     });
   }
 
@@ -195,6 +198,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
   }
 
   removeFilter() {
+    localStorage.removeItem('filter');
     this.formFilterInit();
     this.diplomDataService.isDiplomsUpdate = true;
   }

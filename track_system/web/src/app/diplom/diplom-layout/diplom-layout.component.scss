@@ -1,12 +1,21 @@
 .hidden {
   display: none;
 }
-ul {
-  margin: 0; /* Отступ слева в браузере IE и Opera */
-  padding: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  color: #212529;
+  border-bottom: 1px solid #212529;
+  .navbar__el {
+    border: 1px solid;
+  }
 }
 .content {
   height: 100vh;
   display: grid;
-  grid-auto-rows: 5vh auto;
+  grid-auto-rows: 7vh auto;
+}
+
+a:hover {
+  text-decoration: none;
 }

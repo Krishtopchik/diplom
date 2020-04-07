@@ -15,24 +15,24 @@
         >Изменение</a>
       </li>
     </ul>
-    <form style="padding: 1rem 0.5rem; box-sizing: border-box;" class="container-fluid form-diplom" [formGroup]="pmForm">
+    <form style="padding: 1rem 0.5rem; box-sizing: border-box;" class="container-fluid form-diplom" [formGroup]="chairmanForm">
       <div class="form-group">
-        <label for="Fio">Руководитель:</label>
-        <input class="form-control-custom" id="Fio" placeholder="Руководитель" formControlName="Fio">
+        <label for="Fio">Председатель:</label>
+        <input class="form-control-custom" id="Fio" placeholder="Председатель" formControlName="Fio">
       </div>
       <button style="width: 100%;" (click)="onSubmit()" type="submit" class="button">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
     </form>
   </div>
-  <div *ngIf="pmList" style="height: 93vh; overflow: auto; border-left: 1px solid; padding: 1rem;">
-    <div *ngFor="let pm of pmList">
-      <div *ngIf="pm.Id>0"  style="border-bottom: 1px solid; padding-bottom: 0.5rem">
-        <label>Преподаватель: {{pm.Fio}}</label>
+  <div *ngIf="chairmanList" style="height: 93vh; overflow: auto; border-left: 1px solid; padding: 1rem;">
+    <div *ngFor="let chairman of chairmanList">
+      <div *ngIf="chairman.Id>0"  style="border-bottom: 1px solid; padding-bottom: 0.5rem">
+        <label>Председатель: {{chairman.Fio}}</label>
         <div>
-          <button style="width: 49%; font-size: 14px; line-height: initial;" class="button" (click)="changePm(pm.Id)">
+          <button style="width: 49%; font-size: 14px; line-height: initial;" class="button" (click)="changeChairman(chairman.Id)">
             Редактировать
           </button>
           <button style="width: 49%;margin-left: 0.5rem; font-size: 14px; line-height: initial;"
-                  class="button" (click)="deletePm(pm.Id)">
+                  class="button" (click)="deleteChairman(chairman.Id)">
             Удалить
           </button>
         </div>

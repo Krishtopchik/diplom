@@ -15,6 +15,11 @@ import {ValidationService} from './common/services/validation.service';
 import {ToastContainerModule, ToastrModule} from 'ngx-toastr';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {AccordionConfig, AccordionModule} from 'ngx-bootstrap/accordion';
+import { DiplomReviewerComponent } from './diplom/diplom-reviewer/diplom-reviewer.component';
+import { DiplomNormocontrollerComponent } from './diplom/diplom-normocontroller/diplom-normocontroller.component';
+import { DiplomChairmanComponent } from './diplom/diplom-chairman/diplom-chairman.component';
+import { DiplomCommissionComponent } from './diplom/diplom-commission/diplom-commission.component';
+import { DiplomOrderComponent } from './diplom/diplom-order/diplom-order.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +29,11 @@ import {AccordionConfig, AccordionModule} from 'ngx-bootstrap/accordion';
     DiplomDetailComponent,
     PmComponent,
     DiplomLayoutComponent,
+    DiplomReviewerComponent,
+    DiplomNormocontrollerComponent,
+    DiplomChairmanComponent,
+    DiplomCommissionComponent,
+    DiplomOrderComponent,
   ],
   imports: [
     BrowserModule,
