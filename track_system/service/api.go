@@ -53,6 +53,8 @@ func RunRest() {
 	r.HandleFunc("/api/diploms", createDiplom).Methods("POST")
 	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 
+	r.HandleFunc("/api/doc", createDoc).Methods("get")
+
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
 
 	log.Printf("starting REST server on %s", Conf.ListenPort)
@@ -681,4 +683,8 @@ func updateDiplom(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		return
 	}
+}
+
+func createDoc(w http.ResponseWriter, r *http.Request)  {
+
 }

@@ -26,7 +26,7 @@
   <div *ngIf="commissionList" style="height: 93vh; overflow: auto; border-left: 1px solid; padding: 1rem;">
     <div *ngFor="let commission of commissionList">
       <div *ngIf="commission.Id>0"  style="border-bottom: 1px solid; padding-bottom: 0.5rem">
-        <label>Председатель: {{commission.Fio}}</label>
+        <label>Председатель: <strong>{{commission.Fio}}</strong></label>
         <div>
           <button style="width: 49%; font-size: 14px; line-height: initial;" class="button" (click)="changeChairman(commission.Id)">
             Редактировать

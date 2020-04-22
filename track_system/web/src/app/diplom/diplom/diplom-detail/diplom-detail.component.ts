@@ -202,4 +202,10 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     this.formFilterInit();
     this.diplomDataService.isDiplomsUpdate = true;
   }
+
+  clearForm() {
+    this.diplomId = null;
+    this.formInit();
+    this.tab = 'add';
+  }
 }

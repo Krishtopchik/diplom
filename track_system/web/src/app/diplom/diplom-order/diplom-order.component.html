@@ -30,7 +30,7 @@
   <div *ngIf="diplomOrderList" style="height: 93vh; overflow: auto; border-left: 1px solid; padding: 1rem;">
     <div *ngFor="let diplomOrder of diplomOrderList">
       <div *ngIf="diplomOrder.Id>0"  style="border-bottom: 1px solid; padding-bottom: 0.5rem">
-        <label>Приказ №: {{diplomOrder.Name}} от: {{diplomOrder.Dateorder}}</label>
+        <label>Приказ №: <strong>{{diplomOrder.Name}}</strong>  от:  <strong>{{diplomOrder.Dateorder}}</strong></label>
         <div>
           <button style="width: 49%; font-size: 14px; line-height: initial;" class="button" (click)="changeDiplomOrder(diplomOrder.Id)">
             Редактировать

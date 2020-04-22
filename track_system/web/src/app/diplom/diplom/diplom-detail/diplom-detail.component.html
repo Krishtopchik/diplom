@@ -24,7 +24,7 @@
     </ul>
   </div>
   <div [ngClass]="{ hidden: tab !== 'add' && tab !== 'change'}">
-    <form style="height: 88vh; padding: 1rem 0.5rem;; box-sizing: border-box;" class="container-fluid form-diplom"
+    <form style="height: 86vh; padding: 1rem 0.5rem;; box-sizing: border-box;" class="container-fluid form-diplom"
           [formGroup]="diplomForm">
 
       <div class="form-group">
@@ -145,7 +145,7 @@
 
       <div class="form-group">
         <label for="CommissionComment">Комментарий</label>
-        <textarea class="form-control-custom" id="CommissionComment" placeholder="Тема" formControlName="CommissionComment"></textarea>
+        <textarea class="form-control-custom" id="CommissionComment" placeholder="Комментарий" formControlName="CommissionComment"></textarea>
       </div>
 
       <div class="form-group">
@@ -160,25 +160,25 @@
 
       <div class="form-group">
         <label for="Deadline">Дата защиты</label>
-        <input class="form-control-custom" id="Deadline" placeholder="Дата сдачи" formControlName="Deadline">
+        <div style="display:flex;">
+          <input style="width: 200%;" class="form-control-custom" id="Deadline" placeholder="Дата сдачи" formControlName="Deadline">
+          <input class="form-control-custom" id="Queuenumber" placeholder="№" formControlName="Queuenumber">
+        </div>
       </div>
 
-      <div class="form-group">
-        <label for="Queuenumber">Номер в очереди</label>
-        <input class="form-control-custom" id="Queuenumber" placeholder="Номер в очереди" formControlName="Queuenumber">
-      </div>
-
-      <div class="form-group">
+      <div class="form-group" style="border-bottom: 1px solid #212529;padding-bottom: 0.5rem;">
         <label for="Score">Оценка</label>
         <input class="form-control-custom" id="Score" placeholder="Оценка" formControlName="Score">
       </div>
       <button style="width: 100%;" (click)="onSubmit()" type="submit"
               class="custom-btn">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
+      <button style="width: 100%; margin-top: 0.5rem" (click)="clearForm()" type="submit"
+              class="custom-btn">Отмена</button>
     </form>
   </div>
 
-  <div [ngClass]="{ hidden: tab !== 'filter' }" style="height: 88vh;">
-    <form style="padding: 1rem 0.5rem; box-sizing: border-box; height: 88vh" class="container-fluid form-diplom"
+  <div [ngClass]="{ hidden: tab !== 'filter' }" style="height: 86vh;">
+    <form style="padding: 1rem 0.5rem; box-sizing: border-box; height: 86vh" class="container-fluid form-diplom"
           [formGroup]="diplomListFilterForm">
       <div class="form-group-filter">
         <label for="DiplomorderIdFilter">Приказ</label>

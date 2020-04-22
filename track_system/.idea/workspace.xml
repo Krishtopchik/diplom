@@ -2,23 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21476fbe-d6d1-4c12-9def-f15e5e4c8fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/db/rep.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/rep.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/diplom.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/diplom.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/models/diplom.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/models/diplom.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/services/diplom.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/services/diplom.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.ts" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -94,17 +97,6 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="das://cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/database/postgres/schema/public/table/diplom">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="6103737d-ea51-48f3-abd6-4c1780e8be58">
-              <filtering>
-                <filter text="" />
-              </filtering>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/diplom.go">
           <provider selected="true" editor-type-id="text-editor">
@@ -114,22 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="das://cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/database/postgres/schema/public/table/diplomorder">
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state projectRestartId="6103737d-ea51-48f3-abd6-4c1780e8be58">
-              <filtering>
-                <filter text="" />
-              </filtering>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/service/api.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="89">
-              <caret line="31" column="35" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="35" />
+            <state relative-caret-position="301">
+              <caret line="687" column="53" selection-start-line="687" selection-start-column="53" selection-end-line="687" selection-end-column="53" />
               <folding>
                 <element signature="n#!!block;n#createPm#0" />
                 <element signature="n#!!block;n#deletePm#0" />
@@ -208,10 +189,10 @@
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/console_3.sql" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/console_4.sql" />
         <option value="$PROJECT_DIR$/models/diplomorder.go" />
-        <option value="$PROJECT_DIR$/service/api.go" />
         <option value="$PROJECT_DIR$/models/diplom.go" />
         <option value="$PROJECT_DIR$/db/rep.go" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/.datagrid/cell" />
+        <option value="$PROJECT_DIR$/service/api.go" />
       </list>
     </option>
   </component>
@@ -334,7 +315,7 @@
       <window_info anchor="bottom" id="Database Console" order="0" sideWeight="0.49816626" weight="0.32941177" />
       <window_info anchor="bottom" id="Message" order="1" />
       <window_info anchor="bottom" id="Find" order="2" weight="0.3295325" />
-      <window_info active="true" anchor="bottom" id="Run" order="3" visible="true" weight="0.33626762" />
+      <window_info anchor="bottom" id="Run" order="3" weight="0.33626762" />
       <window_info anchor="bottom" id="Debug" order="4" weight="0.43058825" />
       <window_info anchor="bottom" id="Cvs" order="5" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="6" weight="0.4" />
@@ -744,28 +725,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/service/api.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="89">
-          <caret line="31" column="35" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="35" />
-          <folding>
-            <element signature="n#!!block;n#createPm#0" />
-            <element signature="n#!!block;n#deletePm#0" />
-            <element signature="n#!!block;n#updatePm#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/db/rep.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="70" column="22" lean-forward="true" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
-          <folding>
-            <element signature="e#12#89#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/diplom.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="216">
@@ -779,6 +738,28 @@
           <filtering>
             <filter text="" />
           </filtering>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/db/rep.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="70" column="22" lean-forward="true" selection-start-line="70" selection-start-column="22" selection-end-line="70" selection-end-column="22" />
+          <folding>
+            <element signature="e#12#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/service/api.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="301">
+          <caret line="687" column="53" selection-start-line="687" selection-start-column="53" selection-end-line="687" selection-end-column="53" />
+          <folding>
+            <element signature="n#!!block;n#createPm#0" />
+            <element signature="n#!!block;n#deletePm#0" />
+            <element signature="n#!!block;n#updatePm#0" />
+          </folding>
         </state>
       </provider>
     </entry>

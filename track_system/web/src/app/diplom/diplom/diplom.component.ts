@@ -24,7 +24,13 @@ export class DiplomComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    this.getDiplomsList();
+    console.log('wqe')
+    const filter = localStorage.getItem('filter');
+    if (filter) {
+      this.getDiplomsListAndFilter();
+    } else {
+      this.getDiplomsList();
+    }
     zip(
       this.getPmList(),
       this.getNormcontrollerList(),
@@ -47,6 +53,7 @@ export class DiplomComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    console.log('asd')
     this.selectDiplomId = this.diplomDataService.selectDiplomId;
     this.isDiplomSelect = this.diplomDataService.isDiplomSelect;
     if (this.diplomDataService.isDiplomsUpdate) {

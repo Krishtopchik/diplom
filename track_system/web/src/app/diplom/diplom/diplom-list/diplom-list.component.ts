@@ -21,9 +21,17 @@ export class DiplomListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const filterItem = JSON.parse(localStorage.getItem('filter'));
+    if (filterItem) {
+      Object.keys(filterItem).forEach(key => {
+        const keyObj = `${key}Check`;
+        filterItem[keyObj] = true;
+      });
+    }
   }
 
-  changeDiplom(id: number) {
+  changeDiplom(e, id: number) {
+    e.preventDefault();
     this.diplomDataService.selectDiplomId = id;
     this.diplomDataService.isDiplomSelect = true;
   }
