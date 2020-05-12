@@ -1,30 +1,16 @@
-<div *ngIf="diplomsList && infoAboutDiplom" style="height: 93vh; overflow: auto">
-  <accordion *ngIf="diplomsList">
-    <accordion-group style="border-bottom: 3px solid red;" *ngFor="let diplom of diplomsList" title={{diplom.Topic}}>
-      <button style="width: 100%;" class="custom-btn clearfix" accordion-heading>
-        <div style="display:flex; justify-content: space-between;">
-          <div style="width: 75%;">
-            <div class="pull-left float-left">
-              <p style="margin: 0; font-weight: bold">
-                {{createTitleString(diplom)}}
-              </p>
-            </div>
+<div *ngIf="diplomsList && infoAboutDiplom" style="height: 92vh; overflow: auto; background: #3f51b5" multi="true">
+  <mat-accordion *ngIf="diplomsList">
+    <mat-expansion-panel *ngFor="let diplom of diplomsList">
+      <mat-expansion-panel-header style="border-bottom: 1px solid">
+        <mat-panel-title>
+          <div style="display:flex;width: 100%; align-items: center">
+            {{createTitleString(diplom)}}
+            <button style="margin-left: auto;" mat-raised-button color="primary" (click)="changeDiplom($event, diplom.Id)">Редактировать</button>
           </div>
-          <div style="border: 1px solid #212529; width: 25%;">
-            <button style="" class="custom-btn-header" (click)="changeDiplom($event, diplom.Id)">Редактировать</button>
-            <button style="" class="custom-btn-header" (click)="deleteDiplom(diplom.Id)">
-              Удалить
-            </button>
-          </div>
-          <div style="width: 5%;">
-            <span class="float-right pull-right">
-              <img src="assets/img/chevron.svg" class="chevron"/>
-            </span>
-          </div>
-        </div>
-      </button>
+        </mat-panel-title>
+      </mat-expansion-panel-header>
       <div>
-        <div class="row">
+        <div class="row" style="padding-top: 0.5rem;">
           <div class="col-12">
             <div class="form-group">
               <label>Тема: <strong>{{diplom.Topic}}</strong></label>
@@ -44,7 +30,7 @@
           </div>
           <div class="col-4">
             <div class="form-group">
-              <label>Срок исполнения: <strong>{{diplom.Execution}}</strong></label>
+              <label>Срок исполнения: <strong>{{strToDate(diplom.Execution)}}</strong></label>
             </div>
           </div>
         </div>
@@ -60,10 +46,10 @@
             </div>
           </div>
         </div>
-        <div class="row" style="padding-top: 1rem; border-top: 1px solid #212529;">
+        <div class="row" style="padding-top: 0.5rem; border-top: 1px solid #212529;">
           <div class="col-4">
             <div class="form-group">
-              <label>Дата защиты: <strong>{{diplom.Deadline}}</strong></label>
+              <label>Дата защиты: <strong>{{strToDate(diplom.Deadline)}}</strong></label>
             </div>
           </div>
           <div class="col-4">
@@ -82,7 +68,15 @@
             </div>
           </div>
         </div>
+        <div class="row" style="padding-top: 0.5rem; border-top: 1px solid #212529;">
+          <div style="width: 100%; display: flex; justify-content: flex-end">
+            <button mat-raised-button color="primary" (click)="openDiplom(diplom.Id)">Сдача
+            </button>
+            <button style="margin-left: 8px;" mat-raised-button color="warn" (click)="deleteDiplom(diplom.Id)">Удалить
+            </button>
+          </div>
+        </div>
       </div>
-    </accordion-group>
-  </accordion>
+    </mat-expansion-panel>
+  </mat-accordion>
 </div>

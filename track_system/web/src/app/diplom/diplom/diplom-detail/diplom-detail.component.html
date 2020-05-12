@@ -1,348 +1,349 @@
 <div style="border-right: 1px solid #343a40;">
   <div>
-    <ul class="content__nav">
-      <li class="nav-item">
-        <a class="nav-link font-weight-normal" [ngStyle]="{'color': tab === 'add' ? 'red' : '#212529'}"
-           href="javascript://"
-           (click)="changeTab($event)"
-           rel="add"
-        >Добавить</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link font-weight-normal" [ngStyle]="{'color': tab === 'filter' ? 'red' : '#212529'}"
-           href="javascript://"
-           (click)="changeTab($event)"
-           rel="filter"
-        >Фильтр</a>
-      </li>
-      <li class="" *ngIf="tab === 'change'">
-        <a class=""
-           href="javascript://"
-           rel="change" [ngStyle]="{'color': tab === 'change' ? 'red' : '#212529'}"
-        >Изменение</a>
-      </li>
-    </ul>
+    <div class="content__nav">
+      <button *ngIf="tab != 'filter'" (click)="changeTab('filter')" mat-button><a rel="filter">Фильтр</a></button>
+      <button *ngIf="tab === 'filter'" (click)="changeTab('filter')" mat-button color="accent"><a rel="filter">Фильтр</a></button>
+      <button *ngIf="tab != 'add'" (click)="changeTab('add')" mat-button><a rel="add">Добавить</a></button>
+      <button *ngIf="tab === 'add'" (click)="changeTab('add')" mat-button color="accent"><a rel="add">Добавить</a></button>
+       <button *ngIf="tab === 'change'" (click)="changeTab('change')" mat-button color="accent"><a rel="">Изменение</a></button>
+    </div>
   </div>
   <div [ngClass]="{ hidden: tab !== 'add' && tab !== 'change'}">
-    <form style="height: 86vh; padding: 1rem 0.5rem;; box-sizing: border-box;" class="container-fluid form-diplom"
+    <form style="padding: 1rem 15px; height: 86vh; box-sizing: border-box;" class="container-fluid form-diplom"
           [formGroup]="diplomForm">
 
-      <div class="form-group">
-        <label for="DiplomorderId">Приказ</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="DiplomorderId"
-                placeholder="Приказ" formControlName="DiplomorderId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Приказ</mat-label>
+        <mat-select formControlName="DiplomorderId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.diplomorderList"
             [value]="option.Id"
           >
             {{option.Name}} {{option.Dateorder}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
-      </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="SpecialtyId">Специальность</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="SpecialtyId"
-                placeholder="Специальность" formControlName="SpecialtyId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Специальность</mat-label>
+        <mat-select formControlName="SpecialtyId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.specialtyList"
             [value]="option.Id"
           >
             {{option.Name}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Студент:</mat-label>
+        <input matInput formControlName="Fio"/>
+      </mat-form-field>
+
+      <div>
+        <mat-radio-group formControlName="Type" style="width: 100%;display: flex;justify-content: space-around;">
+          <mat-radio-button [value]="1">Проект</mat-radio-button>
+          <mat-radio-button [value]="2">Работа</mat-radio-button>
+        </mat-radio-group>
       </div>
 
-      <div class="form-group">
-        <label for="Fio">Студент:</label>
-        <input class="form-control-custom" id="Fio" placeholder="Фио" formControlName="Fio">
-      </div>
+      <mat-form-field class="full-width">
+        <mat-label>Тема:</mat-label>
+        <textarea matInput formControlName="Topic"></textarea>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label>Проект/работа:</label>
-        <div style="display:flex;">
-          <label><input type="radio" [value]="1" name="Type" formControlName="Type">Проект</label>
-          <label><input type="radio" [value]="2" name="Type" formControlName="Type">Работа</label>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <label for="Topic">Тема</label>
-        <textarea class="form-control-custom" id="Topic" placeholder="Тема" formControlName="Topic"></textarea>
-      </div>
-
-      <div class="form-group" style="border-bottom: 1px solid #ced4da;padding-bottom: 1em;">
-        <label for="PmId">Руководитель</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="PmId" placeholder="Руководитель"
-                formControlName="PmId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Руководитель</mat-label>
+        <mat-select formControlName="PmId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.pmList"
             [value]="option.Id"
           >
             {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
-      </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="ReviewerId">Рецензент</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ReviewerId"
-                placeholder="Рецензент" formControlName="ReviewerId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Рецензент</mat-label>
+        <mat-select formControlName="ReviewerId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.reviewerList"
             [value]="option.Id"
           >
             {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
-      </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="NormcontrollerId">Нормоконтролер</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="NormcontrollerId"
-                placeholder="Нормоконтролер" formControlName="NormcontrollerId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Нормоконтролер</mat-label>
+        <mat-select formControlName="NormcontrollerId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.normcontrollerList"
             [value]="option.Id"
           >
             {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
-      </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="ChairmanId">Председатель</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ChairmanId"
-                placeholder="Председатель" formControlName="ChairmanId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Председатель</mat-label>
+        <mat-select formControlName="ChairmanId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.chairmanList"
             [value]="option.Id"
           >
             {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
-      </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="CommissionId">Комиссия</label>
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="CommissionId"
-                placeholder="Комиссия" formControlName="CommissionId">
-          <option
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Комиссия</mat-label>
+        <mat-select formControlName="CommissionId">
+          <mat-option
             *ngFor="let option of infoAboutDiplom.commissionList"
             [value]="option.Id"
           >
             {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
-      </div>
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="CommissionComment">Комментарий</label>
-        <textarea class="form-control-custom" id="CommissionComment" placeholder="Комментарий" formControlName="CommissionComment"></textarea>
-      </div>
+      <mat-form-field class="full-width">
+        <mat-label>Комментарий:</mat-label>
+        <textarea matInput formControlName="CommissionComment"></textarea>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="Completion">Процент выполнения:</label>
-        <input class="form-control-custom" id="Completion" placeholder="Выполнено на" formControlName="Completion">
-      </div>
+      <mat-form-field class="full-width">
+        <mat-label>Процент выполнения:</mat-label>
+        <input matInput formControlName="Completion"/>
+      </mat-form-field>
 
-      <div class="form-group" style="border-bottom: 1px solid #ced4da;padding-bottom: 1em;">
-        <label for="Execution">Срок исполнения</label>
-        <input class="form-control-custom" id="Execution" placeholder="Срок исполнения" formControlName="Execution">
-      </div>
+      <mat-form-field class="full-width">
+        <mat-label>Срок исполнения:</mat-label>
+        <input matInput [matDatepicker]="picker" formControlName="Execution">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
 
-      <div class="form-group">
-        <label for="Deadline">Дата защиты</label>
-        <div style="display:flex;">
-          <input style="width: 200%;" class="form-control-custom" id="Deadline" placeholder="Дата сдачи" formControlName="Deadline">
-          <input class="form-control-custom" id="Queuenumber" placeholder="№" formControlName="Queuenumber">
-        </div>
-      </div>
+      <mat-form-field class="full-width">
+        <mat-label>Дата защиты:</mat-label>
+        <input matInput [matDatepicker]="picker1" formControlName="Deadline">
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
 
-      <div class="form-group" style="border-bottom: 1px solid #212529;padding-bottom: 0.5rem;">
-        <label for="Score">Оценка</label>
-        <input class="form-control-custom" id="Score" placeholder="Оценка" formControlName="Score">
-      </div>
-      <button style="width: 100%;" (click)="onSubmit()" type="submit"
-              class="custom-btn">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
-      <button style="width: 100%; margin-top: 0.5rem" (click)="clearForm()" type="submit"
-              class="custom-btn">Отмена</button>
+      <mat-form-field class="full-width">
+        <mat-label>№:</mat-label>
+        <input matInput formControlName="Queuenumber"/>
+      </mat-form-field>
+
+      <mat-form-field class="full-width">
+        <mat-label>Оценка:</mat-label>
+        <input matInput formControlName="Score"/>
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" style="width: 100%;" (click)="onSubmit()" type="submit"
+              class="">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
+      <button mat-raised-button color="primary" style="width: 100%; margin-top: 0.5rem" (click)="clearForm()"
+              type="submit"
+              class="">Отмена
+      </button>
     </form>
   </div>
 
   <div [ngClass]="{ hidden: tab !== 'filter' }" style="height: 86vh;">
-    <form style="padding: 1rem 0.5rem; box-sizing: border-box; height: 86vh" class="container-fluid form-diplom"
+    <form style="padding: 1rem 15px; box-sizing: border-box; height: 86vh" class="container-fluid form-diplom"
           [formGroup]="diplomListFilterForm">
-      <div class="form-group-filter">
-        <label for="DiplomorderIdFilter">Приказ</label>
-        <input type="checkbox" formControlName="DiplomorderIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="DiplomorderIdFilter"
-                placeholder="Приказ" formControlName="DiplomorderId">
-          <option
-            *ngFor="let option of infoAboutDiplom.diplomorderList"
-            [value]="option.Id"
-          >
-            {{option.Name}} {{option.Dateorder}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Приказ</mat-label>
+          <mat-select formControlName="DiplomorderId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.diplomorderList"
+              [value]="option.Id"
+            >
+              {{option.Name}} {{option.Dateorder}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="DiplomorderIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="SpecialtyIdFilter">Специальность</label>
-        <input type="checkbox" formControlName="SpecialtyIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="SpecialtyIdFilter"
-                placeholder="Специальность" formControlName="SpecialtyId">
-          <option
-            *ngFor="let option of infoAboutDiplom.specialtyList"
-            [value]="option.Id"
-          >
-            {{option.Name}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Специальность</mat-label>
+          <mat-select formControlName="SpecialtyId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.specialtyList"
+              [value]="option.Id"
+            >
+              {{option.Name}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="SpecialtyIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="FioFilter">Студент:</label>
-        <input type="checkbox" formControlName="FioCheck">
-        <input class="form-control-custom" id="FioFilter" placeholder="Фио" formControlName="Fio">
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Студент:</mat-label>
+          <input matInput formControlName="Fio">
+        </mat-form-field>
+        <mat-checkbox formControlName="FioCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label>Проект/работа:</label>
-        <input type="checkbox" formControlName="TypeCheck">
-        <div style="display:flex;">
-          <label><input type="radio" value="1" name="Type" formControlName="Type">Проект</label>
-          <label><input type="radio" value="2" name="Type" formControlName="Type">Работа</label>
-        </div>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-radio-group formControlName="Type" style="width: 100%;display: flex;justify-content: space-around;">
+          <mat-radio-button [value]="1">Проект</mat-radio-button>
+          <mat-radio-button [value]="2">Работа</mat-radio-button>
+        </mat-radio-group>
+        <mat-checkbox formControlName="TypeCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="TopicFilter">Тема</label>
-        <input type="checkbox" formControlName="TopicCheck">
-        <textarea class="form-control-custom" id="TopicFilter" placeholder="Тема" formControlName="Topic"></textarea>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Тема</mat-label>
+          <textarea matInput formControlName="Topic"></textarea>
+        </mat-form-field>
+        <mat-checkbox formControlName="TopicCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="PmIdFilter">Руководитель</label>
-        <input type="checkbox" formControlName="PmIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="PmIdFilter"
-                placeholder="Руководитель" formControlName="PmId">
-          <option
-            *ngFor="let option of infoAboutDiplom.pmList"
-            [value]="option.Id"
-          >
-            {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Руководитель</mat-label>
+          <mat-select formControlName="PmId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.pmList"
+              [value]="option.Id"
+            >
+              {{option.Fio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="PmIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="ReviewerIdFilter">Рецензент</label>
-        <input type="checkbox" formControlName="ReviewerIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ReviewerIdFilter"
-                placeholder="Рецензент" formControlName="ReviewerId">
-          <option
-            *ngFor="let option of infoAboutDiplom.reviewerList"
-            [value]="option.Id"
-          >
-            {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Рецензент</mat-label>
+          <mat-select formControlName="ReviewerId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.reviewerList"
+              [value]="option.Id"
+            >
+              {{option.Fio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="ReviewerIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="NormcontrollerIdFilter">Нормоконтролер</label>
-        <input type="checkbox" formControlName="NormcontrollerIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="NormcontrollerIdFilter"
-                placeholder="Нормоконтролер" formControlName="NormcontrollerId">
-          <option
-            *ngFor="let option of infoAboutDiplom.normcontrollerList"
-            [value]="option.Id"
-          >
-            {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Нормоконтролер</mat-label>
+          <mat-select formControlName="NormcontrollerId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.normcontrollerList"
+              [value]="option.Id"
+            >
+              {{option.Fio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="NormcontrollerIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="ChairmanIdFilter">Председатель</label>
-        <input type="checkbox" formControlName="ChairmanIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="ChairmanIdFilter"
-                placeholder="Председатель" formControlName="ChairmanId">
-          <option
-            *ngFor="let option of infoAboutDiplom.chairmanList"
-            [value]="option.Id"
-          >
-            {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Председатель</mat-label>
+          <mat-select formControlName="ChairmanId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.chairmanList"
+              [value]="option.Id"
+            >
+              {{option.Fio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="ChairmanIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="CommissionIdFilter">Комиссия</label>
-        <input type="checkbox" formControlName="CommissionIdCheck">
-        <select *ngIf="infoAboutDiplom; else loading" class="form-control-custom" id="CommissionIdFilter"
-                placeholder="Комиссия" formControlName="CommissionId">
-          <option
-            *ngFor="let option of infoAboutDiplom.commissionList"
-            [value]="option.Id"
-          >
-            {{option.Fio}}
-          </option>
-        </select>
-        <ng-template #loading><select class="form-control-custom"></select></ng-template>
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter" *ngIf="infoAboutDiplom; else loading">
+          <mat-label>Комиссия</mat-label>
+          <mat-select formControlName="CommissionId">
+            <mat-option
+              *ngFor="let option of infoAboutDiplom.commissionList"
+              [value]="option.Id"
+            >
+              {{option.Fio}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-checkbox formControlName="CommissionIdCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="CompletionFilter">Процент выполнения:</label>
-        <input type="checkbox" formControlName="CompletionCheck">
-        <input class="form-control-custom" id="CompletionFilter" placeholder="Выполнено на"
-               formControlName="Completion">
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Процент выполнения:</mat-label>
+          <input matInput formControlName="Completion">
+        </mat-form-field>
+        <mat-checkbox formControlName="CompletionCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="ExecutionFilter">Срок исполнения</label>
-        <input type="checkbox" formControlName="ExecutionCheck">
-        <input class="form-control-custom" id="ExecutionFilter" placeholder="Срок исполнения"
-               formControlName="Execution">
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Срок исполнения:</mat-label>
+          <input matInput [matDatepicker]="picker3" formControlName="Execution">
+          <mat-datepicker-toggle matSuffix [for]="picker3"></mat-datepicker-toggle>
+          <mat-datepicker #picker3></mat-datepicker>
+        </mat-form-field>
+        <mat-checkbox formControlName="ExecutionCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="DeadlineFilter">Дата защиты</label>
-        <input type="checkbox" formControlName="DeadlineCheck">
-        <input class="form-control-custom" id="DeadlineFilter" placeholder="Дата сдачи" formControlName="Deadline">
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Дата защиты:</mat-label>
+          <input matInput [matDatepicker]="picker2" formControlName="Deadline">
+          <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+          <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+        <mat-checkbox formControlName="DeadlineCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="QueuenumberFilter">Номер в очереди</label>
-        <input type="checkbox" formControlName="QueuenumberCheck">
-        <input class="form-control-custom" id="QueuenumberFilter" placeholder="Номер в очереди"
-               formControlName="Queuenumber">
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Номер в очереди</mat-label>
+          <input matInput formControlName="Queuenumber">
+        </mat-form-field>
+        <mat-checkbox formControlName="QueuenumberCheck"></mat-checkbox>
       </div>
 
-      <div class="form-group-filter">
-        <label for="ScoreFilter">Оценка</label>
-        <input type="checkbox" formControlName="ScoreCheck">
-        <input class="form-control-custom" id="ScoreFilter" placeholder="Оценка" formControlName="Score">
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Оценка</mat-label>
+          <input matInput formControlName="Score">
+        </mat-form-field>
+        <mat-checkbox formControlName="ScoreCheck"></mat-checkbox>
       </div>
 
-      <button style="width: 100%;" (click)="onFilterSubmit()" type="submit" class="custom-btn">Фильтр</button>
-      <button style="width: 100%; margin-top: 1rem" (click)="removeFilter()" type="submit" class="custom-btn">Сброс
+      <button mat-raised-button color="primary" style="width: 100%;" (click)="onFilterSubmit()" type="submit" class="">Фильтр</button>
+      <button mat-raised-button color="primary" style="width: 100%; margin-top: 1rem" (click)="removeFilter()" type="submit" class="">Сброс
         фильтра
       </button>
     </form>
   </div>
+
+  <ng-template #loading>
+    <mat-form-field>
+      <mat-label></mat-label>
+      <mat-select></mat-select>
+    </mat-form-field>
+  </ng-template>
 </div>

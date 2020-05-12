@@ -1,0 +1,29 @@
+<div *ngIf="pm === ''" style="width: 100%; height: 100%; display:flex; justify-content: center; align-items: center;">
+  <mat-spinner></mat-spinner>
+</div>
+<div *ngIf="pm != ''" style="height: 100%;">
+  <button mat-raised-button color="warn" (click)="onMain()">На главную</button>
+  <mat-grid-list cols="2">
+    <mat-grid-tile>
+      <mat-list>
+        <mat-list-item> Приказ: <strong>{{diplomOrder}}</strong></mat-list-item>
+        <mat-list-item> Специаьность: <strong>{{specialty}}</strong></mat-list-item>
+        <mat-list-item> Студент: <strong>{{diplom.Fio}}</strong></mat-list-item>
+        <mat-list-item> Руководитель: <strong>{{pm}}</strong></mat-list-item>
+        <mat-list-item> Рецензент: <strong>{{reviewer}}</strong></mat-list-item>
+        <mat-list-item> Нормоконтролер: <strong>{{normcontroller}}</strong></mat-list-item>
+        <mat-list-item> Председатель: <strong>{{chairman}}</strong></mat-list-item>
+        <mat-list-item> Комиссия: <strong>{{commission}}</strong></mat-list-item>
+        <mat-list-item> Комментарий: <strong>{{diplom.CommissionComment}}</strong></mat-list-item>
+      </mat-list>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <div>
+        <button mat-raised-button color="primary" (click)="start()">Начало</button>
+        <div class="timer">
+          {{subscribeTimer}}
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+</div>

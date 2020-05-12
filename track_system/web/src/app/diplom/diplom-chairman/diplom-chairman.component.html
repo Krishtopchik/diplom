@@ -1,41 +1,34 @@
 <div class="content">
   <div>
-    <ul class="content__nav">
-      <li class="">
-        <a class=""
-           href="javascript://"
-           (click)="changeTab($event)"
-           rel="add" [ngStyle]="{'color': tab === 'add' ? 'red' : '#212529'}"
-        >Добавить</a>
-      </li>
-      <li class="" *ngIf="tab === 'change'">
-        <a class=""
-           href="javascript://"
-           rel="change" [ngStyle]="{'color': tab === 'change' ? 'red' : '#212529'}"
-        >Изменение</a>
-      </li>
-    </ul>
-    <form style="padding: 1rem 0.5rem; box-sizing: border-box;" class="container-fluid form-diplom" [formGroup]="chairmanForm">
-      <div class="form-group">
-        <label for="Fio">Председатель:</label>
-        <input class="form-control-custom" id="Fio" placeholder="Председатель" formControlName="Fio">
-      </div>
-      <button style="width: 100%;" (click)="onSubmit()" type="submit" class="button">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
+    <div class="content__nav">
+      <button *ngIf="tab != 'add'" (click)="changeTab('add')" mat-button><a rel="add">Добавить</a></button>
+      <button *ngIf="tab === 'add'" (click)="changeTab('add')" mat-button color="accent"><a rel="add">Добавить</a>
+      </button>
+      <button *ngIf="tab === 'change'" (click)="changeTab('change')" mat-button color="accent"><a rel="">Изменение</a>
+      </button>
+    </div>
+    <form style="padding: 1rem 0.5rem; box-sizing: border-box;" class="container-fluid form-diplom"
+          [formGroup]="chairmanForm">
+      <mat-form-field class="full-width">
+        <mat-label>Председатель:</mat-label>
+        <input matInput formControlName="Fio"/>
+      </mat-form-field>
+      <button mat-raised-button color="primary" style="width: 100%;" (click)="onSubmit()"
+              type="submit">{{buttonTitleAdd ? 'Добавить' : 'Изменить'}}</button>
     </form>
   </div>
-  <div *ngIf="chairmanList" style="height: 93vh; overflow: auto; border-left: 1px solid; padding: 1rem;">
+  <div *ngIf="chairmanList" style="height: 92vh; overflow: auto; border-left: 1px solid; padding: 1rem;">
     <div *ngFor="let chairman of chairmanList">
-      <div *ngIf="chairman.Id>0"  style="border-bottom: 1px solid; padding-bottom: 0.5rem">
+      <div *ngIf="chairman.Id>0"
+           style="border-bottom: 1px solid; padding: 0.5rem 0; display:flex; justify-content: start; align-items: center">
         <label>Председатель: <strong>{{chairman.Fio}}</strong></label>
-        <div>
-          <button style="width: 49%; font-size: 14px; line-height: initial;" class="button" (click)="changeChairman(chairman.Id)">
-            Редактировать
-          </button>
-          <button style="width: 49%;margin-left: 0.5rem; font-size: 14px; line-height: initial;"
-                  class="button" (click)="deleteChairman(chairman.Id)">
-            Удалить
-          </button>
-        </div>
+        <button style="margin-left: auto; margin-right: 8px;" mat-raised-button color="primary"
+                (click)="changeChairman(chairman.Id)">
+          Редактировать
+        </button>
+        <button mat-raised-button color="warn" (click)="deleteChairman(chairman.Id)">
+          Удалить
+        </button>
       </div>
     </div>
   </div>

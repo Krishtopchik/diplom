@@ -3,13 +3,12 @@
   grid-template-columns: 1fr 2fr;
 
   .content__nav {
-    background-color: #ffffff;
-    height: 7vh;
     display: flex;
-    justify-content: space-between;
-    border-bottom: 1px solid #212529;
+    -webkit-box-align: center;
     align-items: center;
-    padding: 0 1rem;
+    background: #3f51b5;
+    padding-left: 20px;
+    color: white;
   }
 }
 
@@ -19,19 +18,6 @@
 
 .hidden {
   display: none;
-}
-
-ul {
-  margin: 0; /* Отступ слева в браузере IE и Opera */
-  padding: 0; /* Отступ слева в браузере Firefox, Safari, Chrome */
-}
-
-a {
-  color: #212529;
-}
-
-a:hover {
-  text-decoration: none;
 }
 
 .form-group {

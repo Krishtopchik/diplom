@@ -3,6 +3,7 @@ import {DiplomService} from '../../../common/services/diplom.service';
 import {DiplomModel} from '../../../common/models/diplom.model';
 import {DiplomDataService} from '../../../common/services/diplom-data.service';
 import {DiplomInfoModel} from '../../../common/models/diplomInfo.model';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-diplom-list',
@@ -17,6 +18,7 @@ export class DiplomListComponent implements OnInit {
   constructor(
     private diplomDataService: DiplomDataService,
     private diplomService: DiplomService,
+    private router: Router,
   ) {
   }
 
@@ -32,6 +34,7 @@ export class DiplomListComponent implements OnInit {
 
   changeDiplom(e, id: number) {
     e.preventDefault();
+    e.stopPropagation();
     this.diplomDataService.selectDiplomId = id;
     this.diplomDataService.isDiplomSelect = true;
   }
@@ -69,5 +72,17 @@ export class DiplomListComponent implements OnInit {
         this.diplomDataService.isDiplomsUpdate = true;
       });
     }
+  }
+
+  openDiplom(id: number) {
+    this.router.navigate(['/diplom/' + id]);
+  }
+
+  strToDate(str: string) {
+    const date = new Date(str);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? `0${day}` : day} ${month < 10 ? `0${month}` : month} ${year}`;
   }
 }

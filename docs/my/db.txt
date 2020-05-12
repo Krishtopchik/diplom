@@ -1,0 +1,57 @@
+
+DROP TABLE Pm, NormController, Reviewer, Chairman, Commission, DiplomOrder, Specialty;
+
+CREATE TABLE Pm /* руководитель */
+(
+    Id SERIAL PRIMARY KEY,
+	Fio CHARACTER VARYING(30)
+);
+CREATE TABLE NormController /* нормоконтролер */
+(
+    Id SERIAL PRIMARY KEY,
+	Fio  CHARACTER VARYING(30)
+);
+CREATE TABLE Reviewer /* рецензент */
+(
+    Id SERIAL PRIMARY KEY,
+	Fio  CHARACTER VARYING(30)
+);
+CREATE TABLE Chairman /* председатель */
+(
+    Id SERIAL PRIMARY KEY,
+	Fio  CHARACTER VARYING(30)
+);
+CREATE TABLE Commission /* комиссия */
+(
+    Id SERIAL PRIMARY KEY,
+	Fio  CHARACTER VARYING(30)
+);
+CREATE TABLE DiplomOrder /* приказ */
+(
+    Id SERIAL PRIMARY KEY,
+	Name CHARACTER VARYING(30),
+	DateOrder date
+);
+CREATE TABLE Specialty 
+(
+    Id SERIAL PRIMARY KEY,
+	Name CHARACTER VARYING(30)
+);
+CREATE TABLE Diplom
+(
+    Id SERIAL PRIMARY KEY, 
+	Fio CHARACTER VARYING(30), 
+	Topic CHARACTER VARYING(30), 
+	Completion INTEGER, /* процент завершения */
+	Score INTEGER, /* оценка */
+	QueueNumber INTEGER, /* номер в очереди */
+	Deadline date, /* срок */
+	PmId INTEGER REFERENCES pm(Id), /* руководитель */
+	NormControllerId INTEGER REFERENCES normcontroller(Id), /* нормоконтролер */
+	ReviewerId INTEGER REFERENCES reviewer(Id), /* рецензент */
+	ChairmanId INTEGER REFERENCES chairman(Id), /* председатель */
+	DiplomOrderId INTEGER REFERENCES diplomorder(Id),
+	SpecialtyId INTEGER REFERENCES specialty(Id),
+	CommissionId INTEGER REFERENCES commission(Id)
+);
+

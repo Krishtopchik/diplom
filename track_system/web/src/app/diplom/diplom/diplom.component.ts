@@ -16,6 +16,7 @@ export class DiplomComponent implements OnInit, DoCheck {
   selectDiplomId: number;
   diplomsList: DiplomModel[];
   infoAboutDiplom: DiplomInfoModel;
+  load = true;
 
   constructor(
     private diplomService: DiplomService,
@@ -24,7 +25,6 @@ export class DiplomComponent implements OnInit, DoCheck {
   }
 
   ngOnInit() {
-    console.log('wqe')
     const filter = localStorage.getItem('filter');
     if (filter) {
       this.getDiplomsListAndFilter();
@@ -49,11 +49,11 @@ export class DiplomComponent implements OnInit, DoCheck {
         specialtyList: specialty,
         commissionList: commission,
       };
+      this.load = false;
     });
   }
 
   ngDoCheck() {
-    console.log('asd')
     this.selectDiplomId = this.diplomDataService.selectDiplomId;
     this.isDiplomSelect = this.diplomDataService.isDiplomSelect;
     if (this.diplomDataService.isDiplomsUpdate) {
@@ -75,18 +75,26 @@ export class DiplomComponent implements OnInit, DoCheck {
     this.diplomService.getAllDiploms().subscribe(res => {
       const filter = JSON.parse(localStorage.getItem('filter'));
       Object.keys(filter).forEach(key => {
-        if (+/\d+/.exec(filter[key])) {
+        if (+/\d+/.exec(filter[key]) && key !== 'Execution' && key !== 'Deadline') {
           filter[key] = +filter[key];
         }
-        if (filter[key]) {
-          res = res.filter( el => {
-            return el[key] === filter[key];
-          });
-        }
+        res = res.filter(el => {
+          if (key === 'Execution' || key === 'Deadline') {
+            if (this.checkDate(filter[key], el[key])) {
+              return el;
+            }
+          }
+          return el[key] === filter[key];
+        });
       });
       this.diplomsList = res;
       this.diplomDataService.diplomsFilter = false;
     });
+  }
+
+  private checkDate(filter, el) {
+    const day = (+filter.substring(8, 10) + 1) < 10 ? `0${+filter.substring(8, 10) + 1}` : (+filter.substring(8, 10) + 1).toString();
+    return filter.substring(0, 4) === el.substring(0, 4) && filter.substring(5, 7) === el.substring(5, 7) && day === el.substring(8, 10);
   }
 
   private getPmList() {

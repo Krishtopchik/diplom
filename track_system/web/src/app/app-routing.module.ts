@@ -7,6 +7,7 @@ import {DiplomNormocontrollerComponent} from './diplom/diplom-normocontroller/di
 import {DiplomChairmanComponent} from './diplom/diplom-chairman/diplom-chairman.component';
 import {DiplomCommissionComponent} from './diplom/diplom-commission/diplom-commission.component';
 import {DiplomOrderComponent} from './diplom/diplom-order/diplom-order.component';
+import {DiplomIdComponent} from './diplom/diplom/diplom-id/diplom-id.component';
 
 
 const routes: Routes = [{
@@ -38,7 +39,12 @@ const routes: Routes = [{
       component: DiplomOrderComponent,
     },
   ]
-}];
+},
+  {
+    path: 'diplom/:id',
+    component: DiplomIdComponent,
+  },
+];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

@@ -7,10 +7,35 @@ import {DiplomModel} from '../../../common/models/diplom.model';
 import {DiplomDataService} from '../../../common/services/diplom-data.service';
 import {DiplomInfoModel} from '../../../common/models/diplomInfo.model';
 
+import * as _moment from 'moment';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+const moment = _moment;
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'LL',
+  },
+  display: {
+    dateInput: 'LL',
+    monthYearLabel: 'MM YYYY',
+    dateA11yLabel: 'L',
+    monthYearA11yLabel: 'MM YYYY',
+  },
+};
+
 @Component({
   selector: 'app-diplom-detail',
   templateUrl: './diplom-detail.component.html',
-  styleUrls: ['./diplom-detail.component.scss']
+  styleUrls: ['./diplom-detail.component.scss'],
+  providers: [{
+    provide: DateAdapter,
+    useClass: MomentDateAdapter,
+    deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+  },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class DiplomDetailComponent implements OnInit, DoCheck {
 
@@ -29,7 +54,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
 
   diplomSelect = false;
   diplomId = 0;
-  tab = 'add';
+  tab = 'filter';
   diplomForm: FormGroup;
   diplomListFilterForm: FormGroup;
   buttonTitleAdd = true;
@@ -64,6 +89,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       diplom.DiplomorderId = +diplom.DiplomorderId;
       diplom.SpecialtyId = +diplom.SpecialtyId;
       diplom.CommissionId = +diplom.CommissionId;
+      console.log(diplom.Execution)
       if (diplom.Deadline === '') {
         diplom.Deadline = null;
       }
@@ -102,15 +128,15 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
         if (rows[key] === 'null') {
           rows[key] = 0;
         }
-        filter[key] = rows[key] ;
+        filter[key] = rows[key];
       }
     });
     localStorage.setItem('filter', JSON.stringify(filter));
   }
 
-  changeTab($event) {
+  changeTab(tab: string) {
     this.diplomId = null;
-    this.tab = $event.target.getAttribute('rel');
+    this.tab = tab;
     if (this.tab === 'add') {
       this.formInit();
       this.buttonTitleAdd = true;
@@ -131,7 +157,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       Topic: ['', Validators.required],
       Completion: [''],
       Score: [''],
-      Deadline: [''],
+      Deadline: new FormControl(moment()),
       Queuenumber: [''],
       PmId: [0],
       NormcontrollerId: [0],

@@ -1,56 +1,23 @@
 <div class="content">
-  <div class="navbar">
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === '' ? 'red' : '#212529'}">
-      <a class=""  [ngStyle]="{'color': tab === '' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel=""
-      >Дипломы</a>
-    </div>
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'pm' ? 'red' : '#212529'}">
-      <a class="" [ngStyle]="{'color': tab === 'pm' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="pm"
-      >Руководители</a>
-    </div>
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'reviewer' ? 'red' : '#212529'}">
-      <a class="" [ngStyle]="{'color': tab === 'reviewer' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="reviewer"
-      >Рецензенты</a>
-    </div>
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'normcontroller' ? 'red' : '#212529'}">
-      <a class="" [ngStyle]="{'color': tab === 'normcontroller' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="normcontroller"
-      >Нормоконтролеры</a>
-    </div>
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'chairman' ? 'red' : '#212529'}">
-      <a class="" [ngStyle]="{'color': tab === 'chairman' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="chairman"
-      >Председатели</a>
-    </div>
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'commission' ? 'red' : '#212529'}">
-      <a class="" [ngStyle]="{'color': tab === 'commission' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="commission"
-      >Комиссия</a>
-    </div>
-    <div class="navbar__el" [ngStyle]="{'border-color': tab === 'diplomOrder' ? 'red' : '#212529'}">
-      <a class="" [ngStyle]="{'color': tab === 'diplomOrder' ? 'red' : '#212529'}"
-         href="javascript://"
-         (click)="changeTab($event)"
-         rel="diplomOrder"
-      >Приказы</a>
+  <div class="mat-elevation-z6 main-nav">
+    <div class="docs-navbar-header">
+      <button *ngIf="tab != ''" (click)="changeTab('')" mat-button><a rel="">Дипломы</a></button>
+      <button *ngIf="tab === ''" (click)="changeTab('')" mat-button color="accent"><a rel="">Дипломы</a></button>
+      <button *ngIf="tab != 'pm'" (click)="changeTab('pm')" mat-button><a rel="pm">Руководители</a></button>
+      <button *ngIf="tab === 'pm'" (click)="changeTab('pm')" mat-button color="accent"><a rel="pm">Руководители</a></button>
+      <button *ngIf="tab != 'reviewer'" (click)="changeTab('reviewer')" mat-button><a rel="reviewer">Рецензенты</a></button>
+      <button *ngIf="tab === 'reviewer'" (click)="changeTab('reviewer')" mat-button color="accent"><a rel="reviewer">Рецензенты</a></button>
+      <button *ngIf="tab != 'normcontroller'" (click)="changeTab('normcontroller')" mat-button><a rel="normcontroller">Нормоконтролеры</a></button>
+      <button *ngIf="tab === 'normcontroller'" (click)="changeTab('normcontroller')" mat-button color="accent"><a rel="normcontroller">Нормоконтролеры</a></button>
+      <button *ngIf="tab != 'chairman'" (click)="changeTab('chairman')" mat-button><a rel="chairman">Председатели</a></button>
+      <button *ngIf="tab === 'chairman'" (click)="changeTab('chairman')" mat-button color="accent"><a rel="chairman">Председатели</a></button>
+      <button *ngIf="tab != 'commission'" (click)="changeTab('commission')" mat-button><a rel="commission">Комиссия</a></button>
+      <button *ngIf="tab === 'commission'" (click)="changeTab('commission')" mat-button color="accent"><a rel="commission">Комиссия</a></button>
+      <button *ngIf="tab != 'diplomOrder'" (click)="changeTab('diplomOrder')" mat-button><a rel="diplomOrder">Приказы</a></button>
+      <button *ngIf="tab === 'diplomOrder'" (click)="changeTab('diplomOrder')" mat-button color="accent"><a rel="diplomOrder">Приказы</a></button>
     </div>
   </div>
-  <div>
+  <div style="margin-top: 8vh;">
     <app-diplom [ngClass]="{ hidden: tab !== '' }"></app-diplom>
     <app-pm [ngClass]="{ hidden: tab !== 'pm' }"></app-pm>
     <app-diplom-chairman [ngClass]="{ hidden: tab !== 'chairman' }"></app-diplom-chairman>
