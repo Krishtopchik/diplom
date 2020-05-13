@@ -58,7 +58,7 @@ func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 
 func GetAllDiploms() ([]models.Diplom, error){
 	db := createConnectin()
-	rows, err := db.Query("select * from diplom")
+	rows, err := db.Query("select * from diplom group by id, queuenumber, deadline order by queuenumber")
 	if err != nil {
 		panic(err)
 	}
@@ -74,9 +74,9 @@ func GetAllDiploms() ([]models.Diplom, error){
 		}
 		diplomAll = append(diplomAll, p)
 	}
-	sort.Slice(diplomAll, func(i, j int) bool {
-		return diplomAll[i].Id < diplomAll[j].Id
-	})
+	//sort.Slice(diplomAll, func(i, j int) bool {
+	//	return diplomAll[i].Id < diplomAll[j].Id
+	//})
 	return diplomAll, err
 }
 

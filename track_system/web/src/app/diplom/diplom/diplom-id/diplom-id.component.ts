@@ -22,7 +22,8 @@ export class DiplomIdComponent implements OnInit {
   commission = '';
   diplom = new DiplomModel();
   subscribeTimer: any;
-  timeLeft = 10;
+  timeLeft = 70;
+  timerText: string;
 
   constructor(
     private router: Router,
@@ -60,7 +61,7 @@ export class DiplomIdComponent implements OnInit {
       this.reviewer = reviewer.find(el => el.Id === diplom.ReviewerId).Fio;
       this.chairman = chairman.find(el => el.Id === diplom.ChairmanId).Fio;
       const diplomOrderModel = diplomorder.find(el => el.Id === diplom.DiplomorderId);
-      this.diplomOrder = `${diplomOrderModel.Name} ${diplomOrderModel.Dateorder}`;
+      this.diplomOrder = `${diplomOrderModel.Name} ${this.strToDate(diplomOrderModel.Dateorder)}`;
       this.specialty = specialty.find(el => el.Id === diplom.SpecialtyId).Name;
       this.commission = commission.find(el => el.Id === diplom.CommissionId).Fio;
     });
@@ -95,7 +96,7 @@ export class DiplomIdComponent implements OnInit {
   }
 
   onMain() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
   start() {
@@ -103,9 +104,27 @@ export class DiplomIdComponent implements OnInit {
     source.subscribe(val => {
       if (val < this.timeLeft) {
         this.subscribeTimer = this.timeLeft - val;
+        this.timerText = this.secToMin(this.subscribeTimer);
       } else {
-        this.subscribeTimer = 'конец';
+        this.timerText = 'конец';
       }
     });
+  }
+
+  secToMin(sec: string) {
+    const min = Math.floor(+sec / 60);
+    let seconds = (+sec - min * 60).toString();
+    if (+seconds < 10) {
+      seconds = `0${seconds}`;
+    }
+    return `${min}:${seconds}`;
+  }
+
+  strToDate(str: string) {
+    const date = new Date(str);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}`;
   }
 }

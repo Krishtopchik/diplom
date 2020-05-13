@@ -34,6 +34,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
+import {MatDialogModule} from '@angular/material/dialog';
 
 // export const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -77,6 +78,7 @@ import {IConfig, NgxMaskModule} from 'ngx-mask';
     MatDatepickerModule,
     MatNativeDateModule,
     NgxMaskModule.forRoot(),
+    MatDialogModule
   ],
   providers: [ValidationService, AccordionConfig],
   bootstrap: [AppComponent]

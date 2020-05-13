@@ -19,7 +19,7 @@
             *ngFor="let option of infoAboutDiplom.diplomorderList"
             [value]="option.Id"
           >
-            {{option.Name}} {{option.Dateorder}}
+            {{option.Name}} {{strToDate(option.Dateorder)}}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -53,7 +53,7 @@
         <textarea matInput formControlName="Topic"></textarea>
       </mat-form-field>
 
-      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+      <mat-form-field *ngIf="infoAboutDiplom; else loading" style="border-bottom: 1px solid;margin-bottom: 16px;">
         <mat-label>Руководитель</mat-label>
         <mat-select formControlName="PmId">
           <mat-option
@@ -90,18 +90,6 @@
       </mat-form-field>
 
       <mat-form-field *ngIf="infoAboutDiplom; else loading">
-        <mat-label>Председатель</mat-label>
-        <mat-select formControlName="ChairmanId">
-          <mat-option
-            *ngFor="let option of infoAboutDiplom.chairmanList"
-            [value]="option.Id"
-          >
-            {{option.Fio}}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <mat-form-field *ngIf="infoAboutDiplom; else loading">
         <mat-label>Комиссия</mat-label>
         <mat-select formControlName="CommissionId">
           <mat-option
@@ -113,9 +101,21 @@
         </mat-select>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
+      <mat-form-field class="full-width" style="border-bottom: 1px solid; margin-bottom: 16px">
         <mat-label>Комментарий:</mat-label>
         <textarea matInput formControlName="CommissionComment"></textarea>
+      </mat-form-field>
+
+      <mat-form-field *ngIf="infoAboutDiplom; else loading">
+        <mat-label>Председатель</mat-label>
+        <mat-select formControlName="ChairmanId">
+          <mat-option
+            *ngFor="let option of infoAboutDiplom.chairmanList"
+            [value]="option.Id"
+          >
+            {{option.Fio}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
 
       <mat-form-field class="full-width">
@@ -130,17 +130,19 @@
         <mat-datepicker #picker></mat-datepicker>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>Дата защиты:</mat-label>
-        <input matInput [matDatepicker]="picker1" formControlName="Deadline">
-        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-        <mat-datepicker #picker1></mat-datepicker>
-      </mat-form-field>
+      <div style="display:flex;">
+        <mat-form-field class="full-width">
+          <mat-label>Дата защиты:</mat-label>
+          <input matInput [matDatepicker]="picker1" formControlName="Deadline">
+          <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+          <mat-datepicker #picker1></mat-datepicker>
+        </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <mat-label>№:</mat-label>
-        <input matInput formControlName="Queuenumber"/>
-      </mat-form-field>
+        <mat-form-field class="full-width" style="margin-left: 8px; width: 64px;">
+          <mat-label>№:</mat-label>
+          <input matInput formControlName="Queuenumber"/>
+        </mat-form-field>
+      </div>
 
       <mat-form-field class="full-width">
         <mat-label>Оценка:</mat-label>
@@ -168,7 +170,7 @@
               *ngFor="let option of infoAboutDiplom.diplomorderList"
               [value]="option.Id"
             >
-              {{option.Name}} {{option.Dateorder}}
+              {{option.Name}} {{strToDate(option.Dateorder)}}
             </mat-option>
           </mat-select>
         </mat-form-field>

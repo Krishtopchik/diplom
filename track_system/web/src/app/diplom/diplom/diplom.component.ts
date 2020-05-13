@@ -66,6 +66,15 @@ export class DiplomComponent implements OnInit, DoCheck {
 
   private getDiplomsList() {
     this.diplomService.getAllDiploms().subscribe(res => {
+      // res.sort((a, b) => {
+      //   if (a.Queuenumber > b.Queuenumber) {
+      //     return 1;
+      //   }
+      //   if (a.Queuenumber < b.Queuenumber) {
+      //     return -1;
+      //   }
+      //   return 0;
+      // });
       this.diplomsList = res;
       this.diplomDataService.isDiplomsUpdate = false;
     });
@@ -87,6 +96,15 @@ export class DiplomComponent implements OnInit, DoCheck {
           return el[key] === filter[key];
         });
       });
+      // res.sort((a, b) => {
+      //   if (a.Queuenumber > b.Queuenumber) {
+      //     return 1;
+      //   }
+      //   if (a.Queuenumber < b.Queuenumber) {
+      //     return -1;
+      //   }
+      //   return 0;
+      // });
       this.diplomsList = res;
       this.diplomDataService.diplomsFilter = false;
     });

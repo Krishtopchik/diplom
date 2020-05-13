@@ -14,14 +14,14 @@ import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/
 const moment = _moment;
 export const MY_FORMATS = {
   parse: {
-    dateInput: 'LL',
+    dateInput: 'D.MM.YYYY'
   },
   display: {
-    dateInput: 'LL',
-    monthYearLabel: 'MM YYYY',
-    dateA11yLabel: 'L',
-    monthYearA11yLabel: 'MM YYYY',
-  },
+    dateInput: 'DD.MM.YYYY',
+    monthYearLabel: 'MMMM Y',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM Y'
+  }
 };
 
 @Component({
@@ -89,12 +89,15 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       diplom.DiplomorderId = +diplom.DiplomorderId;
       diplom.SpecialtyId = +diplom.SpecialtyId;
       diplom.CommissionId = +diplom.CommissionId;
-      console.log(diplom.Execution)
       if (diplom.Deadline === '') {
         diplom.Deadline = null;
+      } else {
+        diplom.Deadline = moment(diplom.Deadline).add(4, 'hours').toISOString();
       }
       if (diplom.Execution === '') {
         diplom.Execution = null;
+      } else {
+        diplom.Execution = moment(diplom.Execution).add(4, 'hours').toISOString();
       }
       if (this.buttonTitleAdd) {
         this.diplomService.createDiplom(diplom).subscribe(res => {
@@ -233,5 +236,13 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
     this.diplomId = null;
     this.formInit();
     this.tab = 'add';
+  }
+
+  strToDate(str: string) {
+    const date = new Date(str);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}`;
   }
 }

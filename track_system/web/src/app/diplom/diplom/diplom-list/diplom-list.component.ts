@@ -43,7 +43,7 @@ export class DiplomListComponent implements OnInit {
     const diplomOrder = this.infoAboutDiplom.diplomorderList.find( (el) => el.Id === diplom.DiplomorderId);
     const specialty = this.infoAboutDiplom.specialtyList.find( (el) => el.Id === diplom.SpecialtyId);
     const pm = this.infoAboutDiplom.pmList.find( (el) => el.Id === diplom.PmId);
-    return `[${diplomOrder.Name}, ${diplomOrder.Dateorder}]-${diplom.Queuenumber}-${specialty.Name}-${diplom.Fio}/${pm.Fio}`;
+    return `[${diplomOrder.Name}, ${this.strToDate(diplomOrder.Dateorder)}]-${diplom.Queuenumber}-${specialty.Name}-${diplom.Fio}/${pm.Fio}`;
   }
 
   getNormcontroller(normcontrollerId: number) {
@@ -83,6 +83,6 @@ export class DiplomListComponent implements OnInit {
     const day = date.getDate();
     const month = date.getMonth() + 1;
     const year = date.getFullYear();
-    return `${day < 10 ? `0${day}` : day} ${month < 10 ? `0${month}` : month} ${year}`;
+    return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}`;
   }
 }

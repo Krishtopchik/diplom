@@ -2,49 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21476fbe-d6d1-4c12-9def-f15e5e4c8fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/diplom.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/rep.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/rep.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/models/diplom.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/models/diplom.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/models/diplomorder.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/models/diplomorder.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/models/specialyty.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/models/specialyty.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/models/teacher.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/models/teacher.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.scss" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/styles.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/styles.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/index.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,22 +156,38 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1588707710338" />
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom" timestamp="1588708009452">
+    <state width="1323" height="268" key="GridCell.Tab.0.bottom" timestamp="1589403165414">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1588708009452" />
-    <state width="1323" height="182" key="GridCell.Tab.0.center" timestamp="1588708009451">
+    <state width="1323" height="268" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
+    <state width="1323" height="268" key="GridCell.Tab.0.center" timestamp="1589403165414">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1588708009451" />
-    <state width="1323" height="182" key="GridCell.Tab.0.left" timestamp="1588708009451">
+    <state width="1323" height="268" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
+    <state width="1323" height="268" key="GridCell.Tab.0.left" timestamp="1589403165414">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1588708009451" />
-    <state width="1323" height="182" key="GridCell.Tab.0.right" timestamp="1588708009452">
+    <state width="1323" height="268" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
+    <state width="1323" height="268" key="GridCell.Tab.0.right" timestamp="1589403165414">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="182" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1588708009452" />
+    <state width="1323" height="268" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
+    <state width="1323" height="268" key="GridCell.Tab.1.bottom" timestamp="1589403165430">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="268" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1589403165430" />
+    <state width="1323" height="268" key="GridCell.Tab.1.center" timestamp="1589403165414">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="268" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
+    <state width="1323" height="268" key="GridCell.Tab.1.left" timestamp="1589403165414">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="268" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
+    <state width="1323" height="268" key="GridCell.Tab.1.right" timestamp="1589403165414">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="268" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1589403165414" />
     <state width="208" height="471" key="HiddenNamespacesPopup" timestamp="1588710327089">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

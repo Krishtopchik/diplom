@@ -1,14 +1,39 @@
 import { Component, OnInit } from '@angular/core';
 import {TeacherModel} from '../../common/models/teacher.model';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
 import {DiplomorderModel} from '../../common/models/diplomorder.model';
 
+import * as _moment from 'moment';
+import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+
+const moment = _moment;
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'D.MM.YYYY'
+  },
+  display: {
+    dateInput: 'DD.MM.YYYY',
+    monthYearLabel: 'MMMM Y',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM Y'
+  }
+};
+
 @Component({
   selector: 'app-diplom-order',
   templateUrl: './diplom-order.component.html',
-  styleUrls: ['./diplom-order.component.scss']
+  styleUrls: ['./diplom-order.component.scss'],
+  providers: [{
+    provide: DateAdapter,
+    useClass: MomentDateAdapter,
+    deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS]
+  },
+
+    {provide: MAT_DATE_FORMATS, useValue: MY_FORMATS},
+  ],
 })
 export class DiplomOrderComponent implements OnInit {
 
@@ -38,7 +63,7 @@ export class DiplomOrderComponent implements OnInit {
     this.diplomOrderForm = this.fb.group({
       Id: [0],
       Name: ['', Validators.required],
-      Dateorder: ['', Validators.required],
+      Dateorder: [new FormControl(moment()), Validators.required],
     });
   }
 
@@ -85,5 +110,13 @@ export class DiplomOrderComponent implements OnInit {
     this.formInit();
     this.buttonTitleAdd = true;
     this.tab = 'add';
+  }
+
+  strToDate(str: string) {
+    const date = new Date(str);
+    const day = date.getDate();
+    const month = date.getMonth() + 1;
+    const year = date.getFullYear();
+    return `${day < 10 ? `0${day}` : day}.${month < 10 ? `0${month}` : month}.${year}`;
   }
 }
