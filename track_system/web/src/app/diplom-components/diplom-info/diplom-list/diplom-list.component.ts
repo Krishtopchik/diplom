@@ -4,8 +4,8 @@ import {DiplomModel} from '../../../common/models/diplom.model';
 import {DiplomDataService} from '../../../common/services/diplom-data.service';
 import {DiplomInfoModel} from '../../../common/models/diplomInfo.model';
 import {Router} from '@angular/router';
-import {PasswordDialogComponent} from '../../../common/dialogs/password-dialog/password-dialog.component';
-import {ConfirmDialogComponent} from '../../../common/dialogs/confirm-dialog/confirm-dialog.component';
+import {PasswordDialogComponent} from '../../dialogs/password-dialog/password-dialog.component';
+import {ConfirmDialogComponent} from '../../dialogs/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 
 @Component({
@@ -90,7 +90,7 @@ export class DiplomListComponent implements OnInit, DoCheck {
   }
 
   openDiplom(id: number) {
-    this.router.navigate(['/diplom-info/' + id]);
+    this.router.navigate(['/diplom-components-info/' + id]);
   }
 
   strToDate(str: string) {

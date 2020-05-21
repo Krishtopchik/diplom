@@ -9,7 +9,7 @@ import * as _moment from 'moment';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmDialogComponent} from "../../common/dialogs/confirm-dialog/confirm-dialog.component";
+import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog.component";
 import {DiplomDataService} from "../../common/services/diplom-data.service";
 
 const moment = _moment;

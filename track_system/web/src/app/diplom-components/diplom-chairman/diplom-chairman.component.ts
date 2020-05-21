@@ -3,7 +3,7 @@ import {TeacherModel} from '../../common/models/teacher.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
-import {ConfirmDialogComponent} from '../../common/dialogs/confirm-dialog/confirm-dialog.component';
+import {ConfirmDialogComponent} from '../dialogs/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
 import {DiplomDataService} from "../../common/services/diplom-data.service";
 

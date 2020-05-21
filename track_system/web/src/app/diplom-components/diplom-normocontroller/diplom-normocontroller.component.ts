@@ -4,18 +4,18 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmDialogComponent} from "../../common/dialogs/confirm-dialog/confirm-dialog.component";
+import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog.component";
 import {DiplomDataService} from "../../common/services/diplom-data.service";
 
 @Component({
-  selector: 'app-diplom-commission',
-  templateUrl: './diplom-commission.component.html',
-  styleUrls: ['./diplom-commission.component.scss']
+  selector: 'app-diplom-normocontroller',
+  templateUrl: './diplom-normocontroller.component.html',
+  styleUrls: ['./diplom-normocontroller.component.scss']
 })
-export class DiplomCommissionComponent implements OnInit {
+export class DiplomNormocontrollerComponent implements OnInit {
 
-  commissionList: TeacherModel[];
-  commissionForm: FormGroup;
+  normocontrollerList: TeacherModel[];
+  normocontrollerForm: FormGroup;
   buttonTitleAdd = true;
   tab = 'add';
   constructor(
@@ -28,36 +28,36 @@ export class DiplomCommissionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getPmList();
+    this.getNormocontrollerList();
     this.formInit();
   }
 
-  private getPmList() {
-    this.diplomService.getCommissions().subscribe(res => {
-      this.commissionList = res;
+  private getNormocontrollerList() {
+    this.diplomService.getNormcontrollers().subscribe(res => {
+      this.normocontrollerList = res;
     });
   }
 
   private formInit() {
-    this.commissionForm = this.fb.group({
+    this.normocontrollerForm = this.fb.group({
       Id: [0],
       Fio: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    const commission: TeacherModel = this.commissionForm.getRawValue();
+    const normocontroller: TeacherModel = this.normocontrollerForm.getRawValue();
     if (this.buttonTitleAdd) {
-      this.diplomService.createCommission(commission).subscribe(res => {
+      this.diplomService.createNormcontroller(normocontroller).subscribe(res => {
         this.toastr.success('Добавлен');
-        this.getPmList();
-        this.diplomDataService.changeCommission = true;
+        this.getNormocontrollerList();
+        this.diplomDataService.changeNormoconntroller = true;
       });
     } else {
-      this.diplomService.updateeCommission(commission).subscribe(res => {
+      this.diplomService.updateeNormcontroller(normocontroller).subscribe(res => {
         this.toastr.success('Обновлен');
-        this.getPmList();
-        this.diplomDataService.changeCommission = true;
+        this.getNormocontrollerList();
+        this.diplomDataService.changeNormoconntroller = true;
       });
     }
     this.formInit();
@@ -65,17 +65,17 @@ export class DiplomCommissionComponent implements OnInit {
     this.tab = 'add';
   }
 
-  deleteChairman(id: number) {
+  deleteNormocontroller(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.diplomService.deleteCommission(id).subscribe(res => {
+        this.diplomService.deleteNormcontroller(id).subscribe(res => {
           this.toastr.success('Удален');
-          this.getPmList();
-          this.diplomDataService.changeCommission = true;
+          this.getNormocontrollerList();
+          this.diplomDataService.changeNormoconntroller = true;
         });
       }
       this.formInit();
@@ -84,9 +84,9 @@ export class DiplomCommissionComponent implements OnInit {
     });
   }
 
-  changeChairman(id: number) {
-    const item = this.commissionList.find(el => el.Id === id);
-    this.commissionForm.patchValue({
+  changeNormocontroller(id: number) {
+    const item = this.normocontrollerList.find(el => el.Id === id);
+    this.normocontrollerForm.patchValue({
       ...item
     });
     this.buttonTitleAdd = false;

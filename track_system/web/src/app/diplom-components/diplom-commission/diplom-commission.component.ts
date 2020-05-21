@@ -4,18 +4,18 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmDialogComponent} from "../../common/dialogs/confirm-dialog/confirm-dialog.component";
+import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog.component";
 import {DiplomDataService} from "../../common/services/diplom-data.service";
 
 @Component({
-  selector: 'app-diplom-normocontroller',
-  templateUrl: './diplom-normocontroller.component.html',
-  styleUrls: ['./diplom-normocontroller.component.scss']
+  selector: 'app-diplom-commission',
+  templateUrl: './diplom-commission.component.html',
+  styleUrls: ['./diplom-commission.component.scss']
 })
-export class DiplomNormocontrollerComponent implements OnInit {
+export class DiplomCommissionComponent implements OnInit {
 
-  normocontrollerList: TeacherModel[];
-  normocontrollerForm: FormGroup;
+  commissionList: TeacherModel[];
+  commissionForm: FormGroup;
   buttonTitleAdd = true;
   tab = 'add';
   constructor(
@@ -28,36 +28,36 @@ export class DiplomNormocontrollerComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getNormocontrollerList();
+    this.getPmList();
     this.formInit();
   }
 
-  private getNormocontrollerList() {
-    this.diplomService.getNormcontrollers().subscribe(res => {
-      this.normocontrollerList = res;
+  private getPmList() {
+    this.diplomService.getCommissions().subscribe(res => {
+      this.commissionList = res;
     });
   }
 
   private formInit() {
-    this.normocontrollerForm = this.fb.group({
+    this.commissionForm = this.fb.group({
       Id: [0],
       Fio: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    const normocontroller: TeacherModel = this.normocontrollerForm.getRawValue();
+    const commission: TeacherModel = this.commissionForm.getRawValue();
     if (this.buttonTitleAdd) {
-      this.diplomService.createNormcontroller(normocontroller).subscribe(res => {
+      this.diplomService.createCommission(commission).subscribe(res => {
         this.toastr.success('Добавлен');
-        this.getNormocontrollerList();
-        this.diplomDataService.changeNormoconntroller = true;
+        this.getPmList();
+        this.diplomDataService.changeCommission = true;
       });
     } else {
-      this.diplomService.updateeNormcontroller(normocontroller).subscribe(res => {
+      this.diplomService.updateeCommission(commission).subscribe(res => {
         this.toastr.success('Обновлен');
-        this.getNormocontrollerList();
-        this.diplomDataService.changeNormoconntroller = true;
+        this.getPmList();
+        this.diplomDataService.changeCommission = true;
       });
     }
     this.formInit();
@@ -65,17 +65,17 @@ export class DiplomNormocontrollerComponent implements OnInit {
     this.tab = 'add';
   }
 
-  deleteNormocontroller(id: number) {
+  deleteChairman(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.diplomService.deleteNormcontroller(id).subscribe(res => {
+        this.diplomService.deleteCommission(id).subscribe(res => {
           this.toastr.success('Удален');
-          this.getNormocontrollerList();
-          this.diplomDataService.changeNormoconntroller = true;
+          this.getPmList();
+          this.diplomDataService.changeCommission = true;
         });
       }
       this.formInit();
@@ -84,9 +84,9 @@ export class DiplomNormocontrollerComponent implements OnInit {
     });
   }
 
-  changeNormocontroller(id: number) {
-    const item = this.normocontrollerList.find(el => el.Id === id);
-    this.normocontrollerForm.patchValue({
+  changeChairman(id: number) {
+    const item = this.commissionList.find(el => el.Id === id);
+    this.commissionForm.patchValue({
       ...item
     });
     this.buttonTitleAdd = false;

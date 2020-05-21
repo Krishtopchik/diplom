@@ -2,7 +2,7 @@ import {Component, DoCheck} from '@angular/core';
 import {Router} from '@angular/router';
 import {DiplomDataService} from '../../common/services/diplom-data.service';
 import {MatDialog} from '@angular/material/dialog';
-import {PasswordDialogComponent} from '../../common/dialogs/password-dialog/password-dialog.component';
+import {PasswordDialogComponent} from '../dialogs/password-dialog/password-dialog.component';
 
 @Component({
   selector: 'app-diplom-layout',

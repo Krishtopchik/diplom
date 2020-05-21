@@ -5,7 +5,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {DiplomModel} from '../../common/models/diplom.model';
 import {MatDialog} from "@angular/material/dialog";
-import {ConfirmDialogComponent} from "../../common/dialogs/confirm-dialog/confirm-dialog.component";
+import {ConfirmDialogComponent} from "../dialogs/confirm-dialog/confirm-dialog.component";
 import {DiplomDataService} from "../../common/services/diplom-data.service";
 
 @Component({
