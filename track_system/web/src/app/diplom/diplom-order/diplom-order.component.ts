@@ -8,6 +8,9 @@ import {DiplomorderModel} from '../../common/models/diplomorder.model';
 import * as _moment from 'moment';
 import {MomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS} from '@angular/material-moment-adapter';
 import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE} from '@angular/material/core';
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmDialogComponent} from "../../common/dialogs/confirm-dialog/confirm-dialog.component";
+import {DiplomDataService} from "../../common/services/diplom-data.service";
 
 const moment = _moment;
 export const MY_FORMATS = {
@@ -45,6 +48,8 @@ export class DiplomOrderComponent implements OnInit {
     private diplomService: DiplomService,
     private fb: FormBuilder,
     private toastr: ToastrService,
+    private dialog: MatDialog,
+    private diplomDataService: DiplomDataService
   ) {
   }
 
@@ -68,16 +73,23 @@ export class DiplomOrderComponent implements OnInit {
   }
 
   onSubmit() {
-    const diplomOrder: TeacherModel = this.diplomOrderForm.getRawValue();
+    const diplomOrder: DiplomorderModel = this.diplomOrderForm.getRawValue();
+    if (diplomOrder.Dateorder === '') {
+      diplomOrder.Dateorder = null;
+    } else {
+      diplomOrder.Dateorder = moment(diplomOrder.Dateorder).add(4, 'hours').toISOString();
+    }
     if (this.buttonTitleAdd) {
       this.diplomService.createDiplomorder(diplomOrder).subscribe(res => {
         this.toastr.success('Добавлен');
         this.getReviewerList();
+        this.diplomDataService.changeOrder = true;
       });
     } else {
       this.diplomService.updateeDiplomorder(diplomOrder).subscribe(res => {
         this.toastr.success('Обновлен');
         this.getReviewerList();
+        this.diplomDataService.changeOrder = true;
       });
     }
     this.formInit();
@@ -86,15 +98,22 @@ export class DiplomOrderComponent implements OnInit {
   }
 
   deleteDiplomOrder(id: number) {
-    if (confirm('Удалить?')) {
-      this.diplomService.deleteDiplomorder(id).subscribe(res => {
-        this.toastr.success('Удален');
-        this.getReviewerList();
-      });
-    }
-    this.formInit();
-    this.buttonTitleAdd = true;
-    this.tab = 'add';
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.diplomService.deleteDiplomorder(id).subscribe(res => {
+          this.toastr.success('Удален');
+          this.getReviewerList();
+          this.diplomDataService.changeOrder = true;
+        });
+      }
+      this.formInit();
+      this.buttonTitleAdd = true;
+      this.tab = 'add';
+    });
   }
 
   changeDiplomOrder(id: number) {

@@ -1,63 +1,62 @@
 import { Component, OnInit } from '@angular/core';
-import {TeacherModel} from '../../common/models/teacher.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {DiplomService} from '../../common/services/diplom.service';
 import {ToastrService} from 'ngx-toastr';
 import {MatDialog} from '@angular/material/dialog';
-import {ConfirmDialogComponent} from '../../common/dialogs/confirm-dialog/confirm-dialog.component';
 import {DiplomDataService} from '../../common/services/diplom-data.service';
+import {ConfirmDialogComponent} from '../../common/dialogs/confirm-dialog/confirm-dialog.component';
+import {SpecialytyModel} from '../../common/models/specialyty.model';
 
 @Component({
-  selector: 'app-diplom-reviewer',
-  templateUrl: './diplom-reviewer.component.html',
-  styleUrls: ['./diplom-reviewer.component.scss']
+  selector: 'app-diplom-specialyty',
+  templateUrl: './diplom-specialyty.component.html',
+  styleUrls: ['./diplom-specialyty.component.scss']
 })
-export class DiplomReviewerComponent implements OnInit {
-
-  reviewerList: TeacherModel[];
-  reviewerForm: FormGroup;
+export class DiplomSpecialytyComponent implements OnInit {
+  specialytyList: SpecialytyModel[];
+  specialytyForm: FormGroup;
   buttonTitleAdd = true;
   tab = 'add';
   constructor(
     private diplomService: DiplomService,
     private fb: FormBuilder,
     private toastr: ToastrService,
-    private dialog: MatDialog,
+    public dialog: MatDialog,
     private diplomDataService: DiplomDataService
   ) {
   }
 
   ngOnInit(): void {
-    this.getReviewerList();
+    this.getSpecialytyList();
     this.formInit();
   }
 
-  private getReviewerList() {
-    this.diplomService.getReviewers().subscribe(res => {
-      this.reviewerList = res;
+  private getSpecialytyList() {
+    this.diplomService.getSpecialtys().subscribe(res => {
+      this.specialytyList = res;
     });
   }
 
   private formInit() {
-    this.reviewerForm = this.fb.group({
+    this.specialytyForm = this.fb.group({
       Id: [0],
-      Fio: ['', Validators.required],
+      Name: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    const reviewer: TeacherModel = this.reviewerForm.getRawValue();
+    const specialyty: SpecialytyModel = this.specialytyForm.getRawValue();
     if (this.buttonTitleAdd) {
-      this.diplomService.createReviewer(reviewer).subscribe(res => {
+      this.diplomService.createSpecialtys(specialyty).subscribe(res => {
         this.toastr.success('Добавлен');
-        this.getReviewerList();
-        this.diplomDataService.changeReviewer = true;
+        this.getSpecialytyList();
+        this.diplomDataService.changeSpecialty = true;
       });
     } else {
-      this.diplomService.updateeReviewer(reviewer).subscribe(res => {
+      this.diplomService.updateSpecialtys(specialyty).subscribe(res => {
         this.toastr.success('Обновлен');
-        this.getReviewerList();
-        this.diplomDataService.changeReviewer = true;
+        this.getSpecialytyList();
+        this.diplomDataService.changeSpecialty = true;
       });
     }
     this.formInit();
@@ -65,17 +64,17 @@ export class DiplomReviewerComponent implements OnInit {
     this.tab = 'add';
   }
 
-  deleteReviewer(id: number) {
+  deleteSpecialyty(id: number) {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       width: '250px',
     });
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.diplomService.deleteReviewer(id).subscribe(res => {
+        this.diplomService.deleteSpecialtys(id).subscribe(res => {
           this.toastr.success('Удален');
-          this.getReviewerList();
-          this.diplomDataService.changeReviewer = true;
+          this.getSpecialytyList();
+          this.diplomDataService.changeSpecialty = true;
         });
       }
       this.formInit();
@@ -84,9 +83,9 @@ export class DiplomReviewerComponent implements OnInit {
     });
   }
 
-  changeReviewer(id: number) {
-    const item = this.reviewerList.find(el => el.Id === id);
-    this.reviewerForm.patchValue({
+  changeSpecialyty(id: number) {
+    const item = this.specialytyList.find(el => el.Id === id);
+    this.specialytyForm.patchValue({
       ...item
     });
     this.buttonTitleAdd = false;

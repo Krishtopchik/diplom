@@ -10,7 +10,7 @@ import {SpecialytyModel} from '../models/specialyty.model';
   providedIn: 'root'
 })
 export class DiplomService {
-  url = 'http://localhost:8185/api/';
+  url = 'http://localhost:8185/api';
 
   constructor(private http: HttpClient) {
   }
@@ -28,7 +28,7 @@ export class DiplomService {
   }
 
   updateDiplom(diplom: DiplomModel): Observable<any> {
-    return this.http.put<DiplomModel>(`${this.url}diploms`, JSON.stringify(diplom));
+    return this.http.put<DiplomModel>(`${this.url}/diploms`, JSON.stringify(diplom));
   }
 
   deleteDiplom(id: number): Observable<any> {
@@ -38,7 +38,7 @@ export class DiplomService {
   }
 
   createDiplom(diplom: DiplomModel): Observable<DiplomModel> {
-    return this.http.post<DiplomModel>(`${this.url}diploms`, JSON.stringify(diplom));
+    return this.http.post<DiplomModel>(`${this.url}/diploms`, JSON.stringify(diplom));
   }
 
   getChairmans(): Observable<TeacherModel[]> {
@@ -48,11 +48,11 @@ export class DiplomService {
   }
 
   createChairman(pm: TeacherModel): any {
-    return this.http.post<TeacherModel>(`${this.url}chairmans`, JSON.stringify(pm));
+    return this.http.post<TeacherModel>(`${this.url}/chairmans`, JSON.stringify(pm));
   }
 
   updateeChairman(pm: TeacherModel): any {
-    return this.http.put<TeacherModel>(`${this.url}chairmans`, JSON.stringify(pm));
+    return this.http.put<TeacherModel>(`${this.url}/chairmans`, JSON.stringify(pm));
   }
 
   deleteChairman(id: number): any {
@@ -68,11 +68,11 @@ export class DiplomService {
   }
 
   createCommission(pm: TeacherModel): any {
-    return this.http.post<TeacherModel>(`${this.url}commissions`, JSON.stringify(pm));
+    return this.http.post<TeacherModel>(`${this.url}/commissions`, JSON.stringify(pm));
   }
 
   updateeCommission(pm: TeacherModel): any {
-    return this.http.put<TeacherModel>(`${this.url}commissions`, JSON.stringify(pm));
+    return this.http.put<TeacherModel>(`${this.url}/commissions`, JSON.stringify(pm));
   }
 
   deleteCommission(id: number): any {
@@ -87,12 +87,12 @@ export class DiplomService {
     );
   }
 
-  createDiplomorder(pm: TeacherModel): any {
-    return this.http.post<TeacherModel>(`${this.url}diplomorders`, JSON.stringify(pm));
+  createDiplomorder(pm: DiplomorderModel): any {
+    return this.http.post<DiplomorderModel>(`${this.url}/diplomorders`, JSON.stringify(pm));
   }
 
-  updateeDiplomorder(pm: TeacherModel): any {
-    return this.http.put<TeacherModel>(`${this.url}diplomorders`, JSON.stringify(pm));
+  updateeDiplomorder(pm: DiplomorderModel): any {
+    return this.http.put<DiplomorderModel>(`${this.url}/diplomorders`, JSON.stringify(pm));
   }
 
   deleteDiplomorder(id: number): any {
@@ -108,11 +108,11 @@ export class DiplomService {
   }
 
   createNormcontroller(pm: TeacherModel): any {
-    return this.http.post<TeacherModel>(`${this.url}normcontrollers`, JSON.stringify(pm));
+    return this.http.post<TeacherModel>(`${this.url}/normcontrollers`, JSON.stringify(pm));
   }
 
   updateeNormcontroller(pm: TeacherModel): any {
-    return this.http.put<TeacherModel>(`${this.url}normcontrollers`, JSON.stringify(pm));
+    return this.http.put<TeacherModel>(`${this.url}/normcontrollers`, JSON.stringify(pm));
   }
 
   deleteNormcontroller(id: number): any {
@@ -128,11 +128,11 @@ export class DiplomService {
   }
 
   createPm(pm: TeacherModel): any {
-    return this.http.post<TeacherModel>(`${this.url}pms`, JSON.stringify(pm));
+    return this.http.post<TeacherModel>(`${this.url}/pms`, JSON.stringify(pm));
   }
 
   updateePm(pm: TeacherModel): any {
-    return this.http.put<TeacherModel>(`${this.url}pms`, JSON.stringify(pm));
+    return this.http.put<TeacherModel>(`${this.url}/pms`, JSON.stringify(pm));
   }
 
   deletePm(id: number): any {
@@ -148,11 +148,11 @@ export class DiplomService {
   }
 
   createReviewer(pm: TeacherModel): any {
-    return this.http.post<TeacherModel>(`${this.url}reviewers`, JSON.stringify(pm));
+    return this.http.post<TeacherModel>(`${this.url}/reviewers`, JSON.stringify(pm));
   }
 
   updateeReviewer(pm: TeacherModel): any {
-    return this.http.put<TeacherModel>(`${this.url}reviewers`, JSON.stringify(pm));
+    return this.http.put<TeacherModel>(`${this.url}/reviewers`, JSON.stringify(pm));
   }
 
   deleteReviewer(id: number): any {
@@ -164,6 +164,20 @@ export class DiplomService {
   getSpecialtys(): Observable<SpecialytyModel[]> {
     return this.http.get<SpecialytyModel[]>(
       `${this.url}/specialtys`
+    );
+  }
+
+  createSpecialtys(pm: SpecialytyModel): any {
+    return this.http.post<SpecialytyModel>(`${this.url}/specialtys`, JSON.stringify(pm));
+  }
+
+  updateSpecialtys(pm: SpecialytyModel): any {
+    return this.http.put<SpecialytyModel>(`${this.url}/specialtys`, JSON.stringify(pm));
+  }
+
+  deleteSpecialtys(id: number): any {
+    return this.http.delete<any>(
+      `${this.url}/specialtys/${id}`
     );
   }
 }

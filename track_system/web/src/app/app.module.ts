@@ -3,9 +3,9 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { DiplomComponent } from './diplom/diplom/diplom.component';
-import { DiplomListComponent } from './diplom/diplom/diplom-list/diplom-list.component';
-import { DiplomDetailComponent } from './diplom/diplom/diplom-detail/diplom-detail.component';
+import { DiplomComponent } from './diplom/diplom-info/diplom.component';
+import { DiplomListComponent } from './diplom/diplom-info/diplom-list/diplom-list.component';
+import { DiplomDetailComponent } from './diplom/diplom-info/diplom-detail/diplom-detail.component';
 import { PmComponent } from './diplom/diplom-pm/pm.component';
 import { DiplomLayoutComponent } from './diplom/diplom-layout/diplom-layout.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -27,7 +27,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatExpansionModule} from '@angular/material/expansion';
-import { DiplomIdComponent } from './diplom/diplom/diplom-id/diplom-id.component';
+import { DiplomIdComponent } from './diplom/diplom-info/diplom-id/diplom-id.component';
 import {MatGridListModule} from '@angular/material/grid-list';
 import {MatListModule} from '@angular/material/list';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
@@ -35,6 +35,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import {IConfig, NgxMaskModule} from 'ngx-mask';
 import {MatDialogModule} from '@angular/material/dialog';
+import { PasswordDialogComponent } from './common/dialogs/password-dialog/password-dialog.component';
+import { ConfirmDialogComponent } from './common/dialogs/confirm-dialog/confirm-dialog.component';
+import { DiplomSpecialytyComponent } from './diplom/diplom-specialyty/diplom-specialyty.component';
 
 // export const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -52,6 +55,9 @@ import {MatDialogModule} from '@angular/material/dialog';
     DiplomCommissionComponent,
     DiplomOrderComponent,
     DiplomIdComponent,
+    PasswordDialogComponent,
+    ConfirmDialogComponent,
+    DiplomSpecialytyComponent,
   ],
   imports: [
     BrowserModule,

@@ -7,7 +7,8 @@ import {DiplomNormocontrollerComponent} from './diplom/diplom-normocontroller/di
 import {DiplomChairmanComponent} from './diplom/diplom-chairman/diplom-chairman.component';
 import {DiplomCommissionComponent} from './diplom/diplom-commission/diplom-commission.component';
 import {DiplomOrderComponent} from './diplom/diplom-order/diplom-order.component';
-import {DiplomIdComponent} from './diplom/diplom/diplom-id/diplom-id.component';
+import {DiplomIdComponent} from './diplom/diplom-info/diplom-id/diplom-id.component';
+import {DiplomSpecialytyComponent} from "./diplom/diplom-specialyty/diplom-specialyty.component";
 
 
 const routes: Routes = [{
@@ -38,10 +39,14 @@ const routes: Routes = [{
       path: 'diplomOrder',
       component: DiplomOrderComponent,
     },
+    {
+      path: 'specialyty',
+      component: DiplomSpecialytyComponent,
+    },
   ]
 },
   {
-    path: 'diplom/:id',
+    path: 'diplom-info/:id',
     component: DiplomIdComponent,
   },
 ];

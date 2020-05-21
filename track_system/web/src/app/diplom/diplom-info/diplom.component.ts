@@ -1,9 +1,10 @@
 import {Component, DoCheck, OnInit, ViewChild} from '@angular/core';
 import {DiplomService} from '../../common/services/diplom.service';
 import {DiplomModel} from '../../common/models/diplom.model';
-import {zip} from 'rxjs';
+import {Observable, zip} from 'rxjs';
 import {DiplomDataService} from '../../common/services/diplom-data.service';
 import {DiplomInfoModel} from '../../common/models/diplomInfo.model';
+import {SpecialytyModel} from "../../common/models/specialyty.model";
 
 @Component({
   selector: 'app-diplom',
@@ -62,19 +63,52 @@ export class DiplomComponent implements OnInit, DoCheck {
     if (this.diplomDataService.diplomsFilter) {
       this.getDiplomsListAndFilter();
     }
+    if (this.diplomDataService.changePm) {
+      this.getPmList().subscribe(res => {
+        this.infoAboutDiplom.pmList = res;
+        this.diplomDataService.changePm = false;
+      });
+    }
+    if (this.diplomDataService.changeReviewer) {
+      this.getReviewerList().subscribe(res => {
+        this.infoAboutDiplom.reviewerList = res;
+        this.diplomDataService.changeReviewer = false;
+      });
+    }
+    if (this.diplomDataService.changeChairman) {
+      this.getChairmanList().subscribe(res => {
+        this.infoAboutDiplom.chairmanList = res;
+        this.diplomDataService.changeChairman = false;
+      });
+    }
+    if (this.diplomDataService.changeNormoconntroller) {
+      this.getNormcontrollerList().subscribe(res => {
+        this.infoAboutDiplom.normcontrollerList = res;
+        this.diplomDataService.changeNormoconntroller = false;
+      });
+    }
+    if (this.diplomDataService.changeOrder) {
+      this.getDiplomorderList().subscribe(res => {
+        this.infoAboutDiplom.diplomorderList = res;
+        this.diplomDataService.changeOrder = false;
+      });
+    }
+    if (this.diplomDataService.changeCommission) {
+      this.getCommissionList().subscribe(res => {
+        this.infoAboutDiplom.commissionList = res;
+        this.diplomDataService.changeCommission = false;
+      });
+    }
+    if (this.diplomDataService.changeSpecialty) {
+      this.getSpecialtyList().subscribe(res => {
+        this.infoAboutDiplom.specialtyList = res;
+        this.diplomDataService.changeSpecialty = false;
+      });
+    }
   }
 
   private getDiplomsList() {
     this.diplomService.getAllDiploms().subscribe(res => {
-      // res.sort((a, b) => {
-      //   if (a.Queuenumber > b.Queuenumber) {
-      //     return 1;
-      //   }
-      //   if (a.Queuenumber < b.Queuenumber) {
-      //     return -1;
-      //   }
-      //   return 0;
-      // });
       this.diplomsList = res;
       this.diplomDataService.isDiplomsUpdate = false;
     });
@@ -96,15 +130,6 @@ export class DiplomComponent implements OnInit, DoCheck {
           return el[key] === filter[key];
         });
       });
-      // res.sort((a, b) => {
-      //   if (a.Queuenumber > b.Queuenumber) {
-      //     return 1;
-      //   }
-      //   if (a.Queuenumber < b.Queuenumber) {
-      //     return -1;
-      //   }
-      //   return 0;
-      // });
       this.diplomsList = res;
       this.diplomDataService.diplomsFilter = false;
     });
@@ -135,7 +160,7 @@ export class DiplomComponent implements OnInit, DoCheck {
     return this.diplomService.getDiplomorders();
   }
 
-  private getSpecialtyList() {
+  private getSpecialtyList(): Observable<SpecialytyModel[]> {
     return this.diplomService.getSpecialtys();
   }
 

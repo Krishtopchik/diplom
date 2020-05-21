@@ -2,19 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21476fbe-d6d1-4c12-9def-f15e5e4c8fb2" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../docs/my/zapiska/записка.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/zapiska/записка.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/zapiska/печать.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/zapiska/печать.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/rep.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/rep.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/common/services/diplom-data.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/services/diplom-data.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/common/services/diplom.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/services/diplom.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-chairman/diplom-chairman.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-commission/diplom-commission.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-layout/diplom-layout.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-normocontroller/diplom-normocontroller.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-order/diplom-order.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-pm/pm.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom-reviewer/diplom-reviewer.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-detail/diplom-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-id/diplom-id.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom-list/diplom-list.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom/diplom/diplom.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/web/tsconfig.json" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,29 +39,6 @@
         <option value="Go File" />
       </list>
     </option>
-  </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>mux</find>
-      <find>Config</find>
-      <find>\</find>
-      <find>InitLog</find>
-      <find>service</find>
-      <find>get</find>
-      <find>tc</find>
-      <find>id</find>
-      <find>pmid</find>
-      <find>GetS</find>
-      <find>QueryRow</find>
-      <find>upda</find>
-      <find>log</find>
-      <find>getPms</find>
-      <find>pm</find>
-      <find>create</find>
-      <find>deleteDiplom</find>
-      <find>delete</find>
-      <find>.Scan</find>
-    </findStrings>
   </component>
   <component name="GOROOT" path="C:\Go" />
   <component name="Git.Settings">

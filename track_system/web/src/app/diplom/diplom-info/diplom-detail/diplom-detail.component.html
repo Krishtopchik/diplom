@@ -2,10 +2,13 @@
   <div>
     <div class="content__nav">
       <button *ngIf="tab != 'filter'" (click)="changeTab('filter')" mat-button><a rel="filter">Фильтр</a></button>
-      <button *ngIf="tab === 'filter'" (click)="changeTab('filter')" mat-button color="accent"><a rel="filter">Фильтр</a></button>
-      <button *ngIf="tab != 'add'" (click)="changeTab('add')" mat-button><a rel="add">Добавить</a></button>
-      <button *ngIf="tab === 'add'" (click)="changeTab('add')" mat-button color="accent"><a rel="add">Добавить</a></button>
-       <button *ngIf="tab === 'change'" (click)="changeTab('change')" mat-button color="accent"><a rel="">Изменение</a></button>
+      <button *ngIf="tab === 'filter'" (click)="changeTab('filter')" mat-button color="accent"><a
+        rel="filter">Фильтр</a></button>
+      <button *ngIf="tab != 'add' && isAdmin" (click)="changeTab('add')" mat-button><a rel="add">Добавить</a></button>
+      <button *ngIf="tab === 'add' && isAdmin" (click)="changeTab('add')" mat-button color="accent"><a rel="add">Добавить</a>
+      </button>
+      <button *ngIf="tab === 'change' && isAdmin" (click)="changeTab('change')" mat-button color="accent"><a rel="">Изменение</a>
+      </button>
     </div>
   </div>
   <div [ngClass]="{ hidden: tab !== 'add' && tab !== 'change'}">
@@ -335,8 +338,11 @@
         <mat-checkbox formControlName="ScoreCheck"></mat-checkbox>
       </div>
 
-      <button mat-raised-button color="primary" style="width: 100%;" (click)="onFilterSubmit()" type="submit" class="">Фильтр</button>
-      <button mat-raised-button color="primary" style="width: 100%; margin-top: 1rem" (click)="removeFilter()" type="submit" class="">Сброс
+      <button mat-raised-button color="primary" style="width: 100%;" (click)="onFilterSubmit()" type="submit" class="">
+        Фильтр
+      </button>
+      <button mat-raised-button color="primary" style="width: 100%; margin-top: 1rem" (click)="removeFilter()"
+              type="submit" class="">Сброс
         фильтра
       </button>
     </form>

@@ -1,4 +1,4 @@
-import {Component, Input, OnInit, DoCheck, Output, EventEmitter} from '@angular/core';
+import {Component, Input, OnInit, DoCheck} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {ValidationService} from '../../../common/services/validation.service';
 import {ToastrService} from 'ngx-toastr';
@@ -58,6 +58,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
   diplomForm: FormGroup;
   diplomListFilterForm: FormGroup;
   buttonTitleAdd = true;
+  isAdmin: boolean;
 
   ngOnInit(): void {
     this.formFilterInit();
@@ -65,6 +66,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    this.isAdmin = this.diplomDataService.isAdmin;
     this.diplomSelect = this.isDiplomSelect;
     if (this.diplomSelect && this.selectDiplomId !== this.diplomId) {
       this.diplomId = this.selectDiplomId;

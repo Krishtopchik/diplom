@@ -4,8 +4,10 @@
       <mat-expansion-panel-header style="border-bottom: 1px solid">
         <mat-panel-title>
           <div style="display:flex;width: 100%; align-items: center">
-            {{createTitleString(diplom)}}
-            <button style="margin-left: auto;" mat-raised-button color="primary" (click)="changeDiplom($event, diplom.Id)">Редактировать</button>
+            <strong>{{createTitleString(diplom)}}</strong>
+            <button *ngIf="isAdmin" style="margin-left: auto;" mat-raised-button color="primary"
+                    (click)="changeDiplom($event, diplom.Id)">Редактировать
+            </button>
           </div>
         </mat-panel-title>
       </mat-expansion-panel-header>
@@ -72,7 +74,8 @@
           <div style="width: 100%; display: flex; justify-content: flex-end">
             <button mat-raised-button color="primary" (click)="openDiplom(diplom.Id)">Сдача
             </button>
-            <button style="margin-left: 8px;" mat-raised-button color="warn" (click)="deleteDiplom(diplom.Id)">Удалить
+            <button *ngIf="isAdmin" style="margin-left: 8px;" mat-raised-button color="warn"
+                    (click)="deleteDiplom(diplom.Id)">Удалить
             </button>
           </div>
         </div>

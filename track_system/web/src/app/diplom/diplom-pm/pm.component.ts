@@ -4,6 +4,9 @@ import {TeacherModel} from '../../common/models/teacher.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {ToastrService} from 'ngx-toastr';
 import {DiplomModel} from '../../common/models/diplom.model';
+import {MatDialog} from "@angular/material/dialog";
+import {ConfirmDialogComponent} from "../../common/dialogs/confirm-dialog/confirm-dialog.component";
+import {DiplomDataService} from "../../common/services/diplom-data.service";
 
 @Component({
   selector: 'app-pm',
@@ -16,10 +19,13 @@ export class PmComponent implements OnInit {
   pmForm: FormGroup;
   buttonTitleAdd = true;
   tab = 'add';
+
   constructor(
     private diplomService: DiplomService,
     private fb: FormBuilder,
     private toastr: ToastrService,
+    private dialog: MatDialog,
+    private diplomDataService: DiplomDataService
   ) {
   }
 
@@ -47,11 +53,13 @@ export class PmComponent implements OnInit {
       this.diplomService.createPm(pm).subscribe(res => {
         this.toastr.success('Добавлен');
         this.getPmList();
+        this.diplomDataService.changePm = true;
       });
     } else {
       this.diplomService.updateePm(pm).subscribe(res => {
         this.toastr.success('Обновлен');
         this.getPmList();
+        this.diplomDataService.changePm = true;
       });
     }
     this.formInit();
@@ -59,15 +67,22 @@ export class PmComponent implements OnInit {
   }
 
   deletePm(id: number) {
-    if (confirm('Удалить?')) {
-      this.diplomService.deletePm(id).subscribe(res => {
-        this.toastr.success('Удален');
-        this.getPmList();
-      });
-    }
-    this.formInit();
-    this.buttonTitleAdd = true;
-    this.tab = 'add';
+    const dialogRef = this.dialog.open(ConfirmDialogComponent, {
+      width: '250px',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.diplomService.deletePm(id).subscribe(res => {
+          this.toastr.success('Удален');
+          this.getPmList();
+          this.diplomDataService.changePm = true;
+        });
+      }
+      this.formInit();
+      this.buttonTitleAdd = true;
+      this.tab = 'add';
+    });
   }
 
   changePm(id: number) {

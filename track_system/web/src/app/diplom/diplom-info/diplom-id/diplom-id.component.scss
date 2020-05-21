@@ -25,6 +25,11 @@
       align-items: center;
       flex-direction: column;
       font-size: 22px;
+      p {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        font-size: 18px;
+      }
     }
 
     .container__spinner {
@@ -37,7 +42,7 @@
       align-items: center;
       justify-content: space-around;
       .timer {
-        font-size: 72px;
+        font-size: 162px;
       }
     }
   }

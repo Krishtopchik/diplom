@@ -58,7 +58,7 @@ func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 
 func GetAllDiploms() ([]models.Diplom, error){
 	db := createConnectin()
-	rows, err := db.Query("select * from diplom group by id, queuenumber, deadline order by queuenumber")
+	rows, err := db.Query("select * from diplom order by deadline, queuenumber")
 	if err != nil {
 		panic(err)
 	}
@@ -456,4 +456,25 @@ func GetSpecialty() ([]models.Specialyty, error){
 		return specialytyAll[i].Id < specialytyAll[j].Id
 	})
 	return specialytyAll, err
+}
+
+func DeleteSpecialty(id int) error {
+	db := createConnectin()
+	defer db.Close()
+	_, err := db.Exec("delete from specialty values where id = $1", id)
+	if err != nil{
+		panic(err)
+	}
+	return err
+}
+
+func UpdateSpecialyty(specialyty models.Specialyty) (models.Specialyty, error) {
+	db := createConnectin()
+	defer db.Close()
+	if _, err := db.Exec("update specialty set name = $2 where id = $1",
+		specialyty.Id, specialyty.Name);
+		err != nil {
+		return specialyty, err
+	}
+	return specialyty, nil
 }

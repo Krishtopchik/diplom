@@ -48,7 +48,11 @@ func RunRest() {
 	r.HandleFunc("/api/reviewers", createReviewers).Methods("POST")
 	r.HandleFunc("/api/reviewers/{id:[0-9]+}", deleteReviewers).Methods("DELETE")
 	r.HandleFunc("/api/reviewers", updateReviewers).Methods("PUT")
+
 	r.HandleFunc("/api/specialtys", getSpecialtys).Methods("GET")
+	r.HandleFunc("/api/specialtys", createSpecialtys).Methods("POST")
+	r.HandleFunc("/api/specialtys", updateSpecialtys).Methods("PUT")
+	r.HandleFunc("/api/specialtys/{id:[0-9]+}", deleteSpecialtys).Methods("DELETE")
 
 	r.HandleFunc("/api/diploms", createDiplom).Methods("POST")
 	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
@@ -633,6 +637,78 @@ func getSpecialtys(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	json.NewEncoder(w).Encode(specialtys)
+}
+
+func createSpecialtys(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var specialytyModel models.Specialyty
+	err = body.Decode(&specialytyModel)
+	if err != nil {
+		return
+	}
+	teacher, err := db.InsertSpecialty(specialytyModel)
+	if err != nil {
+		return
+	}
+	err = json.NewEncoder(w).Encode(teacher)
+	if err != nil {
+		return
+	}
+}
+
+func deleteSpecialtys(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Content-Type", "application/json")
+	idStr, ok := mux.Vars(r)["id"]
+	if !ok || len(idStr) == 0 {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	id, err := strconv.Atoi(idStr)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	err = db.DeleteSpecialty(id)
+	if err != nil {
+		log.Error(err)
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+	json.NewEncoder(w).Encode(err)
+}
+
+func updateSpecialtys(w http.ResponseWriter, r *http.Request) {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var specialytyModel models.Specialyty
+	err = body.Decode(&specialytyModel)
+	if err != nil {
+		return
+	}
+	teacher, err := db.UpdateSpecialyty(specialytyModel)
+	if err != nil {
+		return
+	}
+	err = json.NewEncoder(w).Encode(teacher)
+	if err != nil {
+		return
+	}
 }
 
 func createDiplom(w http.ResponseWriter, r *http.Request) {

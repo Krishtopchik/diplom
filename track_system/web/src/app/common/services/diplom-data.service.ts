@@ -6,4 +6,12 @@ export class DiplomDataService {
   isDiplomSelect = false;
   isDiplomsUpdate = false;
   diplomsFilter = false;
+  isAdmin = false;
+  changePm = false;
+  changeOrder = false;
+  changeReviewer = false;
+  changeNormoconntroller = false;
+  changeSpecialty = false;
+  changeCommission = false;
+  changeChairman = false;
 }

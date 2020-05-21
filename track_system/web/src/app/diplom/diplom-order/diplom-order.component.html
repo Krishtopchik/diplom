@@ -26,7 +26,7 @@
     <div *ngFor="let diplomOrder of diplomOrderList">
       <div *ngIf="diplomOrder.Id>0"
            style="border-bottom: 1px solid; padding: 0.5rem 0; display:flex; justify-content: start; align-items: center">
-        <label>Приказ №: <strong>{{diplomOrder.Name}}{{strToDate(diplomOrder.Dateorder)}}</strong></label>
+        <label>Приказ №: <strong>{{diplomOrder.Name}}&nbsp;{{strToDate(diplomOrder.Dateorder)}}</strong></label>
           <button style="margin-left: auto; margin-right: 8px;" mat-raised-button color="primary" (click)="changeDiplomOrder(diplomOrder.Id)">
             Редактировать
           </button>
