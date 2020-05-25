@@ -41,7 +41,7 @@ func DeleteDiplom(id int) error {
 func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14, execution = $15, type = $16, commissioncomment = $17 where id = $1",
+	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14, execution = $15, type = $16, commissioncomment = $17, time = $18 where id = $1",
 		diplom.Id, diplom.Fio,
 		diplom.Topic, diplom.Completion,
 		diplom.Score, diplom.Deadline,
@@ -49,7 +49,7 @@ func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 		diplom.NormcontrollerId, diplom.ReviewerId,
 		diplom.ChairmanId, diplom.DiplomorderId,
 		diplom.SpecialtyId, diplom.CommissionId,
-		diplom.Execution, diplom.Type, diplom.CommissionComment);
+		diplom.Execution, diplom.Type, diplom.CommissionComment, diplom.Time);
 	err != nil {
 		return diplom, err
 	}
@@ -67,7 +67,7 @@ func GetAllDiploms() ([]models.Diplom, error){
 
 	for rows.Next(){
 		p := models.Diplom{}
-		err := rows.Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment)
+		err := rows.Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time)
 		if err != nil{
 			fmt.Println(err)
 			continue
@@ -83,7 +83,7 @@ func GetAllDiploms() ([]models.Diplom, error){
 func GetDiplom(id int) (models.Diplom, error){
 	db := createConnectin()
 	p := models.Diplom{}
-	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment)
+	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time)
 	return p, err
 }
 

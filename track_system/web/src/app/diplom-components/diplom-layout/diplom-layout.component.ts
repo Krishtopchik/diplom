@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {DiplomDataService} from '../../common/services/diplom-data.service';
 import {MatDialog} from '@angular/material/dialog';
 import {PasswordDialogComponent} from '../dialogs/password-dialog/password-dialog.component';
+import {DiplomService} from '../../common/services/diplom.service';
 
 @Component({
   selector: 'app-diplom-layout',
@@ -19,7 +20,8 @@ export class DiplomLayoutComponent implements DoCheck {
   constructor(
     private router: Router,
     private diplomDataService: DiplomDataService,
-    public dialog: MatDialog
+    private dialog: MatDialog,
+    private diplomService: DiplomService
   ) {
   }
 
@@ -49,6 +51,13 @@ export class DiplomLayoutComponent implements DoCheck {
   }
 
   changeTxt() {
-    console.log('weq');
+    this.diplomService.downlad(this.diplomDataService.diploms).subscribe(blob  => {
+      const a = document.createElement('a');
+      const objectUrl = URL.createObjectURL(blob);
+      a.href = objectUrl;
+      a.download = 'дипломы.txt';
+      a.click();
+      URL.revokeObjectURL(objectUrl);
+    });
   }
 }

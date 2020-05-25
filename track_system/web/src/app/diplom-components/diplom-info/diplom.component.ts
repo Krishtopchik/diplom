@@ -105,6 +105,7 @@ export class DiplomComponent implements OnInit, DoCheck {
         this.diplomDataService.changeSpecialty = false;
       });
     }
+    this.diplomDataService.diploms = this.diplomsList;
   }
 
   private getDiplomsList() {

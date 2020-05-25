@@ -6,7 +6,7 @@
     </div>
     <div class="container__main">
       <div class="container__info">
-        <div>
+        <div style="width: 100%;padding: 3%;">
           <p> Приказ: <strong>{{diplomOrder}}</strong></p>
           <p> Специаьность: <strong>{{specialty}}</strong></p>
           <p> Студент: <strong>{{diplom.Fio}}</strong></p>
@@ -19,9 +19,10 @@
         </div>
       </div>
       <div class="container__spinner">
-        <button mat-raised-button color="primary" (click)="start()">Начало</button>
+        <button *ngIf="!this.timer" mat-raised-button color="primary" (click)="start()">Начало</button>
+        <button *ngIf="this.timer" mat-raised-button color="primary" (click)="stop()">Сброс</button>
         <div class="timer">
-          {{timerText}}
+          <p style="color:{{color}}">{{timerText}}</p>
         </div>
       </div>
     </div>

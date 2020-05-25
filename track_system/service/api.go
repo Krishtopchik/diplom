@@ -3,12 +3,17 @@ package service
 import (
 	"../db"
 	"../models"
+	"bytes"
 	"encoding/json"
+	"fmt"
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
 	log "github.com/sirupsen/logrus"
+	"io/ioutil"
 	"net/http"
+	"os"
 	"strconv"
+	"time"
 )
 
 var Conf = &Config{}
@@ -57,7 +62,7 @@ func RunRest() {
 	r.HandleFunc("/api/diploms", createDiplom).Methods("POST")
 	r.HandleFunc("/api/diploms", updateDiplom).Methods("PUT")
 
-	r.HandleFunc("/api/doc", createDoc).Methods("get")
+	r.HandleFunc("/api/doc", createDoc).Methods("POST")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
 
@@ -762,5 +767,65 @@ func updateDiplom(w http.ResponseWriter, r *http.Request) {
 }
 
 func createDoc(w http.ResponseWriter, r *http.Request)  {
+	var err error
+	defer func() {
+		if err != nil {
+			log.Error(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
+	}()
+	body := json.NewDecoder(r.Body)
+	var diplomModel []models.Diplom
+	err = body.Decode(&diplomModel)
+	if err != nil {
+		return
+	}
+	var file = "./дипломы.txt"
+	f, err := os.Create("дипломы.txt")
+	if err != nil {
+		fmt.Println(err)
+		f.Close()
+		return
+	}
+	var d []string
+	for _, obj := range diplomModel {
+		var str string = (
+			strconv.Itoa(obj.Id) + " " +
+				obj.Fio + " " +
+				obj.Topic + " ")
+		d = append(d, str)
+	}
+	//d := []string{"Welcome to the world of Go1.", "Go is a compiled language.", "It is easy to learn Go."}
 
+	for _, v := range d {
+		fmt.Fprintln(f, v)
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+	}
+	err = f.Close()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+	downloadBytes, err := ioutil.ReadFile(file)
+
+	if err != nil {
+		fmt.Println(err)
+	}
+
+	mime := http.DetectContentType(downloadBytes)
+
+	fileSize := len(string(downloadBytes))
+
+	w.Header().Set("Content-Type", mime)
+	w.Header().Set("Content-Disposition", "attachment; filename="+file+"")
+	w.Header().Set("Expires", "0")
+	w.Header().Set("Content-Transfer-Encoding", "binary")
+	w.Header().Set("Content-Length", strconv.Itoa(fileSize))
+	w.Header().Set("Content-Control", "private, no-transform, no-store, must-revalidate")
+
+	http.ServeContent(w, r, file, time.Now(), bytes.NewReader(downloadBytes))
 }

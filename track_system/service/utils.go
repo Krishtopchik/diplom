@@ -13,10 +13,8 @@ func InitLog() error {
 	Formatter.FullTimestamp = true
 	log.SetFormatter(Formatter)
 	log.SetLevel(log.DebugLevel)
-
 	mw := io.MultiWriter(os.Stdout)
 	log.SetOutput(mw)
-
 	return nil
 }
 

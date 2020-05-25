@@ -14,4 +14,5 @@ export class DiplomDataService {
   changeSpecialty = false;
   changeCommission = false;
   changeChairman = false;
+  diploms = [];
 }

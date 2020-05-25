@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {DiplomService} from '../../../common/services/diplom.service';
 import {DiplomModel} from '../../../common/models/diplom.model';
@@ -10,7 +10,14 @@ import { timer } from 'rxjs';
   templateUrl: './diplom-id.component.html',
   styleUrls: ['./diplom-id.component.scss']
 })
-export class DiplomIdComponent implements OnInit {
+export class DiplomIdComponent implements OnInit, OnDestroy {
+
+  constructor(
+    private router: Router,
+    private route: ActivatedRoute,
+    private diplomService: DiplomService
+  ) {
+  }
 
   diplomId: number;
   pm = '';
@@ -22,25 +29,33 @@ export class DiplomIdComponent implements OnInit {
   commission = '';
   diplom = new DiplomModel();
   subscribeTimer: any;
-  timeLeft = 70;
+  timeLeft = 20;
+  timeEnd = 20;
   timerText: string;
-
-  constructor(
-    private router: Router,
-    private route: ActivatedRoute,
-    private diplomService: DiplomService
-  ) {
-  }
+  color = '#212529';
+  timer = false;
+  interval;
+  checkInterval;
 
   ngOnInit(): void {
     this.diplomId = this.route.snapshot.params.id;
     this.getDiplom();
+    this.startTimer();
+  }
+
+  ngOnDestroy() {
+    clearInterval(this.interval);
+    clearInterval(this.checkInterval);
   }
 
   getDiplom() {
     this.diplomService.getDiplomById(this.diplomId).subscribe(res => {
       if (res) {
         this.diplom = res;
+        if (this.diplom.Time !== 0) {
+          this.timeLeft = this.diplom.Time;
+          this.start();
+        }
         this.getDiplomInfo(res);
       }
     });
@@ -95,20 +110,54 @@ export class DiplomIdComponent implements OnInit {
     return this.diplomService.getCommissions();
   }
 
+  private updateDiplom(diplom: DiplomModel) {
+    if (this.timer) {
+      this.diplomService.updateDiplom(diplom).subscribe(res => {});
+    }
+  }
+
   onMain() {
     this.router.navigate(['/']);
   }
 
+  stop() {
+    clearInterval(this.interval);
+    this.diplom.Time = 0;
+    this.updateDiplom(this.diplom);
+    this.timerText = '';
+    this.color = '#212529';
+    this.timer = false;
+  }
+
   start() {
-    const source = timer(1000, 1000);
-    source.subscribe(val => {
-      if (val < this.timeLeft) {
-        this.subscribeTimer = this.timeLeft - val;
-        this.timerText = this.secToMin(this.subscribeTimer);
-      } else {
-        this.timerText = 'конец';
-      }
-    });
+    if (!this.interval) {
+      this.interval = setInterval(() => {
+        this.diplom.Time = this.timeLeft;
+        this.timer = true;
+        this.updateDiplom(this.diplom);
+        console.log('1')
+        if (this.timeLeft > 0) {
+          this.timeLeft--;
+          this.timerText = this.secToMin(this.timeLeft.toString());
+        } else {
+          this.timeLeft--;
+          this.color = 'red';
+          this.timerText = this.secToMin((this.timeLeft * -1).toString());
+        }
+      }, 1000);
+    }
+  }
+
+  startTimer() {
+    this.checkInterval = setInterval(() => {
+      console.log('2')
+      this.diplomService.getDiplomById(this.diplomId).subscribe(res => {
+        if (res.Time !== 0) {
+          clearInterval(this.checkInterval);
+          this.start();
+        }
+      });
+    }, 2000);
   }
 
   secToMin(sec: string) {

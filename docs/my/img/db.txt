@@ -1,32 +1,32 @@
 
 DROP TABLE Pm, NormController, Reviewer, Chairman, Commission, DiplomOrder, Specialty;
 
-CREATE TABLE Pm /* руководитель */
+CREATE TABLE Pm 
 (
     Id SERIAL PRIMARY KEY,
 	Fio CHARACTER VARYING(30)
 );
-CREATE TABLE NormController /* нормоконтролер */
+CREATE TABLE NormController 
 (
     Id SERIAL PRIMARY KEY,
 	Fio  CHARACTER VARYING(30)
 );
-CREATE TABLE Reviewer /* рецензент */
+CREATE TABLE Reviewer 
 (
     Id SERIAL PRIMARY KEY,
 	Fio  CHARACTER VARYING(30)
 );
-CREATE TABLE Chairman /* председатель */
+CREATE TABLE Chairman 
 (
     Id SERIAL PRIMARY KEY,
 	Fio  CHARACTER VARYING(30)
 );
-CREATE TABLE Commission /* комиссия */
+CREATE TABLE Commission 
 (
     Id SERIAL PRIMARY KEY,
 	Fio  CHARACTER VARYING(30)
 );
-CREATE TABLE DiplomOrder /* приказ */
+CREATE TABLE DiplomOrder 
 (
     Id SERIAL PRIMARY KEY,
 	Name CHARACTER VARYING(30),
@@ -42,14 +42,17 @@ CREATE TABLE Diplom
     Id SERIAL PRIMARY KEY, 
 	Fio CHARACTER VARYING(30), 
 	Topic CHARACTER VARYING(30), 
-	Completion INTEGER, /* процент завершения */
-	Score INTEGER, /* оценка */
-	QueueNumber INTEGER, /* номер в очереди */
-	Deadline date, /* срок */
-	PmId INTEGER REFERENCES pm(Id), /* руководитель */
-	NormControllerId INTEGER REFERENCES normcontroller(Id), /* нормоконтролер */
-	ReviewerId INTEGER REFERENCES reviewer(Id), /* рецензент */
-	ChairmanId INTEGER REFERENCES chairman(Id), /* председатель */
+	Completion INTEGER, 
+	Score INTEGER, 
+	QueueNumber INTEGER, 
+	Deadline date, 
+	Execution date,
+	Type INTEGER, 
+    	CommissionComment VARYING(30),
+	PmId INTEGER REFERENCES pm(Id), 
+	NormControllerId INTEGER REFERENCES normcontroller(Id), 
+	ReviewerId INTEGER REFERENCES reviewer(Id), 
+	ChairmanId INTEGER REFERENCES chairman(Id), 
 	DiplomOrderId INTEGER REFERENCES diplomorder(Id),
 	SpecialtyId INTEGER REFERENCES specialty(Id),
 	CommissionId INTEGER REFERENCES commission(Id)

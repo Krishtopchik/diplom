@@ -180,4 +180,10 @@ export class DiplomService {
       `${this.url}/specialtys/${id}`
     );
   }
+
+  downlad(diploms): any {
+    return this.http.post(`${this.url}/doc`, JSON.stringify(diploms), {
+      responseType: 'blob'
+    });
+  }
 }
