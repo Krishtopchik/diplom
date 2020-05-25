@@ -7,6 +7,7 @@ import {Router} from '@angular/router';
 import {PasswordDialogComponent} from '../../dialogs/password-dialog/password-dialog.component';
 import {ConfirmDialogComponent} from '../../dialogs/confirm-dialog/confirm-dialog.component';
 import {MatDialog} from '@angular/material/dialog';
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-diplom-list',
@@ -23,6 +24,7 @@ export class DiplomListComponent implements OnInit, DoCheck {
     private diplomDataService: DiplomDataService,
     private diplomService: DiplomService,
     private router: Router,
+    private toastr: ToastrService,
     public dialog: MatDialog
   ) {
   }
@@ -83,7 +85,10 @@ export class DiplomListComponent implements OnInit, DoCheck {
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
         this.diplomService.deleteDiplom(id).subscribe(res => {
+          this.toastr.success('Удален');
           this.diplomDataService.isDiplomsUpdate = true;
+        }, error => {
+          this.toastr.error('Нарушение ограничений целостности');
         });
       }
     });

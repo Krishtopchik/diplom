@@ -76,6 +76,8 @@ export class DiplomCommissionComponent implements OnInit {
           this.toastr.success('Удален');
           this.getPmList();
           this.diplomDataService.changeCommission = true;
+        }, error => {
+          this.toastr.error('Нарушение ограничений целостности');
         });
       }
       this.formInit();

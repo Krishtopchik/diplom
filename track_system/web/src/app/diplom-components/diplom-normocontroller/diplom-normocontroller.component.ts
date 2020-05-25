@@ -76,6 +76,8 @@ export class DiplomNormocontrollerComponent implements OnInit {
           this.toastr.success('Удален');
           this.getNormocontrollerList();
           this.diplomDataService.changeNormoconntroller = true;
+        }, error => {
+          this.toastr.error('Нарушение ограничений целостности');
         });
       }
       this.formInit();

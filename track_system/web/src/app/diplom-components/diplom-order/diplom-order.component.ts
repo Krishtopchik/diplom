@@ -108,6 +108,8 @@ export class DiplomOrderComponent implements OnInit {
           this.toastr.success('Удален');
           this.getReviewerList();
           this.diplomDataService.changeOrder = true;
+        }, error => {
+          this.toastr.error('Нарушение ограничений целостности');
         });
       }
       this.formInit();

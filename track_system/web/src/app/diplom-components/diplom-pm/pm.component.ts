@@ -77,6 +77,8 @@ export class PmComponent implements OnInit {
           this.toastr.success('Удален');
           this.getPmList();
           this.diplomDataService.changePm = true;
+        }, error => {
+          this.toastr.error('Нарушение ограничений целостности');
         });
       }
       this.formInit();

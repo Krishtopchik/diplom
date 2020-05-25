@@ -75,6 +75,8 @@ export class DiplomSpecialytyComponent implements OnInit {
           this.toastr.success('Удален');
           this.getSpecialytyList();
           this.diplomDataService.changeSpecialty = true;
+        }, error => {
+          this.toastr.error('Нарушение ограничений целостности');
         });
       }
       this.formInit();

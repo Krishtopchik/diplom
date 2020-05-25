@@ -58,6 +58,7 @@ func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 
 func GetAllDiploms() ([]models.Diplom, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from diplom order by deadline, queuenumber")
 	if err != nil {
 		panic(err)
@@ -82,6 +83,7 @@ func GetAllDiploms() ([]models.Diplom, error){
 
 func GetDiplom(id int) (models.Diplom, error){
 	db := createConnectin()
+	defer db.Close()
 	p := models.Diplom{}
 	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time)
 	return p, err
@@ -100,6 +102,7 @@ func InsertChairman(chairman models.Teacher) (models.Teacher, error) {
 
 func GetChairman() ([]models.Teacher, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from chairman")
 	if err != nil {
 		panic(err)
@@ -156,6 +159,7 @@ func InsertCommission(commission models.Teacher) (models.Teacher, error) {
 
 func GetCommissionn() ([]models.Teacher, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from commission")
 	if err != nil {
 		panic(err)
@@ -212,6 +216,7 @@ func InsertDiplomOrder(diplomOrder models.DiplomOrder) (models.DiplomOrder, erro
 
 func GetDiplomOrder() ([]models.DiplomOrder, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from diplomorder")
 	if err != nil {
 		panic(err)
@@ -268,6 +273,7 @@ func InsertNormcontroller(normcontroller models.Teacher) (models.Teacher, error)
 
 func GetNormcontroller() ([]models.Teacher, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from normcontroller")
 	if err != nil {
 		panic(err)
@@ -324,6 +330,7 @@ func InsertPm(pm models.Teacher) (models.Teacher, error) {
 
 func GetPm() ([]models.Teacher, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from pm")
 	if err != nil {
 		panic(err)
@@ -380,6 +387,7 @@ func InsertReviewer(reviewer models.Teacher) (models.Teacher, error) {
 
 func GetReviewer() ([]models.Teacher, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from reviewer")
 	if err != nil {
 		panic(err)
@@ -436,6 +444,7 @@ func InsertSpecialty(specialty models.Specialyty) (models.Specialyty, error) {
 
 func GetSpecialty() ([]models.Specialyty, error){
 	db := createConnectin()
+	defer db.Close()
 	rows, err := db.Query("select * from specialty")
 	if err != nil {
 		panic(err)
