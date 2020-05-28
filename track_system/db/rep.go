@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
+	log "github.com/sirupsen/logrus"
 	"sort"
 )
 
@@ -486,4 +487,14 @@ func UpdateSpecialyty(specialyty models.Specialyty) (models.Specialyty, error) {
 		return specialyty, err
 	}
 	return specialyty, nil
+}
+
+func GetDiplomWithIfo(id int) (models.DiplomWithInfo, error){
+	db := createConnectin()
+	defer db.Close()
+	log.Info(id)
+	p := models.DiplomWithInfo{}
+	err := db.QueryRow("select diplom.Id ,diplom.Fio ,diplom.Topic ,diplom.Completion ,diplom.Score ,diplom.Deadline ,diplom.Queuenumber ,diplom.PmId ,p.fio ,diplom.NormcontrollerId , n.fio ,diplom.ReviewerId ,r.fio ,diplom.ChairmanId ,Chairman ,diplom.DiplomorderId ,d.name ,d.dateorder ,diplom.SpecialtyId ,s.name ,CommissionId ,c.fio ,diplom.Execution ,diplom.Type ,diplom.CommissionComment ,diplom.Time from diplom join chairman on diplom.chairmanid = chairman.id join commission c on diplom.commissionid = c.id join diplomorder d on diplom.diplomorderid = d.id join normcontroller n on diplom.normcontrollerid = n.id join pm p on diplom.pmid = p.id join reviewer r on diplom.reviewerid = r.id join specialty s on diplom.specialtyid = s.id where diplom.id = $1 limit 1", id).Scan(
+		&p.Id ,&p.Fio ,&p.Topic ,&p.Completion ,&p.Score ,&p.Deadline ,&p.Queuenumber ,&p.PmId ,&p.Pm ,&p.NormcontrollerId ,&p.Normcontroller ,&p.ReviewerId ,&p.Reviewer ,&p.ChairmanId ,&p.Chairman ,&p.DiplomorderId ,&p.Diplomorder ,&p.DiplomorderDate ,&p.SpecialtyId ,&p.Specialty ,&p.CommissionId ,&p.Commission ,&p.Execution ,&p.Type ,&p.CommissionComment ,&p.Time)
+	return p, err
 }

@@ -2,19 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21476fbe-d6d1-4c12-9def-f15e5e4c8fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/img/1 A4_varisp.doc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/img/3 A3_BD.doc" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/img/3 A3_BD.doc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/img/db.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/img/db.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/qwe.txt" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/qwe.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/Задание_Криштопчик.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/Задание_Криштопчик.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/Титул_Криштопчик.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/Титул_Криштопчик.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/my/записка1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/my/записка1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/записка1.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/записка1.docx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docs/эконом/ЭконРаздел_ИСиТ4-2_Криштопчик.docx" beforeDir="false" afterPath="$PROJECT_DIR$/../docs/эконом/ЭконРаздел_ИСиТ4-2_Криштопчик.docx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db/rep.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/rep.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app.component.scss" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.component.scss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-commission/diplom-commission.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-commission/diplom-commission.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-list/diplom-list.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-list/diplom-list.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-list/diplom-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-list/diplom-list.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-normocontroller/diplom-normocontroller.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-normocontroller/diplom-normocontroller.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-order/diplom-order.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-order/diplom-order.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-pm/pm.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-pm/pm.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-reviewer/diplom-reviewer.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-reviewer/diplom-reviewer.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-specialyty/diplom-specialyty.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-specialyty/diplom-specialyty.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/дипломы.txt" beforeDir="false" afterPath="$PROJECT_DIR$/дипломы.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -69,7 +69,7 @@
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="MTConfigurable" />
     <property name="ts.external.directory.path" value="D:\Projects\diplom\go\web\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
@@ -134,54 +134,58 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="275" y="27" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1366.738@0.0.1366.738" timestamp="1590374077286" />
-    <state width="1323" height="142" key="GridCell.Tab.0.bottom" timestamp="1590386868486">
+    <state width="732" height="618" key="DebuggerActiveHint" timestamp="1590600654909">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="142" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1590386868486" />
-    <state width="1323" height="142" key="GridCell.Tab.0.center" timestamp="1590386868485">
+    <state width="732" height="618" key="DebuggerActiveHint/0.0.1366.738@0.0.1366.738" timestamp="1590600654909" />
+    <state width="1323" height="250" key="GridCell.Tab.0.bottom" timestamp="1590604708088">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="142" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1590386868485" />
-    <state width="1323" height="142" key="GridCell.Tab.0.left" timestamp="1590386868485">
+    <state width="1323" height="250" key="GridCell.Tab.0.bottom/0.0.1366.738@0.0.1366.738" timestamp="1590604708088" />
+    <state width="1323" height="250" key="GridCell.Tab.0.center" timestamp="1590604708087">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="142" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1590386868485" />
-    <state width="1323" height="142" key="GridCell.Tab.0.right" timestamp="1590386868486">
+    <state width="1323" height="250" key="GridCell.Tab.0.center/0.0.1366.738@0.0.1366.738" timestamp="1590604708087" />
+    <state width="1323" height="250" key="GridCell.Tab.0.left" timestamp="1590604708087">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="142" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1590386868486" />
-    <state width="1323" height="162" key="GridCell.Tab.1.bottom" timestamp="1590386867264">
+    <state width="1323" height="250" key="GridCell.Tab.0.left/0.0.1366.738@0.0.1366.738" timestamp="1590604708087" />
+    <state width="1323" height="250" key="GridCell.Tab.0.right" timestamp="1590604708088">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="162" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1590386867264" />
-    <state width="1323" height="162" key="GridCell.Tab.1.center" timestamp="1590386867264">
+    <state width="1323" height="250" key="GridCell.Tab.0.right/0.0.1366.738@0.0.1366.738" timestamp="1590604708088" />
+    <state width="1323" height="250" key="GridCell.Tab.1.bottom" timestamp="1590604708089">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="162" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1590386867264" />
-    <state width="1323" height="162" key="GridCell.Tab.1.left" timestamp="1590386867264">
+    <state width="1323" height="250" key="GridCell.Tab.1.bottom/0.0.1366.738@0.0.1366.738" timestamp="1590604708089" />
+    <state width="1323" height="250" key="GridCell.Tab.1.center" timestamp="1590604708088">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="162" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1590386867264" />
-    <state width="1323" height="162" key="GridCell.Tab.1.right" timestamp="1590386867264">
+    <state width="1323" height="250" key="GridCell.Tab.1.center/0.0.1366.738@0.0.1366.738" timestamp="1590604708088" />
+    <state width="1323" height="250" key="GridCell.Tab.1.left" timestamp="1590604708088">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state width="1323" height="162" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1590386867264" />
+    <state width="1323" height="250" key="GridCell.Tab.1.left/0.0.1366.738@0.0.1366.738" timestamp="1590604708088" />
+    <state width="1323" height="250" key="GridCell.Tab.1.right" timestamp="1590604708089">
+      <screen x="0" y="0" width="1366" height="738" />
+    </state>
+    <state width="1323" height="250" key="GridCell.Tab.1.right/0.0.1366.738@0.0.1366.738" timestamp="1590604708089" />
     <state width="208" height="471" key="HiddenNamespacesPopup" timestamp="1588710327089">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state width="208" height="471" key="HiddenNamespacesPopup/0.0.1366.738@0.0.1366.738" timestamp="1588710327088" />
-    <state x="184" y="14" key="SettingsEditor" timestamp="1590094041510">
+    <state x="184" y="14" key="SettingsEditor" timestamp="1590597385725">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1590094041510" />
+    <state x="184" y="14" key="SettingsEditor/0.0.1366.738@0.0.1366.738" timestamp="1590597385725" />
     <state x="413" y="174" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog" timestamp="1589128363749">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="413" y="174" key="com.intellij.database.dbimport.ImportUtil.ChooseTargetDialog/0.0.1366.738@0.0.1366.738" timestamp="1589128363749" />
-    <state x="333" y="3" width="665" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1590385131506">
+    <state x="333" y="3" width="665" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog" timestamp="1590600477751">
       <screen x="0" y="0" width="1366" height="738" />
     </state>
-    <state x="333" y="3" width="665" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1366.738@0.0.1366.738" timestamp="1590385131506" />
+    <state x="333" y="3" width="665" height="643" key="com.intellij.database.view.ui.AbstractDbRefactoringDialog/0.0.1366.738@0.0.1366.738" timestamp="1590600477751" />
     <state x="294" y="0" width="585" height="738" key="find.popup" timestamp="1590093081076">
       <screen x="0" y="0" width="1366" height="738" />
     </state>

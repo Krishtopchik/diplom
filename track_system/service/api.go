@@ -766,7 +766,7 @@ func updateDiplom(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func createDoc(w http.ResponseWriter, r *http.Request)  {
+func createDoc(w http.ResponseWriter, r *http.Request) {
 	var err error
 	defer func() {
 		if err != nil {
@@ -789,11 +789,18 @@ func createDoc(w http.ResponseWriter, r *http.Request)  {
 		return
 	}
 	var d []string
+	log.Info(len(diplomModel))
 	for _, obj := range diplomModel {
-		var str string = (
-			strconv.Itoa(obj.Id) + " " +
-				obj.Fio + " " +
-				obj.Topic + " ")
+		diplomWI, err := db.GetDiplomWithIfo(obj.Id)
+		if err != nil {
+			return
+		}
+		var str string = "[ " + diplomWI.Diplomorder + ", " + diplomWI.DiplomorderDate.Format("02.01.2006") + " ] " +
+			"( " + diplomWI.Deadline.Format("02.01.2006") + ", " + strconv.Itoa(diplomWI.Queuenumber) + " ) " +
+			diplomWI.Specialty + ", " +
+			diplomWI.Fio + "/" +
+			diplomWI.Pm + ", " +
+			diplomWI.Topic
 		d = append(d, str)
 	}
 	//d := []string{"Welcome to the world of Go1.", "Go is a compiled language.", "It is easy to learn Go."}

@@ -1,6 +1,4 @@
 
-DROP TABLE Pm, NormController, Reviewer, Chairman, Commission, DiplomOrder, Specialty;
-
 CREATE TABLE Pm 
 (
     Id SERIAL PRIMARY KEY,
@@ -49,12 +47,13 @@ CREATE TABLE Diplom
 	Execution date,
 	Type INTEGER, 
     	CommissionComment VARYING(30),
+	Time INTEGER,
 	PmId INTEGER REFERENCES pm(Id), 
 	NormControllerId INTEGER REFERENCES normcontroller(Id), 
 	ReviewerId INTEGER REFERENCES reviewer(Id), 
 	ChairmanId INTEGER REFERENCES chairman(Id), 
 	DiplomOrderId INTEGER REFERENCES diplomorder(Id),
 	SpecialtyId INTEGER REFERENCES specialty(Id),
-	CommissionId INTEGER REFERENCES commission(Id)
+	CommissionId INTEGER REFERENCES commission(Id),
 );
 
