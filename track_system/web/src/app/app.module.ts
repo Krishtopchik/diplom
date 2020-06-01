@@ -38,6 +38,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { PasswordDialogComponent } from './diplom-components/dialogs/password-dialog/password-dialog.component';
 import { ConfirmDialogComponent } from './diplom-components/dialogs/confirm-dialog/confirm-dialog.component';
 import { DiplomSpecialytyComponent } from './diplom-components/diplom-specialyty/diplom-specialyty.component';
+import { DiplomDefComponent } from './diplom-components/diplom-info/diplom-def/diplom-def.component';
 
 // export const options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -58,6 +59,7 @@ import { DiplomSpecialytyComponent } from './diplom-components/diplom-specialyty
     PasswordDialogComponent,
     ConfirmDialogComponent,
     DiplomSpecialytyComponent,
+    DiplomDefComponent,
   ],
   imports: [
     BrowserModule,

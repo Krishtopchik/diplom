@@ -60,4 +60,8 @@ export class DiplomLayoutComponent implements DoCheck {
       URL.revokeObjectURL(objectUrl);
     });
   }
+
+  protection() {
+    this.router.navigate(['/protection/']);
+  }
 }

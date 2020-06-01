@@ -784,13 +784,13 @@ false Z
 false Zulu
 true posixrules
 </TimeZones>
-      <StartupTime>1590308449</StartupTime>
+      <StartupTime>1591018788</StartupTime>
     </root>
     <database id="2" parent="1" name="postgres">
       <ObjectId>13012</ObjectId>
       <Comment>default administrative connection database</Comment>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>2515</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2902</IntrospectionStateNumber>
       <Current>1</Current>
       <Relations>sequence|table|16521|16523|1
 sequence|table|16529|16531|1
@@ -851,7 +851,7 @@ sequence|table|16577|16579|1
       <Comment>standard public schema</Comment>
       <StateNumber>360</StateNumber>
       <Owner>postgres</Owner>
-      <IntrospectionStateNumber>2516</IntrospectionStateNumber>
+      <IntrospectionStateNumber>2903</IntrospectionStateNumber>
       <Current>1</Current>
     </schema>
     <access-method id="15" parent="2" name="btree">
@@ -999,7 +999,7 @@ sequence|table|16577|16579|1
     <table id="37" parent="14" name="diplom">
       <ObjectId>16579</ObjectId>
       <Owner>postgres</Owner>
-      <StateNumber>707</StateNumber>
+      <StateNumber>2901</StateNumber>
     </table>
     <table id="38" parent="14" name="diplomorder">
       <ObjectId>16563</ObjectId>
@@ -1193,21 +1193,27 @@ sequence|table|16577|16579|1
       <DefaultExpression>0</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <index id="69" parent="37" name="diplom_pkey">
+    <column id="69" parent="37" name="ordernumber">
+      <Position>19</Position>
+      <DataType>integer|0s</DataType>
+      <StateNumber>2901</StateNumber>
+      <TypeId>23</TypeId>
+    </column>
+    <index id="70" parent="37" name="diplom_pkey">
       <ObjectId>16583</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="70" parent="37" name="diplom_pkey">
+    <key id="71" parent="37" name="diplom_pkey">
       <ObjectId>16584</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>diplom_pkey</UnderlyingIndexName>
     </key>
-    <foreign-key id="71" parent="37" name="diplom_pmid_fkey">
+    <foreign-key id="72" parent="37" name="diplom_pmid_fkey">
       <ObjectId>16585</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>pmid</ColNames>
@@ -1217,7 +1223,7 @@ sequence|table|16577|16579|1
       <RefKeyName>pm_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="72" parent="37" name="diplom_normcontrollerid_fkey">
+    <foreign-key id="73" parent="37" name="diplom_normcontrollerid_fkey">
       <ObjectId>16590</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>normcontrollerid</ColNames>
@@ -1227,7 +1233,7 @@ sequence|table|16577|16579|1
       <RefKeyName>normcontroller_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="73" parent="37" name="diplom_reviewerid_fkey">
+    <foreign-key id="74" parent="37" name="diplom_reviewerid_fkey">
       <ObjectId>16595</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>reviewerid</ColNames>
@@ -1237,7 +1243,7 @@ sequence|table|16577|16579|1
       <RefKeyName>reviewer_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="74" parent="37" name="diplom_chairmanid_fkey">
+    <foreign-key id="75" parent="37" name="diplom_chairmanid_fkey">
       <ObjectId>16600</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>chairmanid</ColNames>
@@ -1247,7 +1253,7 @@ sequence|table|16577|16579|1
       <RefKeyName>chairman_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="75" parent="37" name="diplom_diplomorderid_fkey">
+    <foreign-key id="76" parent="37" name="diplom_diplomorderid_fkey">
       <ObjectId>16605</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>diplomorderid</ColNames>
@@ -1257,7 +1263,7 @@ sequence|table|16577|16579|1
       <RefKeyName>diplomorder_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="76" parent="37" name="diplom_specialtyid_fkey">
+    <foreign-key id="77" parent="37" name="diplom_specialtyid_fkey">
       <ObjectId>16610</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>specialtyid</ColNames>
@@ -1267,7 +1273,7 @@ sequence|table|16577|16579|1
       <RefKeyName>specialty_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <foreign-key id="77" parent="37" name="diplom_commissionid_fkey">
+    <foreign-key id="78" parent="37" name="diplom_commissionid_fkey">
       <ObjectId>16615</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>commissionid</ColNames>
@@ -1277,7 +1283,7 @@ sequence|table|16577|16579|1
       <RefKeyName>commission_pkey</RefKeyName>
       <RefColNames>id</RefColNames>
     </foreign-key>
-    <column id="78" parent="38" name="id">
+    <column id="79" parent="38" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1285,33 +1291,33 @@ sequence|table|16577|16579|1
       <DefaultExpression>nextval(&apos;diplomorder_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="79" parent="38" name="name">
+    <column id="80" parent="38" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <StateNumber>574</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <column id="80" parent="38" name="dateorder">
+    <column id="81" parent="38" name="dateorder">
       <Position>3</Position>
       <DataType>date|0s</DataType>
       <StateNumber>574</StateNumber>
       <TypeId>1082</TypeId>
     </column>
-    <index id="81" parent="38" name="diplomorder_pkey">
+    <index id="82" parent="38" name="diplomorder_pkey">
       <ObjectId>16567</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="82" parent="38" name="diplomorder_pkey">
+    <key id="83" parent="38" name="diplomorder_pkey">
       <ObjectId>16568</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>diplomorder_pkey</UnderlyingIndexName>
     </key>
-    <column id="83" parent="39" name="id">
+    <column id="84" parent="39" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1319,27 +1325,27 @@ sequence|table|16577|16579|1
       <DefaultExpression>nextval(&apos;normcontroller_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="84" parent="39" name="fio">
+    <column id="85" parent="39" name="fio">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <StateNumber>574</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="85" parent="39" name="normcontroller_pkey">
+    <index id="86" parent="39" name="normcontroller_pkey">
       <ObjectId>16535</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="86" parent="39" name="normcontroller_pkey">
+    <key id="87" parent="39" name="normcontroller_pkey">
       <ObjectId>16536</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>normcontroller_pkey</UnderlyingIndexName>
     </key>
-    <column id="87" parent="40" name="id">
+    <column id="88" parent="40" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1347,27 +1353,27 @@ sequence|table|16577|16579|1
       <DefaultExpression>nextval(&apos;pm_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="88" parent="40" name="fio">
+    <column id="89" parent="40" name="fio">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <StateNumber>574</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="89" parent="40" name="pm_pkey">
+    <index id="90" parent="40" name="pm_pkey">
       <ObjectId>16527</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="90" parent="40" name="pm_pkey">
+    <key id="91" parent="40" name="pm_pkey">
       <ObjectId>16528</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>pm_pkey</UnderlyingIndexName>
     </key>
-    <column id="91" parent="41" name="id">
+    <column id="92" parent="41" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1375,27 +1381,27 @@ sequence|table|16577|16579|1
       <DefaultExpression>nextval(&apos;reviewer_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="92" parent="41" name="fio">
+    <column id="93" parent="41" name="fio">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <StateNumber>574</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="93" parent="41" name="reviewer_pkey">
+    <index id="94" parent="41" name="reviewer_pkey">
       <ObjectId>16543</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="94" parent="41" name="reviewer_pkey">
+    <key id="95" parent="41" name="reviewer_pkey">
       <ObjectId>16544</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
       <UnderlyingIndexName>reviewer_pkey</UnderlyingIndexName>
     </key>
-    <column id="95" parent="42" name="id">
+    <column id="96" parent="42" name="id">
       <Position>1</Position>
       <DataType>integer|0s</DataType>
       <NotNull>1</NotNull>
@@ -1403,20 +1409,20 @@ sequence|table|16577|16579|1
       <DefaultExpression>nextval(&apos;specialty_id_seq&apos;::regclass)</DefaultExpression>
       <TypeId>23</TypeId>
     </column>
-    <column id="96" parent="42" name="name">
+    <column id="97" parent="42" name="name">
       <Position>2</Position>
       <DataType>varchar(30)|0s</DataType>
       <StateNumber>574</StateNumber>
       <TypeId>1043</TypeId>
     </column>
-    <index id="97" parent="42" name="specialty_pkey">
+    <index id="98" parent="42" name="specialty_pkey">
       <ObjectId>16575</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>
       <Unique>1</Unique>
       <Primary>1</Primary>
     </index>
-    <key id="98" parent="42" name="specialty_pkey">
+    <key id="99" parent="42" name="specialty_pkey">
       <ObjectId>16576</ObjectId>
       <StateNumber>574</StateNumber>
       <ColNames>id</ColNames>

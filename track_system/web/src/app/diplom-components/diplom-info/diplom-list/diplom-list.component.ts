@@ -54,7 +54,7 @@ export class DiplomListComponent implements OnInit, DoCheck {
     const diplomOrder = this.infoAboutDiplom.diplomorderList.find((el) => el.Id === diplom.DiplomorderId);
     const specialty = this.infoAboutDiplom.specialtyList.find((el) => el.Id === diplom.SpecialtyId);
     const pm = this.infoAboutDiplom.pmList.find((el) => el.Id === diplom.PmId);
-    return `[${diplomOrder.Name}, ${this.strToDate(diplomOrder.Dateorder)}]-${diplom.Queuenumber}-${specialty.Name}-${diplom.Fio}/${pm.Fio}`;
+    return `[${diplomOrder.Name}, ${this.strToDate(diplomOrder.Dateorder)}]-${diplom.Ordernumber}-${specialty.Name}-${diplom.Fio}/${pm.Fio}`;
   }
 
   getNormcontroller(normcontrollerId: number) {
@@ -95,7 +95,7 @@ export class DiplomListComponent implements OnInit, DoCheck {
   }
 
   openDiplom(id: number) {
-    this.router.navigate(['/diplom-components-info/' + id]);
+    this.router.navigate(['/diplom/' + id]);
   }
 
   strToDate(str: string) {

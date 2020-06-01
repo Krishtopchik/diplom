@@ -27,6 +27,11 @@
         </mat-select>
       </mat-form-field>
 
+      <mat-form-field class="full-width">
+        <mat-label>Номер в приказе</mat-label>
+        <input matInput formControlName="Ordernumber"/>
+      </mat-form-field>
+
       <mat-form-field *ngIf="infoAboutDiplom; else loading">
         <mat-label>Специальность</mat-label>
         <mat-select formControlName="SpecialtyId">
@@ -178,6 +183,14 @@
           </mat-select>
         </mat-form-field>
         <mat-checkbox formControlName="DiplomorderIdCheck"></mat-checkbox>
+      </div>
+
+      <div style="display: flex; justify-content:space-between; align-items: center">
+        <mat-form-field class="full-width-filter">
+          <mat-label>Номер в очереди</mat-label>
+          <input matInput formControlName="Ordernumber">
+        </mat-form-field>
+        <mat-checkbox formControlName="OrderNumberCheck"></mat-checkbox>
       </div>
 
       <div style="display: flex; justify-content:space-between; align-items: center">

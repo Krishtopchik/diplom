@@ -17,6 +17,7 @@ export class DiplomModel {
   Type: number;
   CommissionComment: string;
   Time: number;
+  Ordernumber: number;
   constructor() {
     this.Id = 0;
     this.Fio = '';
@@ -36,5 +37,6 @@ export class DiplomModel {
     this.Type = 1;
     this.CommissionComment = '';
     this.Time = 0;
+    this.Ordernumber = 0;
   }
 }

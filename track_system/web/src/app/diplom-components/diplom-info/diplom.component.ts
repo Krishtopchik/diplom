@@ -128,6 +128,12 @@ export class DiplomComponent implements OnInit, DoCheck {
               return el;
             }
           }
+          if (key === 'Fio' && el[key].toLowerCase().includes(filter[key].toLowerCase())) {
+            return el;
+          }
+          if (key === 'Topic' && el[key].toLowerCase().includes(filter[key].toLowerCase())) {
+            return el;
+          }
           return el[key] === filter[key];
         });
       });

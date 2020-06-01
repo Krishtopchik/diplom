@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 	_ "github.com/lib/pq"
-	log "github.com/sirupsen/logrus"
 	"sort"
 )
 
@@ -21,9 +20,9 @@ func createConnectin() *sql.DB {
 func InsertDiplom(diplom models.Diplom) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	err := db.QueryRow("insert into diplom (fio, topic, completion, score, deadline, queuenumber, pmid, normcontrollerid, reviewerid, chairmanid, diplomorderid, specialtyid, commissionid, execution, type, commissioncomment) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16) returning id",
-		diplom.Fio, diplom.Topic, diplom.Completion, diplom.Score, diplom.Deadline, diplom.Queuenumber, diplom.PmId, diplom.NormcontrollerId, diplom.ReviewerId, diplom.ChairmanId, diplom.DiplomorderId, diplom.SpecialtyId, diplom.CommissionId, diplom.Execution, diplom.Type, diplom.CommissionComment).Scan(&diplom.Id)
-	if err != nil{
+	err := db.QueryRow("insert into diplom (fio, topic, completion, score, deadline, queuenumber, pmid, normcontrollerid, reviewerid, chairmanid, diplomorderid, specialtyid, commissionid, execution, type, commissioncomment, ordernumber) values ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14, $15, $16, $17) returning id",
+		diplom.Fio, diplom.Topic, diplom.Completion, diplom.Score, diplom.Deadline, diplom.Queuenumber, diplom.PmId, diplom.NormcontrollerId, diplom.ReviewerId, diplom.ChairmanId, diplom.DiplomorderId, diplom.SpecialtyId, diplom.CommissionId, diplom.Execution, diplom.Type, diplom.CommissionComment, diplom.Ordernumber).Scan(&diplom.Id)
+	if err != nil {
 		panic(err)
 	}
 	return diplom, err
@@ -33,7 +32,7 @@ func DeleteDiplom(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from diplom values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -42,7 +41,7 @@ func DeleteDiplom(id int) error {
 func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14, execution = $15, type = $16, commissioncomment = $17, time = $18 where id = $1",
+	if _, err := db.Exec("update diplom set Fio = $2, Topic = $3, Completion = $4, Score = $5, Deadline = $6, Queuenumber = $7, PmId = $8, NormcontrollerId = $9, ReviewerId = $10, ChairmanId = $11, DiplomorderId = $12, SpecialtyId = $13, CommissionId = $14, execution = $15, type = $16, commissioncomment = $17, time = $18, ordernumber = $19 where id = $1",
 		diplom.Id, diplom.Fio,
 		diplom.Topic, diplom.Completion,
 		diplom.Score, diplom.Deadline,
@@ -50,27 +49,27 @@ func UpdateDiplom(diplom models.Diplom) (models.Diplom, error) {
 		diplom.NormcontrollerId, diplom.ReviewerId,
 		diplom.ChairmanId, diplom.DiplomorderId,
 		diplom.SpecialtyId, diplom.CommissionId,
-		diplom.Execution, diplom.Type, diplom.CommissionComment, diplom.Time);
-	err != nil {
+		diplom.Execution, diplom.Type, diplom.CommissionComment, diplom.Time, diplom.Ordernumber);
+		err != nil {
 		return diplom, err
 	}
 	return diplom, nil
 }
 
-func GetAllDiploms() ([]models.Diplom, error){
+func GetAllDiploms() ([]models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
-	rows, err := db.Query("select * from diplom order by deadline, queuenumber")
+	rows, err := db.Query("select * from diplom order by deadline, ordernumber")
 	if err != nil {
 		panic(err)
 	}
 	defer rows.Close()
 	diplomAll := []models.Diplom{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Diplom{}
-		err := rows.Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time)
-		if err != nil{
+		err := rows.Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time, &p.Ordernumber)
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -82,11 +81,11 @@ func GetAllDiploms() ([]models.Diplom, error){
 	return diplomAll, err
 }
 
-func GetDiplom(id int) (models.Diplom, error){
+func GetDiplom(id int) (models.Diplom, error) {
 	db := createConnectin()
 	defer db.Close()
 	p := models.Diplom{}
-	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time)
+	err := db.QueryRow("select * from diplom where id = $1 limit 1", id).Scan(&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Queuenumber, &p.Deadline, &p.PmId, &p.NormcontrollerId, &p.ReviewerId, &p.ChairmanId, &p.DiplomorderId, &p.SpecialtyId, &p.CommissionId, &p.Execution, &p.Type, &p.CommissionComment, &p.Time, &p.Ordernumber)
 	return p, err
 }
 
@@ -95,13 +94,13 @@ func InsertChairman(chairman models.Teacher) (models.Teacher, error) {
 	defer db.Close()
 	err := db.QueryRow("insert into chairman (fio) values ($1) returning id",
 		chairman.Fio).Scan(&chairman.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return chairman, err
 }
 
-func GetChairman() ([]models.Teacher, error){
+func GetChairman() ([]models.Teacher, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from chairman")
@@ -111,10 +110,10 @@ func GetChairman() ([]models.Teacher, error){
 	defer rows.Close()
 	chairmanAll := []models.Teacher{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Teacher{}
 		err := rows.Scan(&p.Id, &p.Fio)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -130,7 +129,7 @@ func DeleteChairman(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from chairman values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -152,13 +151,13 @@ func InsertCommission(commission models.Teacher) (models.Teacher, error) {
 	defer db.Close()
 	err := db.QueryRow("insert into commission (fio) values ($1) returning id",
 		commission.Fio).Scan(&commission.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return commission, err
 }
 
-func GetCommissionn() ([]models.Teacher, error){
+func GetCommissionn() ([]models.Teacher, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from commission")
@@ -168,10 +167,10 @@ func GetCommissionn() ([]models.Teacher, error){
 	defer rows.Close()
 	commissionAll := []models.Teacher{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Teacher{}
 		err := rows.Scan(&p.Id, &p.Fio)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -187,7 +186,7 @@ func DeleteCommissionn(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from commission values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -209,13 +208,13 @@ func InsertDiplomOrder(diplomOrder models.DiplomOrder) (models.DiplomOrder, erro
 	defer db.Close()
 	err := db.QueryRow("insert into diplomorder (name, dateorder) values ($1, $2) returning id",
 		diplomOrder.Name, diplomOrder.Dateorder).Scan(&diplomOrder.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return diplomOrder, err
 }
 
-func GetDiplomOrder() ([]models.DiplomOrder, error){
+func GetDiplomOrder() ([]models.DiplomOrder, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from diplomorder")
@@ -225,10 +224,10 @@ func GetDiplomOrder() ([]models.DiplomOrder, error){
 	defer rows.Close()
 	diplomOrderAll := []models.DiplomOrder{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.DiplomOrder{}
 		err := rows.Scan(&p.Id, &p.Name, &p.Dateorder)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -244,7 +243,7 @@ func DeleteDiplomOrder(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from diplomorder values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -266,13 +265,13 @@ func InsertNormcontroller(normcontroller models.Teacher) (models.Teacher, error)
 	defer db.Close()
 	err := db.QueryRow("insert into normcontroller (fio) values ($1) returning id",
 		normcontroller.Fio).Scan(&normcontroller.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return normcontroller, err
 }
 
-func GetNormcontroller() ([]models.Teacher, error){
+func GetNormcontroller() ([]models.Teacher, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from normcontroller")
@@ -282,10 +281,10 @@ func GetNormcontroller() ([]models.Teacher, error){
 	defer rows.Close()
 	normcontrollerAll := []models.Teacher{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Teacher{}
 		err := rows.Scan(&p.Id, &p.Fio)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -301,7 +300,7 @@ func DeleteNormcontroller(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from normcontroller values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -323,13 +322,13 @@ func InsertPm(pm models.Teacher) (models.Teacher, error) {
 	defer db.Close()
 	err := db.QueryRow("insert into pm (fio) values ($1) returning id",
 		pm.Fio).Scan(&pm.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return pm, err
 }
 
-func GetPm() ([]models.Teacher, error){
+func GetPm() ([]models.Teacher, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from pm")
@@ -339,10 +338,10 @@ func GetPm() ([]models.Teacher, error){
 	defer rows.Close()
 	pmAll := []models.Teacher{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Teacher{}
 		err := rows.Scan(&p.Id, &p.Fio)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -358,7 +357,7 @@ func DeletePm(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from pm values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -380,13 +379,13 @@ func InsertReviewer(reviewer models.Teacher) (models.Teacher, error) {
 	defer db.Close()
 	err := db.QueryRow("insert into reviewer (fio) values ($1) returning id",
 		reviewer.Fio).Scan(&reviewer.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return reviewer, err
 }
 
-func GetReviewer() ([]models.Teacher, error){
+func GetReviewer() ([]models.Teacher, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from reviewer")
@@ -396,10 +395,10 @@ func GetReviewer() ([]models.Teacher, error){
 	defer rows.Close()
 	reviewerAll := []models.Teacher{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Teacher{}
 		err := rows.Scan(&p.Id, &p.Fio)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -415,7 +414,7 @@ func DeleteReviewer(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from reviewer values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -437,13 +436,13 @@ func InsertSpecialty(specialty models.Specialyty) (models.Specialyty, error) {
 	defer db.Close()
 	err := db.QueryRow("insert into specialty (name) values ($1) returning id",
 		specialty.Name).Scan(&specialty.Id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return specialty, err
 }
 
-func GetSpecialty() ([]models.Specialyty, error){
+func GetSpecialty() ([]models.Specialyty, error) {
 	db := createConnectin()
 	defer db.Close()
 	rows, err := db.Query("select * from specialty")
@@ -453,10 +452,10 @@ func GetSpecialty() ([]models.Specialyty, error){
 	defer rows.Close()
 	specialytyAll := []models.Specialyty{}
 
-	for rows.Next(){
+	for rows.Next() {
 		p := models.Specialyty{}
 		err := rows.Scan(&p.Id, &p.Name)
-		if err != nil{
+		if err != nil {
 			fmt.Println(err)
 			continue
 		}
@@ -472,7 +471,7 @@ func DeleteSpecialty(id int) error {
 	db := createConnectin()
 	defer db.Close()
 	_, err := db.Exec("delete from specialty values where id = $1", id)
-	if err != nil{
+	if err != nil {
 		panic(err)
 	}
 	return err
@@ -489,12 +488,14 @@ func UpdateSpecialyty(specialyty models.Specialyty) (models.Specialyty, error) {
 	return specialyty, nil
 }
 
-func GetDiplomWithIfo(id int) (models.DiplomWithInfo, error){
+func GetDiplomWithIfo(id int) (models.DiplomWithInfo, error) {
 	db := createConnectin()
 	defer db.Close()
-	log.Info(id)
 	p := models.DiplomWithInfo{}
-	err := db.QueryRow("select diplom.Id ,diplom.Fio ,diplom.Topic ,diplom.Completion ,diplom.Score ,diplom.Deadline ,diplom.Queuenumber ,diplom.PmId ,p.fio ,diplom.NormcontrollerId , n.fio ,diplom.ReviewerId ,r.fio ,diplom.ChairmanId ,Chairman ,diplom.DiplomorderId ,d.name ,d.dateorder ,diplom.SpecialtyId ,s.name ,CommissionId ,c.fio ,diplom.Execution ,diplom.Type ,diplom.CommissionComment ,diplom.Time from diplom join chairman on diplom.chairmanid = chairman.id join commission c on diplom.commissionid = c.id join diplomorder d on diplom.diplomorderid = d.id join normcontroller n on diplom.normcontrollerid = n.id join pm p on diplom.pmid = p.id join reviewer r on diplom.reviewerid = r.id join specialty s on diplom.specialtyid = s.id where diplom.id = $1 limit 1", id).Scan(
-		&p.Id ,&p.Fio ,&p.Topic ,&p.Completion ,&p.Score ,&p.Deadline ,&p.Queuenumber ,&p.PmId ,&p.Pm ,&p.NormcontrollerId ,&p.Normcontroller ,&p.ReviewerId ,&p.Reviewer ,&p.ChairmanId ,&p.Chairman ,&p.DiplomorderId ,&p.Diplomorder ,&p.DiplomorderDate ,&p.SpecialtyId ,&p.Specialty ,&p.CommissionId ,&p.Commission ,&p.Execution ,&p.Type ,&p.CommissionComment ,&p.Time)
+	err := db.QueryRow("select diplom.Id ,diplom.Fio ,diplom.Topic ,diplom.Completion ,diplom.Score ,diplom.Deadline ,diplom.Queuenumber ,diplom.PmId ,p.fio ,diplom.NormcontrollerId , n.fio ,diplom.ReviewerId ,r.fio ,diplom.ChairmanId ,chairman.fio ,diplom.DiplomorderId ,d.name ,d.dateorder ,diplom.SpecialtyId ,s.name ,CommissionId ,c.fio ,diplom.Execution ,diplom.Type ,diplom.CommissionComment ,diplom.Time, diplom.ordernumber from diplom join chairman on diplom.chairmanid = chairman.id join commission c on diplom.commissionid = c.id join diplomorder d on diplom.diplomorderid = d.id join normcontroller n on diplom.normcontrollerid = n.id join pm p on diplom.pmid = p.id join reviewer r on diplom.reviewerid = r.id join specialty s on diplom.specialtyid = s.id where diplom.id = $1 limit 1", id).Scan(
+		&p.Id, &p.Fio, &p.Topic, &p.Completion, &p.Score, &p.Deadline, &p.Queuenumber, &p.PmId, &p.Pm, &p.NormcontrollerId, &p.Normcontroller, &p.ReviewerId, &p.Reviewer, &p.ChairmanId, &p.Chairman, &p.DiplomorderId, &p.Diplomorder, &p.DiplomorderDate, &p.SpecialtyId, &p.Specialty, &p.CommissionId, &p.Commission, &p.Execution, &p.Type, &p.CommissionComment, &p.Time, &p.Ordernumber)
+	if err != nil {
+		panic(err)
+	}
 	return p, err
 }

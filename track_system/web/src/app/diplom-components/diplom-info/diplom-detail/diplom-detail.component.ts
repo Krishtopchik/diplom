@@ -91,6 +91,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       diplom.DiplomorderId = +diplom.DiplomorderId;
       diplom.SpecialtyId = +diplom.SpecialtyId;
       diplom.CommissionId = +diplom.CommissionId;
+      diplom.Ordernumber = +diplom.Ordernumber;
       if (diplom.Deadline === '') {
         diplom.Deadline = null;
       } else {
@@ -174,6 +175,7 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       Execution: [''],
       Type: [0, Validators.required],
       CommissionComment: [''],
+      Ordernumber: [0]
     });
   }
 
@@ -208,7 +210,9 @@ export class DiplomDetailComponent implements OnInit, DoCheck {
       SpecialtyIdCheck: [false],
       CommissionIdCheck: [false],
       ExecutionCheck: [false],
-      TypeCheck: [false]
+      TypeCheck: [false],
+      Ordernumber: [0],
+      OrderNumberCheck: [false]
     });
     const filterItem = JSON.parse(localStorage.getItem('filter'));
     if (filterItem) {

@@ -29,4 +29,5 @@ type DiplomWithInfo struct{
 	Type int
 	CommissionComment string
 	Time int
+	Ordernumber int
 }

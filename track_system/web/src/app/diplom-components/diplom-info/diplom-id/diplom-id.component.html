@@ -21,6 +21,10 @@
       <div class="container__spinner">
         <button *ngIf="!this.timer" mat-raised-button color="primary" (click)="start()">Начало</button>
         <button *ngIf="this.timer" mat-raised-button color="primary" (click)="stop()">Сброс</button>
+        <mat-form-field *ngIf="!this.timer" class="example-full-width">
+          <mat-label>Длительность</mat-label>
+          <input matInput type="number" [(ngModel)]="time">
+        </mat-form-field>
         <div class="timer">
           <p style="color:{{color}}">{{timerText}}</p>
         </div>

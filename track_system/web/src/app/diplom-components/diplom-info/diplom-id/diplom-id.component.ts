@@ -36,6 +36,7 @@ export class DiplomIdComponent implements OnInit, OnDestroy {
   timer = false;
   interval;
   checkInterval;
+  time = 10;
 
   ngOnInit(): void {
     this.diplomId = this.route.snapshot.params.id;
@@ -44,6 +45,8 @@ export class DiplomIdComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
+    this.diplom.Time = 0;
+    this.updateDiplom(this.diplom);
     clearInterval(this.interval);
     clearInterval(this.checkInterval);
   }
@@ -122,6 +125,7 @@ export class DiplomIdComponent implements OnInit, OnDestroy {
 
   stop() {
     clearInterval(this.interval);
+    this.interval = false;
     this.diplom.Time = 0;
     this.updateDiplom(this.diplom);
     this.timerText = '';
@@ -130,12 +134,12 @@ export class DiplomIdComponent implements OnInit, OnDestroy {
   }
 
   start() {
+    this.timeLeft = this.time * 60;
     if (!this.interval) {
       this.interval = setInterval(() => {
         this.diplom.Time = this.timeLeft;
         this.timer = true;
         this.updateDiplom(this.diplom);
-        console.log('1')
         if (this.timeLeft > 0) {
           this.timeLeft--;
           this.timerText = this.secToMin(this.timeLeft.toString());
@@ -150,7 +154,6 @@ export class DiplomIdComponent implements OnInit, OnDestroy {
 
   startTimer() {
     this.checkInterval = setInterval(() => {
-      console.log('2')
       this.diplomService.getDiplomById(this.diplomId).subscribe(res => {
         if (res.Time !== 0) {
           clearInterval(this.checkInterval);

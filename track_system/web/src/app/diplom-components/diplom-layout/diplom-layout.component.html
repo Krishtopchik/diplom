@@ -18,6 +18,7 @@
       <button *ngIf="tab != 'specialyty' && isAdmin" (click)="changeTab('specialyty')" mat-button><a rel="diplomOrder">Специальности</a></button>
       <button *ngIf="tab === 'specialyty' && isAdmin" (click)="changeTab('specialyty')" mat-button color="accent"><a rel="diplomOrder">Специальности</a></button>
       <button mat-button (click)="changeTxt()">Вывод</button>
+      <button mat-button (click)="protection()">Защита</button>
       <button mat-button style="margin-left: auto;" (click)="changeRole()" *ngIf="!isAdmin">Завкафедры</button>
     </div>
   </div>

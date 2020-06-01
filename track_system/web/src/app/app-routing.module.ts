@@ -9,6 +9,7 @@ import {DiplomCommissionComponent} from './diplom-components/diplom-commission/d
 import {DiplomOrderComponent} from './diplom-components/diplom-order/diplom-order.component';
 import {DiplomIdComponent} from './diplom-components/diplom-info/diplom-id/diplom-id.component';
 import {DiplomSpecialytyComponent} from "./diplom-components/diplom-specialyty/diplom-specialyty.component";
+import {DiplomDefComponent} from "./diplom-components/diplom-info/diplom-def/diplom-def.component";
 
 
 const routes: Routes = [{
@@ -46,8 +47,12 @@ const routes: Routes = [{
   ]
 },
   {
-    path: 'diplom-components-info/:id',
+    path: 'diplom/:id',
     component: DiplomIdComponent,
+  },
+  {
+    path: 'protection',
+    component: DiplomDefComponent,
   },
 ];
 

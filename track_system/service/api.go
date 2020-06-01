@@ -795,7 +795,7 @@ func createDoc(w http.ResponseWriter, r *http.Request) {
 		if err != nil {
 			return
 		}
-		var str string = "[ " + diplomWI.Diplomorder + ", " + diplomWI.DiplomorderDate.Format("02.01.2006") + " ] " +
+		var str string = "[ " + diplomWI.Diplomorder + ", " + diplomWI.DiplomorderDate.Format("02.01.2006") + " ] " + strconv.Itoa(diplomWI.Ordernumber) + " , " +
 			"( " + diplomWI.Deadline.Format("02.01.2006") + ", " + strconv.Itoa(diplomWI.Queuenumber) + " ) " +
 			diplomWI.Specialty + ", " +
 			diplomWI.Fio + "/" +
