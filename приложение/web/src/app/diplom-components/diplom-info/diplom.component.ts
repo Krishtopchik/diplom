@@ -64,6 +64,9 @@ export class DiplomComponent implements OnInit, DoCheck {
         this.getDiplomsList();
       }
     }
+    if (this.diplomDataService.diplomsFilter) {
+      this.getDiplomsListAndFilter();
+    }
     if (this.diplomDataService.changePm) {
       this.getPmList().subscribe(res => {
         this.infoAboutDiplom.pmList = res;
@@ -113,6 +116,7 @@ export class DiplomComponent implements OnInit, DoCheck {
     const filter = localStorage.getItem('filter');
     if (filter) {
       this.getDiplomsListAndFilter();
+      // this.diplomDataService.isDiplomsUpdate = false;
     } else {
       this.diplomService.getAllDiploms().subscribe(res => {
         this.diplomsList = res;

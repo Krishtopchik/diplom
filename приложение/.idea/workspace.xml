@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21476fbe-d6d1-4c12-9def-f15e5e4c8fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../track_system/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../track_system/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../track_system/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/../track_system/service/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../track_system/web/src/app/diplom-components/diplom-info/diplom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../track_system/web/src/app/diplom-components/diplom-info/diplom.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../track_system/дипломы.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/дипломы.txt" beforeDir="false" afterPath="$PROJECT_DIR$/дипломы.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -60,7 +60,7 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="MTConfigurable" />
-    <property name="ts.external.directory.path" value="C:\Program Files\JetBrains\GoLand 2020.1.1\plugins\JavaScriptLanguage\jsLanguageServicesImpl\external" />
+    <property name="ts.external.directory.path" value="D:\Projects\diplom\go\web\node_modules\typescript\lib" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
