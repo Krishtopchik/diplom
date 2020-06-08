@@ -2,25 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="21476fbe-d6d1-4c12-9def-f15e5e4c8fb2" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/cc60e3ae-0d0e-4d2a-adfb-0d8e43adb044/storage_v2/_src_/database/postgres.edMnLQ/schema/public.abK9xQ.meta" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db/rep.go" beforeDir="false" afterPath="$PROJECT_DIR$/db/rep.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/diplom.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/diplom.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/diplomWithInfo.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/diplomWithInfo.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/api.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/api.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/common/models/diplom.model.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/common/models/diplom.model.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/dialogs/password-dialog/password-dialog.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/dialogs/password-dialog/password-dialog.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-detail/diplom-detail.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-detail/diplom-detail.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-detail/diplom-detail.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-detail/diplom-detail.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-id/diplom-id.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-id/diplom-id.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-id/diplom-id.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-id/diplom-id.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-list/diplom-list.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom-list/diplom-list.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-info/diplom.component.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-layout/diplom-layout.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-layout/diplom-layout.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-layout/diplom-layout.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/web/src/app/diplom-components/diplom-layout/diplom-layout.component.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/дипломы.txt" beforeDir="false" afterPath="$PROJECT_DIR$/дипломы.txt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -196,16 +180,5 @@
       <screen x="0" y="0" width="1366" height="738" />
     </state>
     <state x="294" y="0" width="585" height="738" key="find.popup/0.0.1366.738@0.0.1366.738" timestamp="1590093081076" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/db/rep.go</url>
-          <line>22</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

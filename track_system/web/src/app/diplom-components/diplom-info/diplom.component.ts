@@ -4,7 +4,7 @@ import {DiplomModel} from '../../common/models/diplom.model';
 import {Observable, zip} from 'rxjs';
 import {DiplomDataService} from '../../common/services/diplom-data.service';
 import {DiplomInfoModel} from '../../common/models/diplomInfo.model';
-import {SpecialytyModel} from "../../common/models/specialyty.model";
+import {SpecialytyModel} from '../../common/models/specialyty.model';
 
 @Component({
   selector: 'app-diplom',
@@ -58,7 +58,11 @@ export class DiplomComponent implements OnInit, DoCheck {
     this.selectDiplomId = this.diplomDataService.selectDiplomId;
     this.isDiplomSelect = this.diplomDataService.isDiplomSelect;
     if (this.diplomDataService.isDiplomsUpdate) {
-      this.getDiplomsList();
+      if (this.diplomDataService.diplomsFilter) {
+        this.getDiplomsListAndFilter();
+      } else {
+        this.getDiplomsList();
+      }
     }
     if (this.diplomDataService.diplomsFilter) {
       this.getDiplomsListAndFilter();
@@ -109,10 +113,16 @@ export class DiplomComponent implements OnInit, DoCheck {
   }
 
   private getDiplomsList() {
-    this.diplomService.getAllDiploms().subscribe(res => {
-      this.diplomsList = res;
-      this.diplomDataService.isDiplomsUpdate = false;
-    });
+    const filter = localStorage.getItem('filter');
+    if (filter) {
+      this.getDiplomsListAndFilter();
+      // this.diplomDataService.isDiplomsUpdate = false;
+    } else {
+      this.diplomService.getAllDiploms().subscribe(res => {
+        this.diplomsList = res;
+        this.diplomDataService.isDiplomsUpdate = false;
+      });
+    }
   }
 
   private getDiplomsListAndFilter() {

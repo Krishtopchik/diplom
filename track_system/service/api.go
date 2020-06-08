@@ -65,6 +65,8 @@ func RunRest() {
 	r.HandleFunc("/api/doc", createDoc).Methods("POST")
 
 	r.PathPrefix("/").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
+	r.PathPrefix("/diplom/{id:[0-9]+}").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
+	r.PathPrefix("/protection").Handler(http.FileServer(http.Dir(Conf.StaticPath)))
 
 	log.Printf("starting REST server on %s", Conf.ListenPort)
 
